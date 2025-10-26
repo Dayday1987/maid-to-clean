@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Dashboard | Maid To Clean</title>
+
+    <!-- ✅ CSS Links -->
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/utilities.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+  </head>
+  <body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="navbar">
+      <div class="container row">
+        <h1 class="logo">Maid To Clean</h1>
+        <nav class="nav-links">
+          <a href="/html/dashboard/dashboard.html" class="active">Dashboard</a>
+          <a href="/html/dashboard/schedule.html">Schedule</a>
+          <a href="/html/dashboard/payment.html">Payments</a>
+          <a href="/html/dashboard/settings.html">Settings</a>
+          <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="dashboard-container">
+      <section class="dashboard-header">
+        <h2 id="welcomeMessage"></h2>
+      </section>
+
+      <section class="dashboard-content">
+        <h3 class="section-title">Announcements from Admin</h3>
+        <div id="announcements" class="messages-container">
+          <p>Loading announcements...</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+    </footer>
+
+    <!-- ===== JS ===== -->
+    <script>
+      // Footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Logout
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("mtc_token");
+        localStorage.removeItem("mtc_user");
+        window.location.href = "/html/login.html";
+      });
+    </script>
+
+    <script src="/js/dashboard/dashboard.js"></script>
+  </body>
+</html>

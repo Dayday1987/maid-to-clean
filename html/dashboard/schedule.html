@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule | Maid To Clean</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/utilities.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container row">
+        <h1 class="logo">Maid To Clean</h1>
+        <nav class="nav-links">
+          <a href="/html/dashboard/dashboard.html">Dashboard</a>
+          <a href="/html/dashboard/schedule.html" class="active">Schedule</a>
+          <a href="/html/dashboard/payment.html">Payments</a>
+          <a href="/html/dashboard/settings.html">Settings</a>
+          <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="dashboard-container">
+      <section class="dashboard-header">
+        <h2 id="welcomeMessage"></h2>
+      </section>
+
+      <section class="dashboard-content">
+        <h3 class="section-title">Your Cleaning Schedule</h3>
+        <div id="scheduleContainer" class="messages-container">
+          <p>Loading your scheduled cleanings...</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/dashboard/schedule.js"></script>
+  </body>
+</html>

@@ -1,0 +1,293 @@
+/* ---------------------------------------------------
+   Maid To Clean Dashboard Styles
+   Matches pink/blue theme of main pages
+--------------------------------------------------- */
+
+/* ========== ROOT THEME VARIABLES ========== */
+:root {
+  --pink: #ff66b2;
+  --blue: #4dabf7;
+  --light-blue: #d6edff;
+  --white: #ffffff;
+  --text-dark: #222;
+  --text-light: #f9f9f9;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --radius: 10px;
+  --transition: all 0.3s ease;
+}
+
+/* ========== GENERAL LAYOUT ========== */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, var(--light-blue), var(--white));
+  color: var(--text-dark);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* ========== NAVBAR ========== */
+.dashboard-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  border-bottom: 2px solid var(--blue);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.dashboard-nav .nav-link {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  position: relative;
+}
+
+.dashboard-nav .nav-link:hover {
+  color: var(--pink);
+  box-shadow: 0 0 10px var(--blue);
+}
+
+.dashboard-nav .nav-link.active {
+  background: linear-gradient(90deg, var(--pink), var(--blue));
+  color: var(--white);
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+}
+
+.dashboard-nav .logout {
+  color: var(--pink);
+}
+
+/* ========== WELCOME HEADER ========== */
+#welcomeMessage {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin: 1.5rem 0;
+}
+
+/* ========== ANNOUNCEMENTS PANEL ========== */
+.announcements {
+  background: #f8faff;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.announcement {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #e5e5e5;
+  transition: transform 0.2s ease;
+}
+
+.announcement:hover {
+  transform: scale(1.01);
+}
+
+.announcement h3 {
+  color: #008cba;
+  margin-bottom: 5px;
+}
+
+.announcement small {
+  display: block;
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+/* ========== DASHBOARD SECTIONS ========== */
+.dashboard-section {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin: 2rem auto;
+  max-width: 900px;
+}
+
+.dashboard-section h2 {
+  color: var(--pink);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.dashboard-section form,
+.dashboard-section table {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--pink), var(--blue));
+  color: var(--white);
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* ========== FOOTER ========== */
+footer {
+  text-align: center;
+  background: var(--white);
+  border-top: 2px solid var(--blue);
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+  box-shadow: var(--shadow);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .dashboard-nav {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  #welcomeMessage {
+    font-size: 1.2rem;
+  }
+
+  .dashboard-section {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}
+/* --- New Announcement Toast --- */
+.toast {
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+  z-index: 1000;
+  max-width: 320px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--pink), var(--blue));
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  font-weight: 600;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.toast a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+/* subtle highlight for brand-new announcements in the list */
+.announcement.new {
+  outline: 2px solid var(--pink);
+  animation: pulseGlow 1.8s ease-out 1;
+}
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 102, 178, 0);
+  }
+  40% {
+    box-shadow: 0 0 18px rgba(255, 102, 178, 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(255, 102, 178, 0);
+  }
+}
+/* ===== ADMIN MESSAGES DASHBOARD ===== */
+#welcomeMessage {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2b3d3f;
+  margin-bottom: 20px;
+}
+
+/* Container for all messages */
+#adminMessages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Message Card Style */
+.message-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.message-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Message Titles */
+.message-card h3 {
+  font-size: 1.2rem;
+  color: #157a6e; /* soft teal accent */
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Message Body */
+.message-card p {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+/* Date and Metadata */
+.message-card small {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  #adminMessages {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+}
