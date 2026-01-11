@@ -1,26 +1,21 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const API_BASE = "https://maid-to-clean-backend.onrender.com/api";
-  const token = localStorage.getItem("mtc_token");
-  const user = JSON.parse(localStorage.getItem("mtc_user") || "null");
+  const API_BASE = window.API_BASE || 'https://maid-to-clean-backend.onrender.com/api';
+  const token = localStorage.getItem("mtc_token") || localStorage.getItem("token");
+  const user = JSON.parse(
+    localStorage.getItem("mtc_user") || localStorage.getItem("user") || "null"
+  );
 
   if (!token || !user) {
     alert("Please log in first.");
-    window.location.href = "/html/login.html";
+    window.location.href = "../login.html";
     return;
   }
 
-  // Welcome message
-  const welcomeEl = document.getElementById("welcomeMessage");
-  if (welcomeEl) {
-    welcomeEl.textContent = `Welcome back, ${user.firstName}!`;
-  }
-
-  // Load announcements (from admin)
   async function loadAnnouncements() {
     const container = document.getElementById("announcements");
     if (!container) return;
 
-    container.innerHTML = "<p>Loading...</p>";
+    container.innerHTML = '<p class="center">Loading announcements...</p>';
 
     try {
       const res = await fetch(`${API_BASE}/admin/messages`, {
@@ -31,32 +26,41 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       if (!res.ok) {
-        container.innerHTML = `<p>Error: ${res.statusText}</p>`;
-        return;
+        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
       }
 
       const data = await res.json();
+
       if (!data || data.length === 0) {
-        container.innerHTML = "<p>No announcements available right now.</p>";
+        container.innerHTML = `
+          <div class="announcement">
+            <p class="center">No announcements available right now.</p>
+          </div>
+        `;
         return;
       }
 
       container.innerHTML = data
         .map(
           (msg) => `
-        <div class="message-card">
+        <div class="announcement">
           <h3>${msg.title || "Announcement"}</h3>
           <p>${msg.body || "No content available."}</p>
-          <small>Posted on: ${new Date(msg.createdAt).toLocaleString()}</small>
+          <small>Posted: ${new Date(msg.createdAt).toLocaleString()}</small>
         </div>
       `
         )
         .join("");
     } catch (err) {
       console.error("Error loading announcements:", err);
-      container.innerHTML = "<p>Failed to load announcements.</p>";
+      container.innerHTML = `
+        <div class="announcement">
+          <p class="center">Unable to load announcements at this time.</p>
+        </div>
+      `;
     }
   }
 
   await loadAnnouncements();
+  setInterval(loadAnnouncements, 5 * 60 * 1000);
 });
