@@ -16,6 +16,7 @@
           <img src="img/stephanie.PNG" alt="Stephanie Kirkley" />
           <span>Maid To Clean</span>
         </div>
+         <button class="menu-toggle" aria-label="Toggle menu">☰</button>
         <div class="nav-links">
           <a class="active" href="index.html">Home</a>
           <a href="html/services.html">Services</a>
@@ -77,14 +78,17 @@
 
     <footer class="footer">
       <div class="container inner">
-        <div>© <span id="year"></span> Maid To Clean</div>
-        <div>Pink + Blue, proudly sparkling ✨</div>
+        <div>&copy; <span id="year"></span> Maid To Clean</div>
+<div>Pink + Blue, proudly sparkling ✨</div>
       </div>
     </footer>
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
-    <script src="js/main.js"></script>
+    <script src="../js/api-config.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/auth.js"></script>
+
   </body>
 </html>
