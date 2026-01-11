@@ -1,4 +1,4 @@
-/* ========== NAVBAR - MOBILE FIRST ========== */
+/* Navbar (main pages) - MOBILE FIRST */
 .navbar {
   position: sticky;
   top: 0;
@@ -33,7 +33,7 @@
   object-fit: cover;
 }
 
-/* ========== MOBILE MENU TOGGLE ========== */
+/* MOBILE MENU TOGGLE */
 .menu-toggle {
   display: inline-block;
   background: none;
@@ -52,7 +52,7 @@
   border-color: rgba(255, 255, 255, 0.8);
 }
 
-/* ========== MOBILE NAV LINKS (DEFAULT) ========== */
+/* MOBILE NAV LINKS (DEFAULT) */
 .nav-links {
   display: none;
   flex-direction: column;
@@ -90,12 +90,12 @@
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15) inset;
 }
 
-/* ========== MOBILE NAV ACTIONS ========== */
+/* MOBILE NAV ACTIONS */
 .nav-actions {
   display: none;
 }
 
-/* ========== TABLET & DESKTOP (851px+) ========== */
+/* TABLET & DESKTOP (851px+) */
 @media (min-width: 851px) {
   .menu-toggle {
     display: none;
@@ -123,7 +123,7 @@
   }
 }
 
-/* ========== SLIDE DOWN ANIMATION ========== */
+/* SLIDE DOWN ANIMATION */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -135,7 +135,7 @@
   }
 }
 
-/* ========== HEADER & FOOTER ========== */
+/* HEADER & FOOTER */
 .header {
   background: radial-gradient(
       1200px 400px at 20% -10%,
@@ -172,7 +172,7 @@ main {
   padding: 2rem 0;
 }
 
-/* ========== RESPONSIVE FOOTER ========== */
+/* RESPONSIVE FOOTER */
 @media (max-width: 640px) {
   .footer .inner {
     flex-direction: column;
