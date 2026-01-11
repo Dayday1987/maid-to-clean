@@ -3,62 +3,377 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Maid To Clean — Home</title>
+    <title>Maid To Clean - Professional Cleaning Services in Birmingham, AL</title>
+    <meta name="description" content="Professional home and office cleaning services in Birmingham, Alabama. Eco-friendly, reliable, and affordable. Book your cleaning today!">
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/utilities.css" />
+    <link rel="stylesheet" href="css/homepage.css" />
   </head>
   <body>
-    <header class="container">
-      <nav class="navbar">
-        <div class="container inner">
-          <div class="brand">
-            <img src="img/stephanie.jpg" alt="Stephanie Kirkley" />
-            <span>Maid To Clean</span>
-          </div>
-          <!-- ✅ Mobile menu button -->
-          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-          <div class="nav-links">
-            <a href="/html/index.html">Home</a>
-            <a href="html/services.html">Services</a>
-            <a href="html/about.html">About</a>
-            <a href="html/contact.html">Contact</a>
-          </div>
-          <div class="nav-actions">
-            <a class="btn btn-ghost active" href="html/login.html">Login</a>
-            <a class="btn btn-primary" href="html/register.html">Register</a>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main class="container">
-      <section class="mt-3">
-        <div class="grid-3">
-          <article class="card service-card">
-            <h3><a href="html/services.html#deep-clean">Deep Clean</a></h3>
-            <p>Top-to-bottom detail for a refreshed, like-new feel.</p>
-          </article>
-          <article class="card service-card">
-            <h3><a href="html/services.html#basic-clean">Basic Clean</a></h3>
-            <p>Reliable upkeep to keep your space tidy and healthy.</p>
-          </article>
-          <article class="card service-card">
-            <h3><a href="html/services.html#move-clean">Move-In / Move-Out</a></h3>
-            <p>Make moving day easier with a ready-to-go clean.</p>
-          </article>
-        </div>
-      </section>
-    </main>
-     <footer class="footer">
+    <!-- NAVIGATION -->
+    <nav class="navbar">
       <div class="container inner">
-        <!-- ✅ Fixed encoding -->
-        <div>&copy; <span id="year"></span> Maid To Clean</div>
-        <div>Pink + Blue, proudly sparkling ✨</div>
+        <div class="brand">
+          <img src="img/stephanie.jpg" alt="Stephanie Kirkley" />
+          <span>Maid To Clean</span>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        <div class="nav-links">
+          <a class="active" href="index.html">Home</a>
+          <a href="html/services.html">Services</a>
+          <a href="html/about.html">About</a>
+          <a href="html/contact.html">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a class="btn btn-ghost" href="html/login.html">Login</a>
+          <a class="btn btn-primary" href="html/register.html">Get Started</a>
+        </div>
       </div>
-     </footer>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-modern">
+      <div class="hero-background"></div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <span class="hero-badge">✨ Trusted by 500+ Happy Customers</span>
+            <h1 class="hero-title">
+              Your Home Deserves the
+              <span class="gradient-text">Best Clean</span>
+            </h1>
+            <p class="hero-subtitle">
+              Professional cleaning services that transform your space into a spotless sanctuary. 
+              Eco-friendly products, trusted team, and satisfaction guaranteed.
+            </p>
+            <div class="hero-cta">
+              <a href="html/register.html" class="btn btn-hero-primary">
+                <span>Book Your Clean</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a href="html/services.html" class="btn btn-hero-secondary">
+                View Services
+              </a>
+            </div>
+            <div class="hero-trust">
+              <div class="trust-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Licensed & Insured</span>
+              </div>
+              <div class="trust-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Eco-Friendly</span>
+              </div>
+              <div class="trust-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>100% Satisfaction</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-image">
+            <div class="hero-image-wrapper">
+              <img src="img/stephanie.jpg" alt="Professional Cleaning Services" />
+              <div class="floating-card card-1">
+                <div class="card-icon">⭐</div>
+                <div class="card-text">
+                  <strong>4.9/5</strong>
+                  <span>Average Rating</span>
+                </div>
+              </div>
+              <div class="floating-card card-2">
+                <div class="card-icon">🏆</div>
+                <div class="card-text">
+                  <strong>500+</strong>
+                  <span>Happy Customers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-modern">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Our Services</span>
+          <h2 class="section-title">Cleaning Solutions for Every Need</h2>
+          <p class="section-subtitle">
+            From deep cleans to regular maintenance, we've got you covered
+          </p>
+        </div>
+        <div class="services-grid-modern">
+          <div class="service-card-modern">
+            <div class="service-icon">🏠</div>
+            <h3>Deep Cleaning</h3>
+            <p>Comprehensive top-to-bottom clean that leaves no corner untouched</p>
+            <ul class="service-features">
+              <li>✓ Baseboards & vents</li>
+              <li>✓ Inside appliances</li>
+              <li>✓ High-touch surfaces</li>
+            </ul>
+            <a href="html/services.html#deep" class="service-link">Learn More →</a>
+          </div>
+          <div class="service-card-modern featured">
+            <span class="popular-badge">Most Popular</span>
+            <div class="service-icon">✨</div>
+            <h3>Standard Cleaning</h3>
+            <p>Perfect for maintaining a consistently clean and healthy home</p>
+            <ul class="service-features">
+              <li>✓ All rooms cleaned</li>
+              <li>✓ Dusting & vacuuming</li>
+              <li>✓ Kitchen & bathrooms</li>
+            </ul>
+            <a href="html/services.html#basic" class="service-link">Learn More →</a>
+          </div>
+          <div class="service-card-modern">
+            <div class="service-icon">📦</div>
+            <h3>Move In/Out</h3>
+            <p>Make your move stress-free with our thorough move cleaning service</p>
+            <ul class="service-features">
+              <li>✓ Empty home cleaning</li>
+              <li>✓ Cabinet interiors</li>
+              <li>✓ Window cleaning</li>
+            </ul>
+            <a href="html/services.html#move" class="service-link">Learn More →</a>
+          </div>
+          <div class="service-card-modern">
+            <div class="service-icon">🏢</div>
+            <h3>Office Cleaning</h3>
+            <p>Professional commercial cleaning for a productive workplace</p>
+            <ul class="service-features">
+              <li>✓ Flexible scheduling</li>
+              <li>✓ Common areas</li>
+              <li>✓ Restroom sanitation</li>
+            </ul>
+            <a href="html/services.html" class="service-link">Learn More →</a>
+          </div>
+          <div class="service-card-modern">
+            <div class="service-icon">🔨</div>
+            <h3>Post-Construction</h3>
+            <p>Remove dust and debris after renovations or construction work</p>
+            <ul class="service-features">
+              <li>✓ Dust removal</li>
+              <li>✓ Floor cleaning</li>
+              <li>✓ Final polish</li>
+            </ul>
+            <a href="html/services.html" class="service-link">Learn More →</a>
+          </div>
+          <div class="service-card-modern">
+            <div class="service-icon">🎯</div>
+            <h3>Custom Cleaning</h3>
+            <p>Tailored cleaning solutions designed for your specific needs</p>
+            <ul class="service-features">
+              <li>✓ Your priorities</li>
+              <li>✓ Flexible options</li>
+              <li>✓ Special requests</li>
+            </ul>
+            <a href="html/services.html" class="service-link">Learn More →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-choose">
+      <div class="container">
+        <div class="why-content">
+          <div class="why-text">
+            <span class="section-badge">Why Maid To Clean</span>
+            <h2 class="section-title">What Makes Us Different</h2>
+            <div class="why-features">
+              <div class="why-feature">
+                <div class="feature-icon">🌿</div>
+                <div>
+                  <h3>Eco-Friendly Products</h3>
+                  <p>Safe for your family, pets, and the environment. We use only green-certified cleaning solutions.</p>
+                </div>
+              </div>
+              <div class="why-feature">
+                <div class="feature-icon">👥</div>
+                <div>
+                  <h3>Trusted Team</h3>
+                  <p>Background-checked, trained professionals who treat your home with respect and care.</p>
+                </div>
+              </div>
+              <div class="why-feature">
+                <div class="feature-icon">💯</div>
+                <div>
+                  <h3>Satisfaction Guaranteed</h3>
+                  <p>Not happy? We'll come back and re-clean for free. Your satisfaction is our priority.</p>
+                </div>
+              </div>
+              <div class="why-feature">
+                <div class="feature-icon">📱</div>
+                <div>
+                  <h3>Easy Online Booking</h3>
+                  <p>Schedule, manage, and pay for your cleaning services all from your dashboard.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="why-image">
+            <div class="stats-card">
+              <div class="stat">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Happy Customers</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">5 Years</div>
+                <div class="stat-label">In Business</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">4.9★</div>
+                <div class="stat-label">Average Rating</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Satisfaction Rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Simple Process</span>
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-subtitle">Book your cleaning in 3 easy steps</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-icon">📅</div>
+            <h3>Choose Your Service</h3>
+            <p>Select the cleaning service that fits your needs and schedule a convenient time.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-icon">✅</div>
+            <h3>We Clean Your Space</h3>
+            <p>Our professional team arrives on time and delivers a thorough, detailed clean.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-icon">😊</div>
+            <h3>Enjoy Your Clean Home</h3>
+            <p>Relax and enjoy your sparkling clean space. Satisfaction guaranteed!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-badge">Customer Reviews</span>
+          <h2 class="section-title">What Our Customers Say</h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Absolutely fantastic service! My home has never looked better. The team was professional, thorough, and respectful. Highly recommend!"</p>
+            <div class="testimonial-author">
+              <strong>Sarah Johnson</strong>
+              <span>Birmingham, AL</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"I've tried several cleaning services, but Maid To Clean is by far the best. They pay attention to every detail and use eco-friendly products."</p>
+            <div class="testimonial-author">
+              <strong>Michael Davis</strong>
+              <span>Birmingham, AL</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Great experience from start to finish. Easy booking, friendly staff, and excellent results. My office has never been cleaner!"</p>
+            <div class="testimonial-author">
+              <strong>Lisa Thompson</strong>
+              <span>Birmingham, AL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready for a Spotless Home?</h2>
+          <p>Join hundreds of satisfied customers and experience the Maid To Clean difference</p>
+          <div class="cta-buttons">
+            <a href="html/register.html" class="btn btn-cta-primary">Get Started Today</a>
+            <a href="html/contact.html" class="btn btn-cta-secondary">Contact Us</a>
+          </div>
+          <p class="cta-note">💳 No credit card required to register • 📞 Same-day service available</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <div class="footer-brand">
+              <img src="img/stephanie.jpg" alt="Maid To Clean" />
+              <span>Maid To Clean</span>
+            </div>
+            <p>Professional cleaning services in Birmingham, Alabama. Making homes and offices sparkle since 2020.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="html/services.html">Services</a></li>
+              <li><a href="html/about.html">About Us</a></li>
+              <li><a href="html/contact.html">Contact</a></li>
+              <li><a href="html/register.html">Get Started</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Contact</h4>
+            <ul>
+              <li>📧 stephaniekirkley15@gmail.com</li>
+              <li>📞 334-425-4566</li>
+              <li>📍 Birmingham, Alabama</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Hours</h4>
+            <ul>
+              <li>Mon-Fri: 8:00 AM - 6:00 PM</li>
+              <li>Saturday: 9:00 AM - 4:00 PM</li>
+              <li>Sunday: Closed</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+          <p>Pink + Blue, proudly sparkling ✨</p>
+        </div>
+      </div>
+    </footer>
+
     <script src="js/api-config.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/auth.js"></script>
   </body>
 </html>
