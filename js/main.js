@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ========== SET CURRENT YEAR IN FOOTER ==========
   const yearSpan = document.getElementById("year");
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
 
+  // ========== HIGHLIGHT ACTIVE NAV LINK ==========
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-links a").forEach((link) => {
     const href = link.getAttribute("href");
+    // Handle both relative paths and just filenames
     if (href === currentPage || href.endsWith(currentPage)) {
       link.classList.add("active");
     } else {
@@ -14,16 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // ========== MOBILE MENU TOGGLE ==========
   const navLinks = document.querySelector(".nav-links");
   const menuToggle = document.querySelector(".menu-toggle");
   
   if (menuToggle && navLinks) {
     menuToggle.addEventListener("click", () => {
       navLinks.classList.toggle("show");
+      
+      // Update aria-expanded for accessibility
       const isExpanded = navLinks.classList.contains("show");
       menuToggle.setAttribute("aria-expanded", isExpanded);
     });
 
+    // Close menu when clicking a link
     navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         navLinks.classList.remove("show");
@@ -31,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
         navLinks.classList.remove("show");
@@ -39,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ========== FADE-IN ANIMATIONS ON SCROLL ==========
   const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
@@ -48,15 +57,17 @@ document.addEventListener("DOMContentLoaded", () => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
+        observer.unobserve(entry.target); // Stop observing once visible
       }
     });
   }, observerOptions);
 
+  // Observe elements for animation
   document.querySelectorAll(".card, .service-card, .hero").forEach((el) => {
     observer.observe(el);
   });
 
+  // ========== CONTACT FORM HANDLER ==========
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", async (e) => {
@@ -68,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         message: document.getElementById("message").value.trim(),
       };
 
+      // Basic validation
       if (!formData.name || !formData.email || !formData.message) {
         alert("Please fill out all fields.");
         return;
@@ -79,12 +91,15 @@ document.addEventListener("DOMContentLoaded", () => {
       submitBtn.disabled = true;
 
       try {
-        const API_BASE = window.API_BASE || 'https://maid-to-clean-backend.onrender.com/api';
-        const response = await fetch(`${API_BASE}/contact`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
+        // Replace with your actual API endpoint
+        const response = await fetch(
+          "https://maid-to-clean-backend.onrender.com/api/contact",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          }
+        );
 
         if (response.ok) {
           alert("Thank you! Your message has been sent.");
@@ -94,7 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } catch (error) {
         console.error("Contact form error:", error);
-        alert("Sorry, there was an error. Please try again or contact us directly.");
+        alert(
+          "Sorry, there was an error sending your message. Please try again or contact us directly."
+        );
       } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
@@ -102,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ========== SMOOTH SCROLL FOR ANCHOR LINKS ==========
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const href = this.getAttribute("href");
