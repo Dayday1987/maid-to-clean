@@ -1,3 +1,6 @@
+/* DASHBOARD SPECIFIC STYLES */
+
+/* Container for dashboard content */
 .dashboard-section {
   background: var(--surface);
   padding: 2rem;
@@ -12,6 +15,7 @@
   margin-bottom: 1rem;
 }
 
+/* ANNOUNCEMENTS & MESSAGES */
 .announcements,
 .messages-grid {
   display: grid;
@@ -60,6 +64,7 @@
   border-top: 1px solid var(--border);
 }
 
+/* STATUS BADGES */
 .status-pending {
   color: #f59e0b;
   font-weight: 600;
@@ -85,6 +90,7 @@
   font-weight: 600;
 }
 
+/* SETTINGS FORM */
 .settings-form {
   max-width: 600px;
   margin: 0 auto;
@@ -111,6 +117,7 @@
   margin-top: 1.5rem;
 }
 
+/* TOAST NOTIFICATIONS */
 .toast {
   position: fixed;
   right: 16px;
@@ -141,6 +148,7 @@
   font-weight: 700;
 }
 
+/* NEW ANNOUNCEMENT HIGHLIGHT */
 .announcement.new,
 .message-card.new {
   outline: 2px solid var(--pink);
@@ -159,6 +167,7 @@
   }
 }
 
+/* EMPTY STATE */
 .empty-state {
   text-align: center;
   padding: 3rem 1rem;
@@ -170,6 +179,7 @@
   margin: 0;
 }
 
+/* RESPONSIVE DASHBOARD */
 @media (max-width: 768px) {
   .dashboard-section {
     padding: 1.5rem 1rem;
