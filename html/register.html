@@ -63,5 +63,21 @@
         <div>Pink + Blue, proudly sparkling ✨</div>
       </div>
     </footer>
-  </body>
+    <script>
+  // Mobile menu toggle - standalone version
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav-links');
+    
+    if (btn && nav) {
+      btn.addEventListener('click', function() {
+        nav.classList.toggle('show');
+        
+        // Debug: Add visual feedback
+        console.log('Menu toggled:', nav.classList.contains('show'));
+      });
+    }
+  });
+</script>
+</body>
 </html>
