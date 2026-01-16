@@ -14,8 +14,9 @@
   </head>
   <body>
     <header class="navbar">
-      <div class="container row">
+      <div class="container inner">
         <h1 class="logo">Maid To Clean</h1>
+        <button class="menu-toggle" aria-label="Menu">☰</button>
         <nav class="nav-links">
           <a href="/html/dashboard/dashboard.html">Dashboard</a>
           <a href="/html/dashboard/schedule.html">Schedule</a>
@@ -44,5 +45,16 @@
     </footer>
 
     <script src="/js/dashboard/payment.js"></script>
+    <script>
+      // Footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Logout
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("mtc_token");
+        localStorage.removeItem("mtc_user");
+        window.location.href = "/html/login.html";
+      });
+    </script>
   </body>
 </html>
