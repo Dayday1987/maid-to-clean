@@ -1,38 +1,32 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const API_BASE = window.API_BASE || 'https://maid-to-clean-backend.onrender.com/api';
-  const token = localStorage.getItem("mtc_token") || localStorage.getItem("token");
-  const user = JSON.parse(
-    localStorage.getItem("mtc_user") || localStorage.getItem("user") || "null"
-  );
+  const API_BASE = "https://maid-to-clean-backend.onrender.com/api";
+  const token = localStorage.getItem("mtc_token");
+  const user = JSON.parse(localStorage.getItem("mtc_user") || "null");
 
-  if (!token || !user) {
+  if (!token || !user || !user.id) {
     alert("Please log in first.");
-    window.location.href = "../login.html";
+    window.location.href = "/html/login.html";
     return;
   }
 
-  const scheduleContainer = document.getElementById("scheduleContainer");
-  if (!scheduleContainer) return;
+  document.getElementById(
+    "welcomeMessage"
+  ).textContent = `Welcome, ${user.firstName}!`;
 
-  scheduleContainer.innerHTML = '<p class="center">Loading schedule...</p>';
+  const scheduleContainer = document.getElementById("scheduleContainer");
+  scheduleContainer.innerHTML = "<p>Loading schedule...</p>";
 
   try {
     const res = await fetch(`${API_BASE}/schedule/${user.id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-    }
-
+    if (!res.ok) throw new Error("Failed to load schedule");
     const data = await res.json();
 
-    if (!data || data.length === 0) {
-      scheduleContainer.innerHTML = `
-        <div class="message-card">
-          <p class="center">You don't have any upcoming cleanings scheduled.</p>
-        </div>
-      `;
+    if (!data.length) {
+      scheduleContainer.innerHTML =
+        "<p>You don't have any upcoming cleanings.</p>";
       return;
     }
 
@@ -40,20 +34,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       .map(
         (item) => `
       <div class="message-card">
-        <h3>${item.serviceType || "Cleaning Service"}</h3>
-        <p><strong>Date & Time:</strong> ${new Date(item.date).toLocaleString()}</p>
-        <p><strong>Status:</strong> <span class="status-${item.status?.toLowerCase() || 'pending'}">${item.status || "Pending"}</span></p>
-        ${item.notes ? `<p><strong>Notes:</strong> ${item.notes}</p>` : ""}
+        <h3>${item.serviceType}</h3>
+        <p><strong>Date:</strong> ${new Date(item.date).toLocaleString()}</p>
+        <p><strong>Status:</strong> ${item.status || "Pending"}</p>
       </div>
     `
       )
       .join("");
   } catch (err) {
-    console.error("Error loading schedule:", err);
-    scheduleContainer.innerHTML = `
-      <div class="message-card">
-        <p class="center">Could not load your schedule. Try again later.</p>
-      </div>
-    `;
+    scheduleContainer.innerHTML =
+      "<p>Could not load your schedule. Please try again later.</p>";
   }
 });
