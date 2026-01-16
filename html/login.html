@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/utilities.css" />
     <script src="../js/auth.js" defer></script>
-    <script src="../js/main.js"></script>
+    <script src="../js/main.js" defer></script>
   </head>
   <body>
     <header class="container">
@@ -19,7 +19,7 @@
             <img src="../img/stephanie.jpg" alt="Stephanie Kirkley" />
             <span>Maid To Clean</span>
           </div>
-           <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+          <button class="menu-toggle" aria-label="Menu">☰</button>
           <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="services.html">Services</a>
@@ -41,14 +41,16 @@
           ><input id="email" type="email" required />
           <label for="password">Password</label
           ><input id="password" type="password" required />
-          <button type="submit">Login</button>
+          <button type="submit" class="btn btn-primary">Login</button>
         </form>
-        <p>Don't have an account? <a href="register.html">Register here</a></p>
+        <p class="mt-2">Don't have an account? <a href="register.html">Register here</a></p>
       </section>
     </main>
-    <footer>
-      <div class="container"><p>© 2025 Maid To Clean</p></div>
+    <footer class="footer">
+      <div class="container inner">
+        <div>© <span id="year"></span> Maid To Clean</div>
+        <div>Pink + Blue, proudly sparkling ✨</div>
+      </div>
     </footer>
-    <script src="../js/auth.js"></script>
   </body>
 </html>
