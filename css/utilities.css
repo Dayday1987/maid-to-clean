@@ -1,30 +1,19 @@
-.flex {
-  display: flex;
-}
-.items-center {
-  align-items: center;
-}
-.justify-between {
-  justify-content: space-between;
-}
-.gap-1 {
-  gap: 0.5rem;
-}
-.gap-2 {
-  gap: 1rem;
-}
-.round {
-  border-radius: 999px;
-}
-.shadow {
-  box-shadow: var(--shadow);
-}
-.center {
-  text-align: center;
-}
-.right {
-  text-align: right;
-}
-.w-100 {
-  width: 100%;
-}
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.round { border-radius: 999px; }
+.shadow { box-shadow: var(--shadow); }
+.center { text-align: center; }
+.right { text-align: right; }
+.w-100 { width: 100%; }
+
+/* New spacing utilities for dashboard consistency */
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+.m-auto { margin: auto; }
+.text-muted { color: var(--muted); }
+.text-primary { color: var(--blue); }
+.text-accent { color: var(--pink); }
