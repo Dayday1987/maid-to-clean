@@ -2,13 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>About - Maid To Clean</title>
+    <title>About</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/layout.css" />
     <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/utilities.css" />
-    <script src="../js/main.js"></script>
+    <script src="../js/main.js" defer></script>
   </head>
   <body>
     <header class="container">
@@ -18,7 +18,7 @@
             <img src="../img/stephanie.jpg" alt="Stephanie Kirkley" />
             <span>Maid To Clean</span>
           </div>
-          <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+          <button class="menu-toggle" aria-label="Menu">☰</button>
           <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="services.html">Services</a>
@@ -35,14 +35,26 @@
     <main class="container">
       <section>
         <h2 class="section-title">About</h2>
-        <div class="about-content">
+        <div
+          style="
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+          "
+        >
           <img
-            src="../img/stephanie.jpg"
-            alt="Stephanie Kirkley, Founder"
-            class="about-image"
+            src="../img/stephanie.PNG"
+            style="
+              width: 220px;
+              height: 220px;
+              object-fit: cover;
+              border-radius: 12px;
+              border: 4px solid #ff79c6;
+            "
           />
-          <div class="about-text">
-            <section class="about-section">
+          <div>
+            <section>
               <h3>Meet Stephanie Kirkley</h3>
               <p>
                 Stephanie founded Maid To Clean with a commitment to quality and
@@ -50,14 +62,14 @@
                 attention to detail.
               </p>
             </section>
-            <section class="about-section">
+            <section>
               <h3>About Maid To Clean</h3>
               <p>
                 We started as a small local service focused on eco-friendly
                 cleaning and excellent customer care.
               </p>
             </section>
-            <section class="about-section">
+            <section>
               <h3>My Vision</h3>
               <p>
                 To build a trusted local company that makes homes and workplaces
@@ -70,13 +82,10 @@
     </main>
     <footer class="footer">
       <div class="container inner">
-        <div>&copy; <span id="year"></span> Maid To Clean</div>
+        <div>© <span id="year"></span> Maid To Clean</div>
         <div>Pink + Blue, proudly sparkling ✨</div>
       </div>
     </footer>
-     <script src="../../js/api-config.js"></script>
-    <script src="../../js/main.js"></script>
-    <script src="../../js/dashboard-protect.js"></script>
-    <script src="../../js/dashboard.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>
