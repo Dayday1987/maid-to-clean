@@ -35,9 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Save token + user info - STANDARDIZED KEYS
-        localStorage.setItem("mtc_token", data.token);
-        localStorage.setItem("mtc_user", JSON.stringify(data.user));
-
+        
+// Find these lines:
+localStorage.setItem("mtc_token", data.token);
+localStorage.setItem("mtc_user", JSON.stringify(data.user));
         // Redirect based on role
         if (data.user.role === "admin") {
           window.location.href = "/html/dashboard/admin_messages.html";
