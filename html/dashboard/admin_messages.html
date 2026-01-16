@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard | Maid To Clean</title>
 
-    <!-- ✅ CSS Links -->
+    <!-- CSS Links -->
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/layout.css" />
     <link rel="stylesheet" href="/css/components.css" />
@@ -13,10 +13,11 @@
     <link rel="stylesheet" href="/css/dashboard.css" />
   </head>
   <body>
-    <!-- ===== NAVBAR ===== -->
+    <!-- NAVBAR -->
     <header class="navbar">
-      <div class="container row">
+      <div class="container inner">
         <h1 class="logo">Maid To Clean</h1>
+        <button class="menu-toggle" aria-label="Menu">☰</button>
         <nav class="nav-links">
           <a href="/html/dashboard/dashboard.html">Dashboard</a>
           <a href="/html/dashboard/schedule.html">Schedule</a>
@@ -27,7 +28,7 @@
       </div>
     </header>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    <!-- MAIN CONTENT -->
     <main class="dashboard-container">
       <section class="dashboard-header">
         <h2 id="welcomeMessage"></h2>
@@ -41,12 +42,13 @@
       </section>
     </main>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- FOOTER -->
     <footer class="footer">
       <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
     </footer>
 
-    <!-- ===== JS ===== -->
+    <!-- JS -->
+    <script src="/js/dashboard/admin-messages.js"></script>
     <script>
       // Auto-update footer year
       document.getElementById("year").textContent = new Date().getFullYear();
@@ -58,7 +60,5 @@
         window.location.href = "/html/login.html";
       });
     </script>
-
-    <script src="/js/dashboard/admin-messages.js"></script>
   </body>
 </html>
