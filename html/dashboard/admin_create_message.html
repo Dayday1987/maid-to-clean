@@ -48,14 +48,14 @@
     <footer class="footer">
       <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
     </footer>
-    <script src="/js/dashboard/main.js"></script>
-    <script src="../../js/dashboard/admin-create-message.js"></script>
+    <script src="../../js/dashboard/main.js"></script>
+    <script src="../../../js/dashboard/admin-create-message.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
 
       document.getElementById("logoutBtn").addEventListener("click", () => {
         localStorage.clear();
-        window.location.href = "/html/login.html";
+        window.location.href = "../html/login.html";
       });
     </script>
   </body>
