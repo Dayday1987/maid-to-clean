@@ -5,37 +5,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!token || !user) {
     alert("Please log in first.");
-    window.location.href = "/html/login.html";
+    window.location.href = "../../login.html";
     return;
   }
 
-  // 24-hour auto logout
-  const MAX_INACTIVE_TIME = 24 * 60 * 60 * 1000;
-  let lastActivity = Date.now();
-  const resetTimer = () => { lastActivity = Date.now(); };
-  ["click", "mousemove", "keypress", "scroll"].forEach(evt => 
-    document.addEventListener(evt, resetTimer)
-  );
-  setInterval(() => {
-    if (Date.now() - lastActivity > MAX_INACTIVE_TIME) {
-      localStorage.clear();
-      window.location.href = "/html/login.html";
-    }
-  }, 60000);
-
   // Welcome message
-  const welcomeEl = document.getElementById("welcomeMessage");
-  if (welcomeEl) {
-    welcomeEl.textContent = `Welcome back, ${user.firstName}!`;
+  if (document.getElementById("welcomeMessage")) {
+    document.getElementById("welcomeMessage").textContent = `Welcome back, ${user.firstName}!`;
   }
 
   // Logout
-  const logoutBtn = document.getElementById("logoutBtn");
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", (e) => {
+  if (document.getElementById("logoutBtn")) {
+    document.getElementById("logoutBtn").addEventListener("click", (e) => {
       e.preventDefault();
       localStorage.clear();
-      window.location.href = "/html/login.html";
+      window.location.href = "../../login.html";
     });
   }
 
