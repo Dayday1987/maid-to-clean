@@ -19,14 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const res = await fetch(
-          "https://maid-to-clean-backend.onrender.com/api/auth/login",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password }),
-          }
-        );
+        const res = await fetch(`${API_BASE}/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
 
         const data = await res.json();
 
@@ -36,10 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Save token + user info - STANDARDIZED KEYS
-        
-// Find these lines:
-localStorage.setItem("mtc_token", data.token);
-localStorage.setItem("mtc_user", JSON.stringify(data.user));
+        localStorage.setItem("mtc_token", data.token);
+        localStorage.setItem("mtc_user", JSON.stringify(data.user));
+
         // Redirect based on role
         if (data.user.role === "admin") {
           window.location.href = "/html/dashboard/admin_messages.html";
@@ -80,21 +76,18 @@ localStorage.setItem("mtc_user", JSON.stringify(data.user));
       }
 
       try {
-        const res = await fetch(
-          "https://maid-to-clean-backend.onrender.com/api/auth/register",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              firstName,
-              lastName,
-              email,
-              password,
-              phone,
-              birthDate,
-            }),
-          }
-        );
+        const res = await fetch(`${API_BASE}/auth/register`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            password,
+            phone,
+            birthDate,
+          }),
+        });
 
         const data = await res.json();
 
