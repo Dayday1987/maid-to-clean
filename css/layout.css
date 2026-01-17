@@ -159,21 +159,3 @@ main {
     transform: translateY(0);
   }
 }
-
-/* Add this at the bottom of the file */
-@media (max-width: 850px) {
-  .nav-links {
-    display: none; /* Menu starts hidden */
-    /* ... your existing styles ... */
-  }
-  
-  /* ADD THIS MISSING PART */
-  .nav-links.show {
-    display: flex !important; /* Shows when toggled */
-  }
-  
-  /* Ensure toggle button is visible */
-  .menu-toggle {
-    display: inline-block !important;
-  }
-}
