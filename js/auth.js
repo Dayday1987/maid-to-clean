@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const API_BASE = "https://maid-to-clean-backend-vrfr.onrender.com/api";
   const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registerForm");
 
