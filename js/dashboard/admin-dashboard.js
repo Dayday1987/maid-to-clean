@@ -64,6 +64,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       container.innerHTML = "<p>Failed to load messages.</p>";
     }
   }
+  console.log("Token:", token);
+console.log("User:", user);
 
   loadRecentMessages();
 });
