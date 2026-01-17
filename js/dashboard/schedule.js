@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const API_BASE = "https://maid-to-clean-backend.onrender.com/api";
+  const API_BASE = "https://maid-to-clean-backend-vrfr.onrender.com/api";
   const token = localStorage.getItem("mtc_token");
   const user = JSON.parse(localStorage.getItem("mtc_user") || "null");
 
