@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("mtc_user", JSON.stringify(data.user));
 
         // Redirect based on role
-        if (data.user.role === "admin") {
-          window.location.href = "dashboard/admin_messages.html";
-        } else {
+       if (data.user.role === "admin") {
+  window.location.href = "dashboard/admin_dashboard.html";
+}  else {
           window.location.href = "dashboard/dashboard.html";
         }
       } catch (err) {
