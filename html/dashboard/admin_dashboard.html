@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | Maid To Clean</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/utilities.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container inner">
+        <h1 class="logo">Maid To Clean</h1>
+        <button class="menu-toggle" aria-label="Menu">☰</button>
+        <nav class="nav-links">
+          <a href="admin_dashboard.html" class="active">Admin Home</a>
+          <a href="admin_messages.html">View Messages</a>
+          <a href="admin_create_message.html">Create Message</a>
+          <a href="admin_customers.html">Customers</a>
+          <a href="dashboard.html">Customer View</a>
+          <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
+        </nav>
+      </div>
+    </nav>
+
+    <main class="dashboard-container">
+      <section class="dashboard-header">
+        <h2 id="welcomeMessage"></h2>
+      </section>
+
+      <section class="dashboard-content">
+        <h3 class="section-title">Admin Dashboard</h3>
+        
+        <div class="grid-2 mt-3">
+          <article class="card">
+            <h3>📢 Announcements</h3>
+            <p>Create and manage customer announcements.</p>
+            <a class="btn btn-primary mt-2" href="admin_create_message.html">Create New</a>
+          </article>
+          
+          <article class="card">
+            <h3>👥 Customers</h3>
+            <p>View and manage customer accounts.</p>
+            <a class="btn btn-primary mt-2" href="admin_customers.html">View All</a>
+          </article>
+          
+          <article class="card">
+            <h3>📅 Schedules</h3>
+            <p>View all cleaning schedules.</p>
+            <a class="btn btn-primary mt-2" href="admin_schedules.html">View Schedules</a>
+          </article>
+          
+          <article class="card">
+            <h3>💰 Payments</h3>
+            <p>View payment history and status.</p>
+            <a class="btn btn-primary mt-2" href="admin_payments.html">View Payments</a>
+          </article>
+        </div>
+
+        <section class="mt-4">
+          <h3>Recent Announcements</h3>
+          <div id="recentMessages" class="messages-container mt-2">
+            <p>Loading recent messages...</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/dashboard/admin-dashboard.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.clear();
+        window.location.href = "../../login.html";
+      });
+    </script>
+  </body>
+</html>
