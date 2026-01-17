@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.innerHTML = "<p>Loading...</p>";
 
     try {
-      const res = await fetch(`${API_BASE}/admin/messages`, {
+      const res = await fetch(`${API_BASE}/messages`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
