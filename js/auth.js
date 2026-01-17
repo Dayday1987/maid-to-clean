@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const API_BASE = "https://maid-to-clean-backend-vrfr.onrender.com/api";
   const loginForm = document.getElementById("loginForm");
   const registerForm = document.getElementById("registerForm");
 
@@ -19,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const res = await fetch(`${API_BASE}/auth/login`, {
+        const res = await fetch("https://maid-to-clean-backend-vrfr.onrender.com/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
@@ -32,15 +31,15 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        // Save token + user info - STANDARDIZED KEYS
+        // Save token + user info
         localStorage.setItem("mtc_token", data.token);
         localStorage.setItem("mtc_user", JSON.stringify(data.user));
 
         // Redirect based on role
         if (data.user.role === "admin") {
-          window.location.href = "/html/dashboard/admin_messages.html";
+          window.location.href = "dashboard/admin_messages.html";
         } else {
-          window.location.href = "/html/dashboard/dashboard.html";
+          window.location.href = "dashboard/dashboard.html";
         }
       } catch (err) {
         console.error("Login error:", err);
@@ -63,20 +62,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const phone = document.getElementById("phone").value.trim();
       const birthDate = document.getElementById("birthDate").value;
 
-      if (
-        !firstName ||
-        !lastName ||
-        !email ||
-        !password ||
-        !phone ||
-        !birthDate
-      ) {
+      if (!firstName || !lastName || !email || !password || !phone || !birthDate) {
         alert("Please fill out all fields.");
         return;
       }
 
       try {
-        const res = await fetch(`${API_BASE}/auth/register`, {
+        const res = await fetch("https://maid-to-clean-backend-vrfr.onrender.com/api/auth/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -97,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         alert("Registration successful! You can now log in.");
-        window.location.href = "/html/login.html";
+        window.location.href = "login.html";
       } catch (err) {
         console.error("Registration error:", err);
         alert("Something went wrong. Please try again later.");
