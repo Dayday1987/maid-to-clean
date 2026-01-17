@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const API_BASE = "https://maid-to-clean-backend.onrender.com/api";
+  const API_BASE = "https://maid-to-clean-backend-vrfr.onrender.com/api";
   const token = localStorage.getItem("mtc_token");
   const user = JSON.parse(localStorage.getItem("mtc_user") || "null");
 
@@ -24,13 +24,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   }, 60000);
 
   // Welcome message
-  if (document.getElementById("welcomeMessage")) {
-    document.getElementById("welcomeMessage").textContent = `Welcome back, ${user.firstName}!`;
+  const welcomeEl = document.getElementById("welcomeMessage");
+  if (welcomeEl) {
+    welcomeEl.textContent = `Welcome back, ${user.firstName}!`;
   }
 
   // Logout
-  if (document.getElementById("logoutBtn")) {
-    document.getElementById("logoutBtn").addEventListener("click", (e) => {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
       localStorage.clear();
       window.location.href = "/html/login.html";
