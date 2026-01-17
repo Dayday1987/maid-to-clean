@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!token || !user || !user.id) {
     alert("Please log in first.");
-    window.location.href = "/html/login.html";
+    window.location.href = "../../login.html";
     return;
   }
 
