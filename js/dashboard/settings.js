@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const API_BASE = "https://maid-to-clean-backend.onrender.com/api";
+  const API_BASE = "https://maid-to-clean-backend-vrfr.onrender.com/api";
   const token = localStorage.getItem("mtc_token");
   const user = JSON.parse(localStorage.getItem("mtc_user") || "null");
 
@@ -39,11 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (!res.ok) throw new Error("Update failed");
-      
+
       // Update local storage
       const newUserData = { ...user, ...updated };
       localStorage.setItem("mtc_user", JSON.stringify(newUserData));
-      
+
       alert("Profile updated successfully!");
       document.getElementById("welcomeMessage").textContent = `Welcome, ${updated.firstName}!`;
     } catch (err) {
