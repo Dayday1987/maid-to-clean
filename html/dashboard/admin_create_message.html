@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Announcement | Maid To Clean</title>
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/utilities.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container inner">
+        <h1 class="logo">Maid To Clean</h1>
+        <button class="menu-toggle" aria-label="Menu">☰</button>
+        <nav class="nav-links">
+          <a href="admin_messages.html">Messages</a>
+          <a href="admin_create_message.html" class="active">Create Message</a>
+          <a href="dashboard.html">Customer View</a>
+          <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
+        </nav>
+      </div>
+    </nav>
+
+    <main class="dashboard-container">
+      <section class="dashboard-header">
+        <h2 id="welcomeMessage"></h2>
+      </section>
+
+      <section class="dashboard-content">
+        <h3 class="section-title">Create New Announcement</h3>
+        <form id="messageForm" class="admin-form">
+          <label for="title">Title</label>
+          <input id="title" type="text" required placeholder="Enter announcement title" />
+
+          <label for="body">Message Body</label>
+          <textarea id="body" rows="6" required placeholder="Enter message content"></textarea>
+
+          <button type="submit" class="btn btn-primary">Send Announcement</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/dashboard/admin-create-message.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.clear();
+        window.location.href = "../../login.html";
+      });
+    </script>
+  </body>
+</html>
