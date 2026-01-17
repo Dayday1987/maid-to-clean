@@ -6,11 +6,11 @@
     <title>Settings | Maid To Clean</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/base.css" />
-<link rel="stylesheet" href="/css/dashboard.css" />
-<link rel="stylesheet" href="/css/components.css" />
-<link rel="stylesheet" href="/css/layout.css" />
-<link rel="stylesheet" href="/css/utilities.css" />
+    <link rel="stylesheet" href="../../css/base.css" />
+<link rel="stylesheet" href="../../css/dashboard.css" />
+<link rel="stylesheet" href="../../css/components.css" />
+<link rel="stylesheet" href="../../css/layout.css" />
+<link rel="stylesheet" href="../../css/utilities.css" />
   </head>
   <body>
     <header class="navbar">
@@ -50,7 +50,7 @@
       <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
     </footer>
 
-    <script src="/js/dashboard/settings.js"></script>
+    <script src="../../js/dashboard/settings.js"></script>
     <script>
       // Footer year
       document.getElementById("year").textContent = new Date().getFullYear();
@@ -59,7 +59,7 @@
       document.getElementById("logoutBtn").addEventListener("click", () => {
         localStorage.removeItem("mtc_token");
         localStorage.removeItem("mtc_user");
-        window.location.href = "../../login.html";
+        window.location.href = "../login.html";
       });
     </script>
     <script>
