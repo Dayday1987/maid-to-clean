@@ -14,8 +14,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   ).textContent = `Welcome, ${user.firstName}!`;
 
   const container = document.getElementById("paymentContainer");
-  container.innerHTML = "<p>Loading payments...</p>";
+  container.innerHTML = "<p>Loading payment history...</p>";
 
+  // ----------------------------
+  // Payment buttons
+  // ----------------------------
+  document.getElementById("payCardBtn").addEventListener("click", () => {
+    alert("Card payment functionality coming soon!");
+  });
+  document.getElementById("payPaypalBtn").addEventListener("click", () => {
+    alert("PayPal payment functionality coming soon!");
+  });
+  document.getElementById("payAppleBtn").addEventListener("click", () => {
+    alert("Apple Pay functionality coming soon!");
+  });
+
+  // ----------------------------
+  // Load payment history
+  // ----------------------------
   try {
     const res = await fetch(`${API_BASE}/payments/${user.id}`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -42,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       )
       .join("");
   } catch (err) {
+    console.error(err);
     container.innerHTML =
       "<p>Could not load payments. Please try again later.</p>";
   }
