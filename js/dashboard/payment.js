@@ -10,7 +10,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const container = document.getElementById("paymentContainer");
-  container.innerHTML = "<p>Loading payment history...</p>";
+
+  // Welcome message
+  if (document.getElementById("welcomeMessage")) {
+    document.getElementById(
+      "welcomeMessage"
+    ).textContent = `Welcome, ${user.firstName}!`;
+  }
+
+  // Logout
+  if (document.getElementById("logoutBtn")) {
+    document.getElementById("logoutBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.clear();
+      window.location.href = "../../login.html";
+    });
+  }
 
   // ----------------------------
   // Payment buttons
@@ -18,6 +33,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function pay(serviceType) {
     const amount = parseFloat(prompt(`Enter amount for ${serviceType}:`));
     if (!amount || amount <= 0) return;
+
+    // Disable buttons while processing
+    ["payCardBtn", "payPaypalBtn", "payAppleBtn"].forEach((id) => {
+      const btn = document.getElementById(id);
+      if (btn) btn.disabled = true;
+    });
 
     try {
       const res = await fetch(`${API_BASE}/payments/checkout`, {
@@ -31,29 +52,47 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const data = await res.json();
       if (data.url) {
-        window.location.href = data.url; // redirect to Stripe checkout
+        // Redirect to Stripe/PayPal/Apple Pay checkout
+        window.location.href = data.url;
       } else {
         alert("Failed to start payment.");
       }
     } catch (err) {
       console.error(err);
       alert("Payment error. Try again.");
+    } finally {
+      // Re-enable buttons
+      ["payCardBtn", "payPaypalBtn", "payAppleBtn"].forEach((id) => {
+        const btn = document.getElementById(id);
+        if (btn) btn.disabled = false;
+      });
     }
   }
 
-  document.getElementById("payCardBtn").addEventListener("click", () => pay("Card Payment"));
-  document.getElementById("payPaypalBtn").addEventListener("click", () => pay("PayPal Payment"));
-  document.getElementById("payAppleBtn").addEventListener("click", () => pay("Apple Pay Payment"));
+  ["payCardBtn", "payPaypalBtn", "payAppleBtn"].forEach((id) => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      let type;
+      if (id === "payCardBtn") type = "Card Payment";
+      if (id === "payPaypalBtn") type = "PayPal Payment";
+      if (id === "payAppleBtn") type = "Apple Pay Payment";
+      btn.addEventListener("click", () => pay(type));
+    }
+  });
 
   // ----------------------------
   // Load payment history
   // ----------------------------
+  container.innerHTML = "<p>Loading payment history...</p>";
+
   try {
     const res = await fetch(`${API_BASE}/payments/${user.id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
+    if (!res.ok) throw new Error("Failed to load payments");
     const data = await res.json();
+
     if (!data.length) {
       container.innerHTML = "<p>No payment records found.</p>";
       return;
@@ -72,6 +111,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       )
       .join("");
   } catch (err) {
-    container.innerHTML = "<p>Could not load payments. Please try again later.</p>";
+    console.error(err);
+    container.innerHTML =
+      "<p>Could not load payments. Please try again later.</p>";
   }
 });
