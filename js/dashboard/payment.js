@@ -9,25 +9,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  document.getElementById(
-    "welcomeMessage"
-  ).textContent = `Welcome, ${user.firstName}!`;
-
   const container = document.getElementById("paymentContainer");
   container.innerHTML = "<p>Loading payment history...</p>";
 
   // ----------------------------
   // Payment buttons
   // ----------------------------
-  document.getElementById("payCardBtn").addEventListener("click", () => {
-    alert("Card payment functionality coming soon!");
-  });
-  document.getElementById("payPaypalBtn").addEventListener("click", () => {
-    alert("PayPal payment functionality coming soon!");
-  });
-  document.getElementById("payAppleBtn").addEventListener("click", () => {
-    alert("Apple Pay functionality coming soon!");
-  });
+  async function pay(serviceType) {
+    const amount = parseFloat(prompt(`Enter amount for ${serviceType}:`));
+    if (!amount || amount <= 0) return;
+
+    try {
+      const res = await fetch(`${API_BASE}/payments/checkout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ amount, serviceType }),
+      });
+
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url; // redirect to Stripe checkout
+      } else {
+        alert("Failed to start payment.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Payment error. Try again.");
+    }
+  }
+
+  document.getElementById("payCardBtn").addEventListener("click", () => pay("Card Payment"));
+  document.getElementById("payPaypalBtn").addEventListener("click", () => pay("PayPal Payment"));
+  document.getElementById("payAppleBtn").addEventListener("click", () => pay("Apple Pay Payment"));
 
   // ----------------------------
   // Load payment history
@@ -37,9 +53,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    if (!res.ok) throw new Error("Failed to load payments");
     const data = await res.json();
-
     if (!data.length) {
       container.innerHTML = "<p>No payment records found.</p>";
       return;
@@ -58,8 +72,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       )
       .join("");
   } catch (err) {
-    console.error(err);
-    container.innerHTML =
-      "<p>Could not load payments. Please try again later.</p>";
+    container.innerHTML = "<p>Could not load payments. Please try again later.</p>";
   }
 });
