@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Success | Maid To Clean</title>
+
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/dashboard.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/layout.css" />
+    <link rel="stylesheet" href="../../css/utilities.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container inner">
+        <h1 class="logo">Maid To Clean</h1>
+        <button class="menu-toggle" aria-label="Menu">☰</button>
+        <nav class="nav-links">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="schedule.html">Schedule</a>
+          <a href="payment.html" class="active">Payments</a>
+          <a href="settings.html">Settings</a>
+          <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="dashboard-container">
+      <section class="dashboard-header">
+        <h2>Payment Successful!</h2>
+      </section>
+
+      <section class="dashboard-content">
+        <p>Thank you for your payment. Your transaction has been recorded.</p>
+        <button id="backToDashboardBtn" class="btn">Back to Dashboard</button>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("mtc_token");
+        localStorage.removeItem("mtc_user");
+        window.location.href="../../html/login.html";
+      });
+
+      document.getElementById("backToDashboardBtn").addEventListener("click", () => {
+        window.location.href="dashboard.html";
+      });
+
+      // Save payment record automatically
+      document.addEventListener("DOMContentLoaded", async () => {
+        const token = localStorage.getItem("mtc_token");
+        const user = JSON.parse(localStorage.getItem("mtc_user") || "null");
+
+        if (!token || !user) return;
+
+        // Get session_id from query string (Stripe redirect)
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get("session_id");
+        if (!sessionId) return;
+
+        try {
+          // Optional: fetch session info from Stripe if needed
+          // For now, just save a placeholder payment record
+          await fetch("https://maid-to-clean-backend-vrfr.onrender.com/api/payments/success", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              serviceType: "Online Payment",
+              amount: parseFloat(params.get("amount")) || 0,
+            }),
+          });
+        } catch (err) {
+          console.error("Failed to record payment:", err);
+        }
+      });
+    </script>
+  </body>
+</html>
