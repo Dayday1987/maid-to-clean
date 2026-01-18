@@ -1,76 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Payments | Maid To Clean</title>
+document.addEventListener("DOMContentLoaded", async () => {
+  const API_BASE = "https://maid-to-clean-backend-vrfr.onrender.com/api";
+  const token = localStorage.getItem("mtc_token");
+  const user = JSON.parse(localStorage.getItem("mtc_user") || "null");
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../../css/base.css" />
-<link rel="stylesheet" href="../../css/dashboard.css" />
-<link rel="stylesheet" href="../../css/components.css" />
-<link rel="stylesheet" href="../../css/layout.css" />
-<link rel="stylesheet" href="../../css/utilities.css" />
-  </head>
-  <body>
-    <header class="navbar">
-      <div class="container inner">
-        <h1 class="logo">Maid To Clean</h1>
-        <button class="menu-toggle" aria-label="Menu">☰</button>
-        <nav class="nav-links">
-  <a href="dashboard.html">Dashboard</a>
-  <a href="schedule.html">Schedule</a>
-  <a href="payment.html" class="active">Payments</a>
-  <a href="settings.html">Settings</a>
-  <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
-</nav>
-      </div>
-    </header>
+  // Require login
+  if (!token || !user) {
+    alert("Please log in first.");
+    window.location.href = "../../login.html";
+    return;
+  }
 
-    <main class="dashboard-container">
-      <section class="dashboard-header">
-        <h2 id="welcomeMessage"></h2>
-      </section>
+  // Welcome message
+  const welcomeEl = document.getElementById("welcomeMessage");
+  if (welcomeEl) {
+    welcomeEl.textContent = `Welcome back, ${user.firstName}!`;
+  }
 
-      <section class="dashboard-content">
-        <h3 class="section-title">Payments & Billing</h3>
-        <div id="paymentContainer" class="messages-container">
-          <p>Loading payment history...</p>
+  const container = document.getElementById("paymentContainer");
+  if (!container) return;
+
+  // Show loading
+  container.innerHTML = "<p>Loading payment history...</p>";
+
+  // Fetch payment history
+  async function loadPayments() {
+    try {
+      const res = await fetch(`${API_BASE}/payments`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        container.innerHTML = `<p>Error: ${res.statusText}</p>`;
+        return;
+      }
+
+      const payments = await res.json();
+      if (!payments || payments.length === 0) {
+        container.innerHTML = "<p>No payments found.</p>";
+        return;
+      }
+
+      container.innerHTML = payments
+        .map(
+          (p) => `
+        <div class="message-card">
+          <p><strong>Amount:</strong> $${p.amount.toFixed(2)}</p>
+          <p><strong>Date:</strong> ${new Date(p.date).toLocaleString()}</p>
+          <p><strong>Status:</strong> ${p.status}</p>
         </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
-    </footer>
-
-    <script src="/js/dashboard/payment.js"></script>
-    <script>
-      // Footer year
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      // Logout
-      document.getElementById("logoutBtn").addEventListener("click", () => {
-        localStorage.removeItem("mtc_token");
-        localStorage.removeItem("mtc_user");
-        window.location.href="../../html/login.html";
-      });
-    </script>
-    <script>
-  // Mobile menu toggle - standalone version
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav-links');
-    
-    if (btn && nav) {
-      btn.addEventListener('click', function() {
-        nav.classList.toggle('show');
-        
-        // Debug: Add visual feedback
-        console.log('Menu toggled:', nav.classList.contains('show'));
-      });
+      `
+        )
+        .join("");
+    } catch (err) {
+      console.error("Error fetching payments:", err);
+      container.innerHTML = "<p>Failed to load payment history.</p>";
     }
+  }
+
+  await loadPayments();
+
+  // Payment buttons
+  const payButtons = document.createElement("div");
+  payButtons.className = "payment-buttons";
+  payButtons.innerHTML = `
+    <button id="payCard">Pay with Card</button>
+    <button id="payPaypal">Pay with PayPal</button>
+    <button id="payApple">Pay with Apple Pay</button>
+  `;
+  container.prepend(payButtons);
+
+  // Add click handlers
+  document.getElementById("payCard").addEventListener("click", () => {
+    window.location.href = `${API_BASE}/payments/checkout/card?token=${token}`;
   });
-</script>
-</body>
-</html>
+  document.getElementById("payPaypal").addEventListener("click", () => {
+    window.location.href = `${API_BASE}/payments/checkout/paypal?token=${token}`;
+  });
+  document.getElementById("payApple").addEventListener("click", () => {
+    window.location.href = `${API_BASE}/payments/checkout/apple?token=${token}`;
+  });
+});
