@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.innerHTML = "<p>Loading...</p>";
 
     try {
-      const res = await fetch(`${API_BASE}/messages`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await fetch(`${API_BASE}/admin/messages`, {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+});
 
       if (!res.ok) {
         container.innerHTML = `<p>Error: ${res.statusText}</p>`;
