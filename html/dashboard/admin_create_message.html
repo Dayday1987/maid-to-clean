@@ -46,10 +46,16 @@
     </main>
 
     <footer class="footer">
-  <div class="container inner">
-    <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+  <div class="footer-content">
+    <span>© <span id="year"></span> Maid To Clean</span>
+    <span>Pink + Blue, proudly sparkling ✨</span>
   </div>
 </footer>
+
+<script>
+  // Dynamically set year
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
     <script src="../../js/dashboard/admin-create-message.js"></script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
