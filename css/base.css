@@ -72,6 +72,10 @@ img {
   padding: 1.25rem;
 }
 
+.card {
+  overflow: hidden;
+}
+
 .section-title {
   font-size: 2rem;
   font-weight: 700;
