@@ -29,6 +29,10 @@ body {
   min-height: 100vh;
 }
 
+main {
+  flex: 1;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Inter,
