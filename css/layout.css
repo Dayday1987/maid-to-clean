@@ -1,8 +1,8 @@
-/* Navbar (main pages) */
+/* Navbar - Fixed the z-index to stay on top */
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 2000; /* Higher than any page content */
   color: #fff;
   background: linear-gradient(90deg, var(--blue), var(--pink));
   box-shadow: var(--shadow);
@@ -52,17 +52,7 @@
   background: rgba(255, 255, 255, 0.18);
 }
 
-.nav-links a.active {
-  background: rgba(255, 255, 255, 0.28);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.15) inset;
-}
-
-.nav-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-/* hero/header + footer */
+/* Header/Hero Section */
 .header {
   background: radial-gradient(
       1200px 400px at 20% -10%,
@@ -75,13 +65,16 @@
       transparent
     );
   padding: 2.25rem 0 1rem;
-  margin-bottom: 1rem;
+  /* Removed margin-bottom to keep it flush with main content */
 }
 
+/* Footer - Ensure it doesn't get hidden */
 .footer {
   background: #0f172a;
   color: #e5e7eb;
-  margin-top: auto;
+  position: relative;
+  z-index: 10;
+  width: 100%;
 }
 
 .footer .inner {
@@ -90,19 +83,13 @@
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-
   max-width: 1100px;
   margin-inline: auto;
   padding: 1rem;
   border-top: 1px solid #1f2937;
 }
 
-main {
-  min-height: 60vh;
-  padding: 1rem 0;
-}
-
-/* --- Responsive Mobile Navbar --- */
+/* --- Responsive Mobile Navbar Fixes --- */
 .menu-toggle {
   display: none;
   background: none;
@@ -112,11 +99,7 @@ main {
   border-radius: 8px;
   padding: 0.3rem 0.6rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
-.menu-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
+  z-index: 2101; /* Above the mobile menu itself */
 }
 
 @media (max-width: 850px) {
@@ -126,41 +109,20 @@ main {
     width: 100%;
     background: linear-gradient(90deg, var(--blue), var(--pink));
     position: absolute;
-    top: 60px;
+    top: 60px; /* Aligns below the 60px navbar */
     left: 0;
     padding: 0.8rem 0;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
-    animation: slideDown 0.3s ease-out;
+    z-index: 2100; /* Ensures menu is above hero images */
   }
 
   .nav-links.show {
     display: flex;
   }
-
-  .nav-links a {
-    text-align: center;
-    padding: 0.8rem;
-    border-radius: 0;
-  }
-
-  .nav-actions {
-    display: none;
-  }
-
+  
   .menu-toggle {
     display: inline-block;
-  }
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
