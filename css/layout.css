@@ -109,6 +109,13 @@ main.container {
   border-top: 1px solid #1f2937;
 }
 
+@media (max-width: 600px) {
+  .footer .inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 /* --- Responsive Mobile Navbar Fixes --- */
 .menu-toggle {
   display: none;
