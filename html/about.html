@@ -1,106 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Meta tags for SEO and responsive design -->
     <meta charset="utf-8" />
-    <title>About</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Learn about Maid To Clean and founder Stephanie Kirkley. Committed to quality, eco-friendly cleaning services for homes and businesses since our founding." />
+    <meta name="keywords" content="maid to clean, stephanie kirkley, cleaning company, professional cleaners, eco-friendly cleaning, local business" />
+    <title>About Us & Our Story | Maid To Clean</title>
+
+    <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/layout.css" />
     <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/utilities.css" />
-    <script src="../js/main.js" defer></script>
   </head>
+  
   <body>
+    <!-- Sticky Navigation Bar -->
     <nav class="navbar">
-        <div class="container inner">
-          <div class="brand">
-            <img src="../img/new-logo" alt="Stephanie Kirkley" />
-            <span>Maid To Clean</span>
-          </div>
-          <button class="menu-toggle" aria-label="Menu">☰</button>
-          <div class="nav-links">
-  <a href="../index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <!-- MOBILE-ONLY LOGIN/REGISTER -->
-  <a class="mobile-only" href="login.html">Login</a>
-  <a class="mobile-only" href="register.html">Register</a>
-          </div>
+      <div class="container inner">
+        <!-- Brand Logo and Name -->
+        <div class="brand">
+          <img src="../img/new-logo.png" alt="Maid To Clean Logo" />
+          <span>Maid To Clean</span>
         </div>
-      </nav>
-    <main class="container center">
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+        
+        <!-- Navigation Links -->
+        <div class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html" class="active">About</a>
+          <a href="contact.html">Contact</a>
+          <!-- Mobile-only auth links -->
+          <a class="mobile-only" href="login.html">Login</a>
+          <a class="mobile-only" href="register.html">Register</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="container">
+      <!-- Page Header Section -->
       <header class="header">
-        <h2 class="section-title">About</h2>
-    </header>
-      <section>
-        <div
-          style="
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-            flex-wrap: wrap;
-          "
-        >
-          <img
-            src="../img/IMG_6659.jpeg"
-            style="
-              width: 220px;
-              height: 220px;
-              object-fit: cover;
-              border-radius: 12px;
-              border: 4px solid #ff79c6;
-            "
-          />
-          <div>
-            <section>
-              <h3>Meet Stephanie Kirkley</h3>
-              <p>
-                Stephanie founded Maid To Clean with a commitment to quality and
-                community. Her team delivers reliable cleaning services with
-                attention to detail.
+        <div class="container center">
+          <div class="kicker">Our Story</div>
+          <h1 class="section-title" style="font-size: 2rem; margin-top: 0.5rem;">About Maid To Clean</h1>
+          <p class="subtitle" style="max-width: 700px; margin: 1rem auto;">
+            Built on integrity, driven by excellence—your trusted partner for professional cleaning services.
+          </p>
+        </div>
+      </header>
+
+      <!-- Founder Profile Section -->
+      <section class="container mt-3 mb-4">
+        <article class="card">
+          <div style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
+            
+            <!-- Founder Image -->
+            <img
+              src="../img/IMG_6659.jpeg"
+              alt="Stephanie Kirkley, Founder of Maid To Clean"
+              style="
+                width: 100%;
+                max-width: 280px;
+                height: 280px;
+                object-fit: cover;
+                border-radius: 12px;
+                border: 4px solid var(--pink);
+                box-shadow: var(--shadow);
+              "
+            />
+            
+            <!-- Founder Bio Content -->
+            <div style="flex: 1; min-width: 280px;">
+              <h2 style="color: var(--blue); font-size: 1.75rem; margin-bottom: 1rem;">Meet Stephanie Kirkley</h2>
+              
+              <p style="margin-bottom: 1rem; line-height: 1.7;">
+                Stephanie founded Maid To Clean with a simple vision: to provide reliable, detail-oriented cleaning services that make a real difference in people's lives. With years of experience in the cleaning industry, she recognized a need for trustworthy, professional service backed by genuine care for customers.
               </p>
-            </section>
-            <section>
-              <h3>About Maid To Clean</h3>
-              <p>
-                We started as a small local service focused on eco-friendly
-                cleaning and excellent customer care.
+              
+              <p style="margin-bottom: 1rem; line-height: 1.7;">
+                What started as a one-person operation has grown into a team of dedicated cleaning professionals, each hand-selected and trained to uphold Stephanie's high standards. Every member of our team undergoes thorough background checks and receives comprehensive training in proper cleaning techniques, safety protocols, and customer service excellence.
               </p>
-            </section>
-            <section>
-              <h3>My Vision</h3>
-              <p>
-                To build a trusted local company that makes homes and workplaces
-                healthier.
+              
+              <p style="margin-bottom: 0; line-height: 1.7;">
+                Today, Stephanie continues to oversee every aspect of the business, ensuring that each client receives the personalized attention and exceptional results that have become our hallmark.
               </p>
-            </section>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Company Values Section -->
+      <section class="container mb-4">
+        <h2 class="section-title center mb-3" style="font-size: 1.75rem;">What Sets Us Apart</h2>
+        
+        <div class="grid-3">
+          
+          <!-- Value 1: Quality -->
+          <article class="card">
+            <h3 style="color: var(--pink); margin-bottom: 0.75rem;">Quality First</h3>
+            <p>
+              We don't cut corners. Every cleaning is performed with meticulous attention to detail, using professional-grade equipment and eco-friendly products that deliver superior results without compromise.
+            </p>
+          </article>
+
+          <!-- Value 2: Trust -->
+          <article class="card">
+            <h3 style="color: var(--pink); margin-bottom: 0.75rem;">Trust & Transparency</h3>
+            <p>
+              Your home is your sanctuary. That's why every team member is thoroughly vetted, insured, and trained. We treat your space with the respect and care it deserves, every single time.
+            </p>
+          </article>
+
+          <!-- Value 3: Community -->
+          <article class="card">
+            <h3 style="color: var(--pink); margin-bottom: 0.75rem;">Community Focused</h3>
+            <p>
+              As a locally-owned business, we're invested in our community. We support local suppliers, employ local talent, and build lasting relationships with the families and businesses we serve.
+            </p>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Mission & Vision Section -->
+      <section class="container mb-4">
+        <article class="card" style="background: linear-gradient(135deg, rgba(45, 125, 255, 0.05), rgba(255, 77, 166, 0.05));">
+          <h2 class="center" style="color: var(--blue); font-size: 1.75rem; margin-bottom: 1.5rem;">Our Mission & Vision</h2>
+          
+          <div class="grid-2">
+            
+            <!-- Mission Statement -->
+            <div>
+              <h3 style="color: var(--pink); margin-bottom: 0.75rem;">Our Mission</h3>
+              <p style="line-height: 1.7;">
+                To provide exceptional, eco-friendly cleaning services that enhance the health, comfort, and peace of mind of every client we serve. We're committed to delivering consistent, reliable results through skilled professionals who take pride in their work.
+              </p>
+            </div>
+
+            <!-- Vision Statement -->
+            <div>
+              <h3 style="color: var(--pink); margin-bottom: 0.75rem;">Our Vision</h3>
+              <p style="line-height: 1.7;">
+                To become the most trusted cleaning service in our community—known not just for spotless results, but for the integrity, professionalism, and genuine care we bring to every home and business we clean.
+              </p>
+            </div>
+
+          </div>
+        </article>
+      </section>
+
+      <!-- Why Choose Us Section -->
+      <section class="container mb-4">
+        <article class="card">
+          <h2 class="center mb-3" style="color: var(--blue); font-size: 1.75rem;">Why Clients Choose Maid To Clean</h2>
+          
+          <ul style="list-style: none; padding: 0; max-width: 700px; margin: 0 auto;">
+            <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+              <strong style="color: var(--pink);">✓ Certified & Insured Professionals:</strong> Every team member is fully trained, background-checked, and insured for your protection.
+            </li>
+            <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+              <strong style="color: var(--pink);">✓ Eco-Friendly Cleaning Solutions:</strong> We use safe, effective products that protect your family, pets, and the environment.
+            </li>
+            <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+              <strong style="color: var(--pink);">✓ Flexible Scheduling:</strong> We work around your schedule with convenient booking options and recurring service plans.
+            </li>
+            <li style="padding: 0.75rem 0; border-bottom: 1px solid var(--border);">
+              <strong style="color: var(--pink);">✓ Satisfaction Guarantee:</strong> If you're not completely satisfied, we'll make it right—no questions asked.
+            </li>
+            <li style="padding: 0.75rem 0;">
+              <strong style="color: var(--pink);">✓ Transparent Pricing:</strong> No hidden fees or surprises. Get a clear, upfront quote before we begin.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- Call-to-Action Section -->
+      <section class="cta" style="margin: 3rem 0 2rem;">
+        <div class="cta-inner">
+          <h3 class="cta-title">Experience the Maid To Clean Difference</h3>
+          <p class="cta-text">
+            Join hundreds of satisfied customers who trust us with their homes and businesses. Get started with a free, no-obligation quote today.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="contact.html" class="btn btn-primary">Request Free Quote</a>
+            <a href="services.html" class="btn btn-ghost">View Our Services</a>
           </div>
         </div>
       </section>
+
     </main>
+
+    <!-- Footer Section -->
     <footer class="footer">
       <div class="container inner">
         <div>© <span id="year"></span> Maid To Clean</div>
         <div>Pink + Blue, proudly sparkling ✨</div>
       </div>
     </footer>
-    <script src="../js/main.js"></script>
+
+    <!-- JavaScript for Dynamic Year -->
     <script>
-  // Mobile menu toggle - standalone version
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav-links');
-    
-    if (btn && nav) {
-      btn.addEventListener('click', function() {
-        nav.classList.toggle('show');
+      // Automatically update copyright year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script src="../js/main.js"></script>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.querySelector('.menu-toggle'); // Get menu toggle button
+        const nav = document.querySelector('.nav-links'); // Get navigation links container
         
-        // Debug: Add visual feedback
-        console.log('Menu toggled:', nav.classList.contains('show'));
+        if (btn && nav) {
+          btn.addEventListener('click', function() {
+            nav.classList.toggle('show'); // Toggle 'show' class to display/hide menu
+            console.log('Menu toggled:', nav.classList.contains('show')); // Debug log
+          });
+        }
       });
-    }
-  });
-</script>
-</body>
+    </script>
+  </body>
 </html>
