@@ -1,81 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Meta tags for SEO and responsive design -->
     <meta charset="utf-8" />
-    <title>Services</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Professional residential and commercial cleaning services in your area. Deep cleaning, move-in/out, office cleaning, and custom solutions. Get a free quote today!" />
+    <meta name="keywords" content="cleaning services, residential cleaning, commercial cleaning, deep cleaning, office cleaning, move-in cleaning, professional cleaners" />
+    <title>Professional Cleaning Services | Maid To Clean</title>
+
+    <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/layout.css" />
     <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/utilities.css" />
-    <script src="../js/main.js" defer></script>
   </head>
+  
   <body>
+    <!-- Sticky Navigation Bar -->
     <nav class="navbar">
-        <div class="container inner">
-          <div class="brand">
-            <img src="../img/new-logo.png" alt="Stephanie Kirkley" />
-            <span>Maid To Clean</span>
-          </div>
-          <button class="menu-toggle" aria-label="Menu">☰</button>
-          <div class="nav-links">
-  <a href="..//index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <!-- MOBILE-ONLY LOGIN/REGISTER -->
-  <a class="mobile-only" href="login.html">Login</a>
-  <a class="mobile-only" href="register.html">Register</a>
-          </div>
+      <div class="container inner">
+        <!-- Brand Logo and Name -->
+        <div class="brand">
+          <img src="../img/new-logo.png" alt="Maid To Clean Logo" />
+          <span>Maid To Clean</span>
         </div>
-      </nav>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+        
+        <!-- Navigation Links -->
+        <div class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="services.html" class="active">Services</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <!-- Mobile-only auth links -->
+          <a class="mobile-only" href="login.html">Login</a>
+          <a class="mobile-only" href="register.html">Register</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
     <main class="container">
+      <!-- Page Header Section -->
       <header class="header">
-      <div class="container center">
-    <h1 class="section-title">Our Services</h1>
-    <p class="field-help">
-      Professional cleaning solutions tailored to your home or business.
-    </p>
-  </div>
-    </header>
-      <section>
+        <div class="container center">
+          <div class="kicker">Tailored To Your Needs</div>
+          <h1 class="section-title" style="font-size: 2rem; margin-top: 0.5rem;">Our Professional Cleaning Services</h1>
+          <p class="subtitle" style="max-width: 700px; margin: 1rem auto;">
+            From deep cleaning to custom maintenance plans, we deliver exceptional results for homes and businesses across the area.
+          </p>
+        </div>
+      </header>
+
+      <!-- Services Grid Section -->
+      <section style="padding: 2rem 0;">
         <div class="services-grid">
-          <div class="service-card" id="deep">
-            <img src="../img/IMG_6923.png" alt="Deep cleaning service" />
+          
+          <!-- Deep Cleaning Service Card -->
+          <article class="service-card">
+            <img src="../img/IMG_6923.png" alt="Professional deep cleaning service" />
             <h3>Deep Cleaning</h3>
             <p>
-              Detailed cleaning including baseboards, vents, and high-touch
-              surfaces.
+              Our most thorough service includes baseboards, ceiling fans, vents, appliances, and hard-to-reach areas. Perfect for seasonal refreshes or first-time cleanings.
             </p>
-          </div>
-          <div class="service-card" id="basic">
-            <img src="../img/IMG_6922.png" alt="Basic cleaning service" />
+          </article>
+
+          <!-- Standard Cleaning Service Card -->
+          <article class="service-card">
+            <img src="../img/IMG_6922.png" alt="Standard residential cleaning" />
             <h3>Standard / Basic Cleaning</h3>
-            <p>Routine tidying and sanitizing to keep your home in shape.</p>
-          </div>
-          <div class="service-card" id="move">
-            <img src="../img/IMG_6924.png" alt="Move in/out cleaning" />
+            <p>
+              Weekly or bi-weekly maintenance to keep your home consistently clean. We handle dusting, vacuuming, mopping, bathrooms, and kitchens with reliable care.
+            </p>
+          </article>
+
+          <!-- Move-In/Out Cleaning Service Card -->
+          <article class="service-card">
+            <img src="../img/IMG_6924.png" alt="Move-in and move-out cleaning" />
             <h3>Move-In / Move-Out Cleaning</h3>
-            <p>Complete cleaning before or after a move.</p>
-          </div>
-          <div class="service-card">
-            <img src="../img/IMG_6925.png" alt="Office cleaning" />
+            <p>
+              Comprehensive cleaning for empty properties. We ensure every surface is spotless for new tenants or to help you get your deposit back.
+            </p>
+          </article>
+
+          <!-- Office Cleaning Service Card -->
+          <article class="service-card">
+            <img src="../img/IMG_6925.png" alt="Commercial office cleaning" />
             <h3>Office Cleaning</h3>
-            <p>Commercial cleaning for healthy workplaces.</p>
-          </div>
-          <div class="service-card">
-            <img src="../img/IMG_6926.jpeg" alt="Post-construction cleaning" />
+            <p>
+              Professional commercial cleaning for workplaces of all sizes. Scheduled cleanings that maintain a healthy, productive environment for your team and clients.
+            </p>
+          </article>
+
+          <!-- Post-Construction Cleaning Service Card -->
+          <article class="service-card">
+            <img src="../img/IMG_6926.jpeg" alt="Post-construction debris removal" />
             <h3>Post-Construction Cleaning</h3>
-            <p>Removal of dust and debris after construction.</p>
-          </div>
-          <div class="service-card">
-            <img src="../img/IMG_6927.png" alt="Custom cleaning" />
-            <h3>Custom Cleaning</h3>
-            <p>Custom tasks tailored to your needs.</p>
-          </div>
+            <p>
+              Specialized removal of construction dust, debris, and residue. We transform your newly built or renovated space into a move-in ready environment.
+            </p>
+          </article>
+
+          <!-- Custom Cleaning Service Card -->
+          <article class="service-card">
+            <img src="../img/IMG_6927.png" alt="Custom cleaning solutions" />
+            <h3>Custom Cleaning Solutions</h3>
+            <p>
+              Need something specific? We tailor our services to your unique requirements—whether it's special event prep, seasonal tasks, or one-time projects.
+            </p>
+          </article>
+
         </div>
       </section>
+
+      <!-- Call-to-Action Section -->
+      <section class="cta" style="margin: 3rem 0 2rem;">
+        <div class="cta-inner">
+          <h3 class="cta-title">Ready to Experience the Difference?</h3>
+          <p class="cta-text">
+            Let our professional team handle the cleaning so you can focus on what matters most. Request your free, no-obligation quote today.
+          </p>
+          <a href="contact.html" class="btn btn-primary">
+            Get Your Free Quote Now
+          </a>
+        </div>
+      </section>
+
+      <!-- Trust & Benefits Section -->
+      <section class="container mt-4 mb-4">
+        <article class="card">
+          <h2 class="center mb-2" style="font-size: 1.75rem; color: var(--blue);">Why Choose Maid To Clean?</h2>
+          
+          <div class="grid-3 mt-3">
+            <div>
+              <h4 style="color: var(--pink); margin-bottom: 0.5rem;">✓ Background-Checked Team</h4>
+              <p style="font-size: 0.95rem;">Every cleaner on our team passes thorough background checks and training for your peace of mind.</p>
+            </div>
+            
+            <div>
+              <h4 style="color: var(--pink); margin-bottom: 0.5rem;">✓ Eco-Friendly Products</h4>
+              <p style="font-size: 0.95rem;">We use safe, effective cleaning solutions that protect your family, pets, and the environment.</p>
+            </div>
+            
+            <div>
+              <h4 style="color: var(--pink); margin-bottom: 0.5rem;">✓ Satisfaction Guaranteed</h4>
+              <p style="font-size: 0.95rem;">Not happy with our work? We'll make it right. Your satisfaction is our top priority.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
     </main>
+
+    <!-- Footer Section -->
     <footer class="footer">
       <div class="container inner">
         <div>© <span id="year"></span> Maid To Clean</div>
@@ -83,27 +162,27 @@
       </div>
     </footer>
 
+    <!-- JavaScript for Dynamic Year and Mobile Menu -->
     <script>
+      // Automatically update copyright year
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
-    
-    <script src="js/main.js"></script>
-    
+
+    <script src="../js/main.js"></script>
+
+    <!-- Mobile Menu Toggle Script -->
     <script>
-  // Mobile menu toggle - standalone version
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav-links');
-    
-    if (btn && nav) {
-      btn.addEventListener('click', function() {
-        nav.classList.toggle('show');
+      document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.querySelector('.menu-toggle'); // Get menu toggle button
+        const nav = document.querySelector('.nav-links'); // Get navigation links container
         
-        // Debug: Add visual feedback
-        console.log('Menu toggled:', nav.classList.contains('show'));
+        if (btn && nav) {
+          btn.addEventListener('click', function() {
+            nav.classList.toggle('show'); // Toggle 'show' class to display/hide menu
+            console.log('Menu toggled:', nav.classList.contains('show')); // Debug log
+          });
+        }
       });
-    }
-  });
-</script>
-</body>
+    </script>
+  </body>
 </html>
