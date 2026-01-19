@@ -1,80 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Meta tags for SEO and responsive design -->
     <meta charset="utf-8" />
-    <title>Register</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Create your free Maid To Clean customer account. Book cleanings online, manage your schedule, and pay securely—all in one convenient place." />
+    <meta name="keywords" content="register account, sign up cleaning service, customer registration, online booking" />
+    <title>Create Your Account | Maid To Clean</title>
+
+    <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/layout.css" />
     <link rel="stylesheet" href="../css/components.css" />
     <link rel="stylesheet" href="../css/utilities.css" />
+    
+    <!-- JavaScript Files -->
     <script src="../js/auth.js" defer></script>
     <script src="../js/main.js" defer></script>
   </head>
+  
   <body>
+    <!-- Sticky Navigation Bar -->
     <nav class="navbar">
-        <div class="container inner">
-          <div class="brand">
-            <img src="../img/new-logo.png" alt="Stephanie Kirkley" />
-            <span>Maid To Clean</span>
-          </div>
-          <button class="menu-toggle" aria-label="Menu">☰</button>
-          <div class="nav-links">
-  <a href="..//index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <!-- MOBILE-ONLY LOGIN/REGISTER -->
-  <a class="mobile-only" href="login.html">Login</a>
-  <a class="mobile-only" href="register.html">Register</a>
-</div>
+      <div class="container inner">
+        <!-- Brand Logo and Name -->
+        <div class="brand">
+          <img src="../img/new-logo.png" alt="Maid To Clean Logo" />
+          <span>Maid To Clean</span>
         </div>
-      </nav>
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+        
+        <!-- Navigation Links -->
+        <div class="nav-links">
+          <a href="../index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <!-- Mobile-only auth links -->
+          <a class="mobile-only" href="login.html">Login</a>
+          <a class="mobile-only" href="register.html">Register</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
     <main class="container">
-      <section>
-        <h2 class="section-title">Register</h2>
-        <form id="registerForm">
-          <label for="firstName">First Name</label
-          ><input id="firstName" type="text" required /><label for="lastName"
-            >Last Name</label
-          ><input id="lastName" type="text" required /><label for="email"
-            >Email</label
-          ><input id="email" type="email" required /><label for="phone"
-            >Phone</label
-          ><input id="phone" type="tel" required /><label for="birthDate"
-            >Birth Date</label
-          ><input id="birthDate" type="date" required /><label for="password"
-            >Password</label
-          ><input id="password" type="password" required /><button
-            type="submit" class="btn btn-primary"
-          >
-            Register
-          </button>
-        </form>
-        <p class="mt-2">Already have an account? <a href="login.html">Login here</a></p>
+      <!-- Page Header Section -->
+      <header class="header">
+        <div class="container center">
+          <div class="kicker">Join Us Today</div>
+          <h1 class="section-title" style="font-size: 2rem; margin-top: 0.5rem;">Create Your Free Account</h1>
+          <p class="subtitle" style="max-width: 700px; margin: 1rem auto;">
+            Get started in minutes. Enjoy easy online booking, secure payments, and personalized service management—all from your dashboard.
+          </p>
+        </div>
+      </header>
+
+      <!-- Registration Form Section -->
+      <section class="container mt-3 mb-4" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+        <article class="card">
+          
+          <!-- Registration Form -->
+          <form id="registerForm">
+            
+            <!-- Name Fields (Grid Layout) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              
+              <!-- First Name Input -->
+              <div>
+                <label for="firstName" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">
+                  First Name
+                </label>
+                <input 
+                  id="firstName" 
+                  type="text" 
+                  required 
+                  placeholder="John"
+                  style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 12px;"
+                  autocomplete="given-name"
+                />
+              </div>
+
+              <!-- Last Name Input -->
+              <div>
+                <label for="lastName" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">
+                  Last Name
+                </label>
+                <input 
+                  id="lastName" 
+                  type="text" 
+                  required 
+                  placeholder="Doe"
+                  style="width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 12px;"
+                  autocomplete="family-name"
+                />
+              </div>
+            </div>
+
+            <!-- Email Input -->
+            <label for="email" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">
+              Email Address
+            </label>
+            <input 
+              id="email" 
+              type="email" 
+              required 
+              placeholder="your.email@example.com"
+              style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 12px;"
+              autocomplete="email"
+            />
+
+            <!-- Phone Input -->
+            <label for="phone" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">
+              Phone Number
+            </label>
+            <input 
+              id="phone" 
+              type="tel" 
+              required 
+              placeholder="(334) 425-4566"
+              style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 12px;"
+              autocomplete="tel"
+            />
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: -0.75rem; margin-bottom: 1rem;">
+              We'll use this to confirm your bookings and send service updates.
+            </p>
+
+            <!-- Birth Date Input -->
+            <label for="birthDate" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">
+              Date of Birth
+            </label>
+            <input 
+              id="birthDate" 
+              type="date" 
+              required 
+              style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 12px;"
+              autocomplete="bday"
+            />
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: -0.75rem; margin-bottom: 1rem;">
+              Required for account verification and security purposes.
+            </p>
+
+            <!-- Password Input -->
+            <label for="password" style="display: block; font-weight: 600; margin-bottom: 0.35rem;">
+              Create Password
+            </label>
+            <input 
+              id="password" 
+              type="password" 
+              required 
+              placeholder="Minimum 8 characters"
+              minlength="8"
+              style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid var(--border); border-radius: 12px;"
+              autocomplete="new-password"
+            />
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: -0.75rem; margin-bottom: 1.5rem;">
+              Use at least 8 characters with a mix of letters and numbers for security.
+            </p>
+
+            <!-- Terms Agreement -->
+            <div style="margin-bottom: 1.5rem; padding: 1rem; background: rgba(45, 125, 255, 0.05); border-radius: 12px; border: 1px solid rgba(45, 125, 255, 0.1);">
+              <label style="display: flex; align-items: start; gap: 0.75rem; cursor: pointer;">
+                <input 
+                  type="checkbox" 
+                  required 
+                  style="margin-top: 0.25rem; min-width: 18px; min-height: 18px;"
+                />
+                <span style="font-size: 0.9rem; line-height: 1.5;">
+                  I agree to receive service updates and promotional emails from Maid To Clean. I understand I can unsubscribe at any time.
+                </span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.9rem;">
+              Create My Free Account
+            </button>
+
+          </form>
+
+          <!-- Divider -->
+          <div style="text-align: center; margin: 1.5rem 0; position: relative;">
+            <span style="background: var(--surface); padding: 0 1rem; color: var(--muted); position: relative; z-index: 1;">
+              or
+            </span>
+            <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: var(--border); z-index: 0;"></div>
+          </div>
+
+          <!-- Login Link -->
+          <p style="text-align: center; margin: 0;">
+            Already have an account? 
+            <a href="login.html" style="font-weight: 700; color: var(--pink);">
+              Log in here
+            </a>
+          </p>
+
+        </article>
+
+        <!-- What You'll Get Section -->
+        <article class="card mt-3" style="background: linear-gradient(135deg, rgba(45, 125, 255, 0.05), rgba(255, 77, 166, 0.05));">
+          <h2 style="color: var(--blue); font-size: 1.3rem; margin-bottom: 1rem; text-align: center;">
+            What You Get With Your Account
+          </h2>
+          
+          <div style="display: grid; gap: 1rem;">
+            
+            <!-- Benefit 1 -->
+            <div style="display: flex; align-items: start; gap: 1rem;">
+              <div style="min-width: 50px; width: 50px; height: 50px; background: linear-gradient(135deg, var(--blue), var(--pink)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                📅
+              </div>
+              <div>
+                <h3 style="color: var(--pink); font-size: 1.05rem; margin-bottom: 0.25rem;">Easy Online Booking</h3>
+                <p style="font-size: 0.9rem; margin: 0; color: var(--muted);">
+                  Schedule, reschedule, or cancel appointments 24/7 from any device.
+                </p>
+              </div>
+            </div>
+
+            <!-- Benefit 2 -->
+            <div style="display: flex; align-items: start; gap: 1rem;">
+              <div style="min-width: 50px; width: 50px; height: 50px; background: linear-gradient(135deg, var(--blue), var(--pink)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                💳
+              </div>
+              <div>
+                <h3 style="color: var(--pink); font-size: 1.05rem; margin-bottom: 0.25rem;">Secure Online Payments</h3>
+                <p style="font-size: 0.9rem; margin: 0; color: var(--muted);">
+                  Pay safely with credit card, PayPal, or Apple Pay—all transactions are encrypted.
+                </p>
+              </div>
+            </div>
+
+            <!-- Benefit 3 -->
+            <div style="display: flex; align-items: start; gap: 1rem;">
+              <div style="min-width: 50px; width: 50px; height: 50px; background: linear-gradient(135deg, var(--blue), var(--pink)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                📊
+              </div>
+              <div>
+                <h3 style="color: var(--pink); font-size: 1.05rem; margin-bottom: 0.25rem;">Service History & Records</h3>
+                <p style="font-size: 0.9rem; margin: 0; color: var(--muted);">
+                  Track all your cleanings, payments, and service preferences in one place.
+                </p>
+              </div>
+            </div>
+
+            <!-- Benefit 4 -->
+            <div style="display: flex; align-items: start; gap: 1rem;">
+              <div style="min-width: 50px; width: 50px; height: 50px; background: linear-gradient(135deg, var(--blue), var(--pink)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                🔔
+              </div>
+              <div>
+                <h3 style="color: var(--pink); font-size: 1.05rem; margin-bottom: 0.25rem;">Timely Notifications</h3>
+                <p style="font-size: 0.9rem; margin: 0; color: var(--muted);">
+                  Get reminders about upcoming appointments and important service updates.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </article>
       </section>
+
+      <!-- Privacy & Security Note -->
+      <section class="container mb-4" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+        <article class="card center" style="background: var(--bg); border: 2px solid rgba(45, 125, 255, 0.1);">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔒</div>
+          <h3 style="color: var(--blue); margin-bottom: 0.75rem;">Your Privacy Matters</h3>
+          <p style="margin: 0; font-size: 0.95rem; line-height: 1.6;">
+            We take your privacy seriously. Your personal information is encrypted and never shared with third parties. We only use your data to provide you with the best possible service.
+          </p>
+        </article>
+      </section>
+
+      <!-- Call-to-Action Section -->
+      <section class="cta" style="margin: 3rem 0 2rem;">
+        <div class="cta-inner">
+          <h3 class="cta-title">Questions Before Registering?</h3>
+          <p class="cta-text">
+            We're happy to walk you through the registration process or answer any questions about our services. Give us a call or send an email anytime.
+          </p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="tel:3344254566" class="btn btn-primary">Call 334-425-4566</a>
+            <a href="contact.html" class="btn btn-ghost">Contact Us</a>
+          </div>
+        </div>
+      </section>
+
     </main>
+
+    <!-- Footer Section -->
     <footer class="footer">
       <div class="container inner">
         <div>© <span id="year"></span> Maid To Clean</div>
         <div>Pink + Blue, proudly sparkling ✨</div>
       </div>
     </footer>
+
+    <!-- JavaScript for Dynamic Year -->
     <script>
-  // Mobile menu toggle - standalone version
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav-links');
-    
-    if (btn && nav) {
-      btn.addEventListener('click', function() {
-        nav.classList.toggle('show');
+      // Automatically update copyright year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.querySelector('.menu-toggle'); // Get menu toggle button
+        const nav = document.querySelector('.nav-links'); // Get navigation links container
         
-        // Debug: Add visual feedback
-        console.log('Menu toggled:', nav.classList.contains('show'));
+        if (btn && nav) {
+          btn.addEventListener('click', function() {
+            nav.classList.toggle('show'); // Toggle 'show' class to display/hide menu
+            console.log('Menu toggled:', nav.classList.contains('show')); // Debug log
+          });
+        }
       });
-    }
-  });
-</script>
-</body>
+    </script>
+  </body>
 </html>
