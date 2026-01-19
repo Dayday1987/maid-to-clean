@@ -18,6 +18,22 @@
   margin-inline: auto;
 }
 
+.nav-links {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.nav-links.show {
+  max-height: 500px; /* large enough to fit all links */
+  opacity: 1;
+}
+
+.navbar {
+  backdrop-filter: blur(6px);
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -50,6 +66,10 @@
 
 .nav-links a:hover {
   background: rgba(255, 255, 255, 0.18);
+}
+
+main.container {
+  padding-top: 1rem; /* extra spacing under sticky navbar */
 }
 
 /* Header/Hero Section */
