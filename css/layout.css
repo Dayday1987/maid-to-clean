@@ -6,6 +6,7 @@
   color: #fff;
   background: linear-gradient(90deg, var(--blue), var(--pink));
   box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
 }
 
 .navbar .inner {
@@ -18,22 +19,7 @@
   margin-inline: auto;
 }
 
-.nav-links {
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-}
-
-.nav-links.show {
-  max-height: 500px; /* large enough to fit all links */
-  opacity: 1;
-}
-
-.navbar {
-  backdrop-filter: blur(6px);
-}
-
+/* Brand Logo and Name */
 .brand {
   display: flex;
   align-items: center;
@@ -48,6 +34,7 @@
   border-radius: 50%;
 }
 
+/* Navigation Links - DEFAULT VISIBLE FOR DESKTOP */
 .nav-links {
   display: flex;
   gap: 0.25rem;
@@ -68,6 +55,28 @@
   background: rgba(255, 255, 255, 0.18);
 }
 
+.nav-links a.active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Hide mobile-only links on desktop */
+.mobile-only {
+  display: none;
+}
+
+/* Menu Toggle Button - Hidden on Desktop */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  z-index: 2101; /* Above the mobile menu itself */
+}
+
 main.container {
   padding-top: 1rem; /* extra spacing under sticky navbar */
 }
@@ -85,7 +94,6 @@ main.container {
       transparent
     );
   padding: 2.25rem 0 1rem;
-  /* Removed margin-bottom to keep it flush with main content */
 }
 
 /* Footer - Ensure it doesn't get hidden */
@@ -116,27 +124,26 @@ main.container {
   }
 }
 
-/* --- Responsive Mobile Navbar Fixes --- */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  color: #fff;
-  font-size: 1.5rem;
-  border-radius: 8px;
-  padding: 0.3rem 0.6rem;
-  cursor: pointer;
-  z-index: 2101; /* Above the mobile menu itself */
-}
-
+/* --- MOBILE RESPONSIVE STYLES (850px and below) --- */
 @media (max-width: 850px) {
+  /* Show the hamburger menu button on mobile */
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  /* Show mobile-only links on mobile */
+  .mobile-only {
+    display: block;
+  }
+
+  /* Hide navigation links by default on mobile */
   .nav-links {
     display: none;
     flex-direction: column;
     width: 100%;
     background: linear-gradient(90deg, var(--blue), var(--pink));
     position: absolute;
-    top: 60px; /* Aligns below the 60px navbar */
+    top: 60px; /* Aligns below the navbar */
     left: 0;
     padding: 0.8rem 0;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
@@ -145,11 +152,15 @@ main.container {
     z-index: 2100; /* Ensures menu is above hero images */
   }
 
+  /* Show navigation when toggled */
   .nav-links.show {
     display: flex;
   }
-  
-  .menu-toggle {
-    display: inline-block;
+
+  /* Full-width links on mobile */
+  .nav-links a {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: left;
   }
 }
