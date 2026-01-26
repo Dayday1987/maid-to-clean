@@ -105,6 +105,31 @@ main {
 }
 
 /* ========== DASHBOARD SECTIONS ========== */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.danger {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.danger:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.checklist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.checklist li {
+  padding: 0.4rem 0;
+  font-weight: 500;
+}
+
 .dashboard-section {
   background: var(--surface);
   padding: 1.5rem;
