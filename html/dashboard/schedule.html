@@ -1,78 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Schedule | Maid To Clean</title>
+<main class="dashboard-container">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../../css/base.css" />
-<link rel="stylesheet" href="../../css/dashboard.css" />
-<link rel="stylesheet" href="../../css/components.css" />
-<link rel="stylesheet" href="../../css/layout.css" />
-<link rel="stylesheet" href="../../css/utilities.css" />
-  </head>
-  <body>
-    <header class="navbar">
-      <div class="container inner">
-        <h1 class="logo">Maid To Clean</h1>
-        <button class="menu-toggle" aria-label="Menu">☰</button>
-        <nav class="nav-links">
-  <a href="dashboard.html">Dashboard</a>
-  <a href="schedule.html" class="active">Schedule</a>
-  <a href="payment.html">Payments</a>
-  <a href="settings.html">Settings</a>
-  <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
-</nav>
+  <!-- HEADER -->
+  <section class="dashboard-header">
+    <h2 id="welcomeMessage">Your Cleaning Schedule</h2>
+    <button class="btn btn-primary" id="bookCleanBtn">
+      + Book New Cleaning
+    </button>
+  </section>
+
+  <!-- UPCOMING APPOINTMENT -->
+  <section class="dashboard-section">
+    <h3 class="section-title">Upcoming Appointment</h3>
+
+    <div class="message-card status-scheduled">
+      <h4>Jan 28 • 10:00 AM – 1:00 PM</h4>
+      <p><strong>Service:</strong> Standard Clean</p>
+      <p><strong>Address:</strong> 123 Main St</p>
+      <p><strong>Status:</strong> <span class="status-confirmed">Scheduled</span></p>
+      <p><strong>Notes:</strong> Focus on kitchen. Pets in laundry room.</p>
+
+      <div class="actions">
+        <button class="btn btn-ghost">Reschedule</button>
+        <button class="btn btn-ghost danger">Cancel</button>
       </div>
-    </header>
+    </div>
+  </section>
 
-    <main class="dashboard-container">
-      <section class="dashboard-header">
-        <h2 id="welcomeMessage"></h2>
-      </section>
+  <!-- PAST SERVICES -->
+  <section class="dashboard-section">
+    <h3 class="section-title">Past Services</h3>
 
-      <section class="dashboard-content">
-        <h3 class="section-title">Your Cleaning Schedule</h3>
-        <div id="scheduleContainer" class="messages-container">
-          <p>Loading your scheduled cleanings...</p>
-        </div>
-      </section>
-    </main>
+    <div class="message-card">
+      <h4>Jan 14 • Standard Clean</h4>
+      <p>Status: <span class="status-completed">Completed</span></p>
+      <button class="btn btn-ghost">Rate Service</button>
+    </div>
+  </section>
 
-    <footer class="footer">
-  <div class="container inner">
-    <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
-  </div>
-</footer>
+  <!-- SERVICE DETAILS -->
+  <section class="dashboard-section">
+    <h3 class="section-title">What’s Included</h3>
 
-    <script src="../../js/dashboard/schedule.js"></script>
-    <script>
-      // Footer year
-      document.getElementById("year").textContent = new Date().getFullYear();
+    <ul class="checklist">
+      <li>✔ Kitchen surfaces & sink</li>
+      <li>✔ Bathroom sanitization</li>
+      <li>✔ Floors vacuumed & mopped</li>
+      <li>✔ Trash removal</li>
+    </ul>
+  </section>
 
-      // Logout
-      document.getElementById("logoutBtn").addEventListener("click", () => {
-        localStorage.removeItem("mtc_token");
-        localStorage.removeItem("mtc_user");
-        window.location.href="../../html/login.html";
-      });
-    </script>
-    <script>
-  // Mobile menu toggle - standalone version
-  document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.nav-links');
-    
-    if (btn && nav) {
-      btn.addEventListener('click', function() {
-        nav.classList.toggle('show');
-        
-        // Debug: Add visual feedback
-        console.log('Menu toggled:', nav.classList.contains('show'));
-      });
-    }
-  });
-</script>
-</body>
-</html>
+</main>
