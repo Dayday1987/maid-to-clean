@@ -48,7 +48,7 @@
       <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
     </footer>
     <!-- JS -->
-    <script src="../../js/dashboard/dashboard.js"></script>
+    <script src="../../../js/dashboard/dashboard.js"></script>
     <script>
       // Footer year
       document.getElementById("year").textContent = new Date().getFullYear();
@@ -57,7 +57,7 @@
       document.getElementById("logoutBtn").addEventListener("click", () => {
         localStorage.removeItem("mtc_token");
         localStorage.removeItem("mtc_user");
-        window.location.href="../../html/login.html";
+        window.location.href="../html/login.html";
       });
     </script>
     <script>
