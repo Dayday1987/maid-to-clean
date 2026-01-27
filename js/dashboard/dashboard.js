@@ -9,9 +9,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Auth guard
   if (!token || !user) {
-    alert("Please log in first.");
-    window.location.href = "../../login.html";
-    return;
+  localStorage.clear();
+  window.location.replace("/html/login.html");
+  return;
+}
   }
 
   // Welcome message
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
       localStorage.clear();
-      window.location.href = "../../login.html";
+      window.location.href = "/html/login.html";
     });
   }
 
