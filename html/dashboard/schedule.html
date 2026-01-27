@@ -14,58 +14,80 @@
   
   </head>
   <body>
-<main class="dashboard-container">
 
-  <!-- HEADER -->
-  <section class="dashboard-header">
-    <h2 id="welcomeMessage">Your Cleaning Schedule</h2>
-    <button class="btn btn-primary" id="bookCleanBtn">
-      + Book New Cleaning
-    </button>
-  </section>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="container row">
+      <h1 class="logo">Maid To Clean</h1>
+      <nav class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="schedule.html" class="active">Schedule</a>
+        <a href="payment.html">Payments</a>
+        <a href="settings.html">Settings</a>
+        <a href="#" id="logoutBtn">Logout</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- UPCOMING APPOINTMENT -->
-  <section class="dashboard-section">
-    <h3 class="section-title">Upcoming Appointment</h3>
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="dashboard-container">
 
-    <div class="message-card status-scheduled">
-      <h4>Jan 28 • 10:00 AM – 1:00 PM</h4>
-      <p><strong>Service:</strong> Standard Clean</p>
-      <p><strong>Address:</strong> 123 Main St</p>
-      <p><strong>Status:</strong> <span class="status-confirmed">Scheduled</span></p>
-      <p><strong>Notes:</strong> Focus on kitchen. Pets in laundry room.</p>
+    <!-- PAGE HEADER (not <header>) -->
+    <section class="dashboard-header">
+      <h2 id="welcomeMessage">Your Cleaning Schedule</h2>
+      <button class="btn btn-primary" id="bookCleanBtn">
+        + Book New Cleaning
+      </button>
+    </section>
 
-      <div class="actions">
-        <button class="btn btn-ghost">Reschedule</button>
-        <button class="btn btn-ghost danger">Cancel</button>
+    <!-- UPCOMING APPOINTMENT -->
+    <section class="dashboard-section">
+      <h3 class="section-title">Upcoming Appointment</h3>
+
+      <div class="message-card">
+        <h4>Jan 28 • 10:00 AM – 1:00 PM</h4>
+        <p><strong>Service:</strong> Standard Clean</p>
+        <p><strong>Address:</strong> 123 Main St</p>
+        <p>
+          <strong>Status:</strong>
+          <span class="status-confirmed">Scheduled</span>
+        </p>
+        <p><strong>Notes:</strong> Focus on kitchen. Pets in laundry room.</p>
+
+        <div class="actions">
+          <button class="btn btn-ghost">Reschedule</button>
+          <button class="btn btn-ghost danger">Cancel</button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PAST SERVICES -->
-  <section class="dashboard-section">
-    <h3 class="section-title">Past Services</h3>
+    <!-- PAST SERVICES -->
+    <section class="dashboard-section">
+      <h3 class="section-title">Past Services</h3>
 
-    <div class="message-card">
-      <h4>Jan 14 • Standard Clean</h4>
-      <p>Status: <span class="status-completed">Completed</span></p>
-      <button class="btn btn-ghost">Rate Service</button>
-    </div>
-  </section>
+      <div class="message-card">
+        <h4>Jan 14 • Standard Clean</h4>
+        <p>
+          Status:
+          <span class="status-completed">Completed</span>
+        </p>
+        <button class="btn btn-ghost">Rate Service</button>
+      </div>
+    </section>
 
-  <!-- SERVICE DETAILS -->
-  <section class="dashboard-section">
-    <h3 class="section-title">What’s Included</h3>
+    <!-- SERVICE TRANSPARENCY -->
+    <section class="dashboard-section">
+      <h3 class="section-title">What’s Included</h3>
 
-    <ul class="checklist">
-      <li>✔ Kitchen surfaces & sink</li>
-      <li>✔ Bathroom sanitization</li>
-      <li>✔ Floors vacuumed & mopped</li>
-      <li>✔ Trash removal</li>
-    </ul>
-  </section>
-
-</main>
+      <ul class="checklist">
+        <li>✔ Kitchen surfaces & sink</li>
+        <li>✔ Bathroom sanitization</li>
+        <li>✔ Floors vacuumed & mopped</li>
+        <li>✔ Trash removal</li>
+      </ul>
+    </section>
+  </main>
+    
 <footer class="footer">
   <div class="container inner">
     <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
