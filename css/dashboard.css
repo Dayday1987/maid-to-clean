@@ -60,6 +60,11 @@ main {
   color: var(--pink);
 }
 
+.highlight {
+  border-left: 4px solid var(--blue);
+  background: #f8faff;
+}
+
 /* ========== WELCOME HEADER ========== */
 #welcomeMessage {
   text-align: center;
