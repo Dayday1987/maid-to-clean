@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!token || !user) {
     alert("Please log in to access your dashboard.");
-    window.location.href = "../html/login.html";
+    window.location.href = "../../html/login.html";
     return;
   }
 
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.addEventListener("click", (e) => {
       e.preventDefault();
       localStorage.clear();
-      window.location.href = "../html/login.html";
+      window.location.href = "../../html/login.html";
     });
   }
 });
