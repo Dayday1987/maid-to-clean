@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const user = JSON.parse(localStorage.getItem("mtc_user") || "null");
 
   if (!token || !user) {
-    alert("Please log in to access your dashboard.");
     window.location.href = "/html/login.html";
     return;
   }
