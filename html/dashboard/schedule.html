@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule | Maid To Clean</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/base.css" />
+<link rel="stylesheet" href="../../css/dashboard.css" />
+<link rel="stylesheet" href="../../css/components.css" />
+<link rel="stylesheet" href="../../css/layout.css" />
+<link rel="stylesheet" href="../../css/utilities.css" />
+  
+  </head>
+  <body>
 <main class="dashboard-container">
 
   <!-- HEADER -->
@@ -50,3 +66,40 @@
   </section>
 
 </main>
+<footer class="footer">
+  <div class="container inner">
+    <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+  </div>
+</footer>
+
+    <script src="../../js/dashboard/schedule.js"></script>
+    <script>
+      // Footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Logout
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("mtc_token");
+        localStorage.removeItem("mtc_user");
+        window.location.href="../../html/login.html";
+      });
+    </script>
+    <script>
+  // Mobile menu toggle - standalone version
+  document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav-links');
+    
+    if (btn && nav) {
+      btn.addEventListener('click', function() {
+        nav.classList.toggle('show');
+        
+        // Debug: Add visual feedback
+        console.log('Menu toggled:', nav.classList.contains('show'));
+      });
+    }
+  });
+</script>
+</body>
+</html>
+  
