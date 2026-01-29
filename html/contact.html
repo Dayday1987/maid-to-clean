@@ -18,7 +18,7 @@
   <body>
     <div id="navbar"></div>
     <script>
-  window.NAV_ROLE = "customer"; // public | customer | admin
+  window.NAV_ROLE = "public"; // public | customer | admin
 </script>
 
     <!-- Main Content Area -->
@@ -309,30 +309,15 @@
         this.reset();
         
         // In production, you would send this data to your backend:
-        // fetch('/api/contact', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify(formData)
-        // });
+         fetch('/api/contact', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify(formData)
+         });
       });
     </script>
 
     <script src="../js/main.js"></script>
-
-    <!-- Mobile Menu Toggle Script -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const btn = document.querySelector('.menu-toggle'); // Get menu toggle button
-        const nav = document.querySelector('.nav-links'); // Get navigation links container
-        
-        if (btn && nav) {
-          btn.addEventListener('click', function() {
-            nav.classList.toggle('show'); // Toggle 'show' class to display/hide menu
-            console.log('Menu toggled:', nav.classList.contains('show')); // Debug log
-          });
-        }
-      });
-    </script>
     <script src="/js/load-navbar.js"></script>
   </body>
 </html>
