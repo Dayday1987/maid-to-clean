@@ -12,28 +12,10 @@
   </head>
 
   <body>
-    <!-- STICKY NAVBAR -->
-    <nav class="navbar">
-      <div class="container inner">
-        <div class="brand">
-          <img src="img/new-logo.png" alt="Stephanie Kirkley" />
-          <span>Maid To Clean</span>
-        </div>
-
-        <button class="menu-toggle" aria-label="Menu">☰</button>
-
-        <div class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="html/services.html">Services</a>
-          <a href="html/about.html">About</a>
-          <a href="html/contact.html">Contact</a>
-
-          <!-- MOBILE-ONLY LOGIN/REGISTER -->
-          <a class="mobile-only" href="html/login.html">Login</a>
-          <a class="mobile-only" href="html/register.html">Register</a>
-        </div>
-      </div>
-    </nav>
+    <div id="navbar"></div>
+    <script>
+  window.NAV_ROLE = "public"; // public | customer | admin
+</script>
 
     <!-- MAIN CONTENT -->
     <main class="container">
@@ -166,17 +148,6 @@
 
     <script src="js/main.js"></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.querySelector(".menu-toggle");
-        const nav = document.querySelector(".nav-links");
-
-        if (btn && nav) {
-          btn.addEventListener("click", function () {
-            nav.classList.toggle("show");
-          });
-        }
-      });
-    </script>
+    <script src="/js/load-navbar.js"></script>
   </body>
 </html>
