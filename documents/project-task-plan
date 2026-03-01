@@ -1,0 +1,423 @@
+=======================
+Phase 1 — Project Setup
+=======================
+
+1. # Initialize Repository
+   Create GitHub repository: maid-to-clean
+
+Clone locally
+
+Add provided folder structure
+
+Add .gitignore
+
+Add README.md
+
+Commit initial scaffold
+
+2. # Environment Setup
+   Create Supabase project
+
+Create Stripe account
+
+Create Vercel account
+
+Set up environment variables (local + Vercel)
+
+==========================================
+🧱 Phase 2 — Database Setup (Supabase)
+Tasks
+==========================================
+Open Supabase SQL Editor
+
+Paste supabase/schema.sql
+
+Run migration
+
+Enable Row Level Security (RLS)
+
+Add policies
+
+Required RLS Policies
+Users Table
+
+Users can read their own row
+
+Admin can read all users
+
+Appointments
+
+Users can create appointments
+
+Users can read their own appointments
+
+Admin can read all appointments
+
+Payments
+
+Users can read their own payments
+
+Admin can read all payments
+
+Messages
+
+Users can read their own messages
+
+Admin can read all messages
+
+=============================
+🔐 Phase 3 — Authentication
+Tasks
+=============================
+Test registration flow
+
+Verify role default = customer
+
+Manually insert one admin user in database
+
+Verify login
+
+Verify logout
+
+Test role-based routing
+
+Test cases:
+
+Guest → Dashboard = Redirect to login
+
+Customer → Admin page = Blocked
+
+Admin → Admin panel = Accessible
+
+=================================
+💳 Phase 4 — Stripe Integration
+Tasks
+=================================
+Create Stripe product (placeholder)
+
+Configure webhook endpoint
+
+Add Vercel environment variables:
+
+STRIPE_SECRET_KEY
+
+STRIPE_WEBHOOK_SECRET
+
+Test checkout session
+
+Verify payment success redirect
+
+Store session ID in Supabase
+
+Confirm payment status update
+
+Test scenarios:
+
+Successful payment
+
+Cancelled payment
+
+Duplicate payment prevention
+
+=============================
+📅 Phase 5 — Scheduling Logic
+Tasks
+=============================
+Build available slot query
+
+Prevent double booking
+
+Add add-on pricing logic
+
+Store notes
+
+Test booking flow
+
+Verify admin sees booking
+
+============================
+👩‍💼 Phase 6 — Admin Panel
+Tasks
+============================
+Dashboard overview stats query
+
+Customer list view
+
+Edit customer role
+
+Billing summary computation
+
+Message broadcast logic
+
+===============================
+🎨 Phase 7 — UI & Optimization
+Tasks
+===============================
+Mobile responsiveness testing
+
+Lighthouse performance audit
+
+Optimize images
+
+Add loading states
+
+Add empty states
+
+Improve accessibility (ARIA labels)
+
+Add meta tags for SEO
+
+================================
+🧪 Phase 8 — Testing Checklist
+Functional Testing
+================================
+Register
+
+Login
+
+Logout
+
+Role detection
+
+Create appointment
+
+Pay with Stripe
+
+View dashboard
+
+Admin views data
+
+Delete account
+
+Security Testing
+
+RLS prevents cross-user access
+
+Admin-only routes protected
+
+Stripe keys not exposed
+
+Webhook secret verified
+
+======================
+🚀 DEPLOYMENT GUIDE
+======================
+======================
+1️⃣ SUPABASE SETUP
+======================
+Step 1 — Create Project
+=======================
+Go to https://supabase.com
+
+Click "New Project"
+
+Choose region
+
+Save:
+
+Project URL
+
+Anon public key
+
+# Step 2 — Run Schema
+
+Open SQL Editor
+
+Paste schema.sql
+
+Execute
+
+# Step 3 — Enable Email Auth
+
+Authentication → Providers
+
+Enable Email
+
+# Step 4 — Add Admin User
+
+After registering:
+
+update users
+set role = 'admin'
+where id = 'USER_UUID_HERE';
+
+==============================
+2️⃣ STRIPE SETUP
+=============================
+Step 1 — Create Product
+==============================
+Stripe Dashboard → Products
+
+Add placeholder product
+
+# Step 2 — Get Keys
+
+Developers → API Keys
+
+Copy:
+
+Publishable Key
+
+Secret Key
+
+# Step 3 — Webhook Setup
+
+Endpoint:
+
+https://your-domain.vercel.app/api/webhook
+
+Events to listen for:
+
+checkout.session.completed
+
+Copy:
+
+Webhook signing secret
+
+======================
+3️⃣ VERCEL DEPLOYMENT
+======================
+Step 1 — Install Vercel CLI (Optional)
+======================================
+npm i -g vercel
+
+# Step 2 — Push to GitHub
+
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin YOUR_REPO_URL
+git push -u origin main
+
+# Step 3 — Import to Vercel
+
+Go to https://vercel.com
+
+Import GitHub repo
+
+Framework preset: Other
+
+Root directory: leave default
+
+# Step 4 — Add Environment Variables (IMPORTANT)
+
+In Vercel Project → Settings → Environment Variables:
+
+SUPABASE_URL
+SUPABASE_ANON_KEY
+STRIPE_SECRET_KEY
+STRIPE_WEBHOOK_SECRET
+STRIPE_PUBLIC_KEY
+
+Deploy.
+
+# 4️⃣ DOMAIN CONFIGURATION (Optional)
+
+Go to Vercel → Domains
+
+Add custom domain
+
+Update DNS records
+
+=====================================
+🔄 CONTINUOUS DEPLOYMENT WORKFLOW
+Production Branch Strategy
+main → production
+dev → development
+feature/\* → feature branches
+Workflow
+=====================================
+Create feature branch
+
+Push
+
+Pull request
+
+Merge into main
+
+Auto-deploy triggered by Vercel
+
+========================================
+📈 PERFORMANCE OPTIMIZATION CHECKLIST
+=======================================
+Enable Supabase indexing
+
+Use lazy loading for images
+
+Minify CSS/JS
+
+Enable HTTP caching
+
+Use Vercel Edge caching
+
+Compress images (WebP preferred)
+
+Use CDN (Vercel automatic)
+
+================================
+🔒 SECURITY BEST PRACTICES
+================================
+Never expose Stripe secret key in frontend
+
+Use serverless functions for payment creation
+
+Enable RLS on all tables
+
+Use HTTPS (Vercel auto)
+
+Validate webhook signatures
+
+Rate-limit API endpoints (if scaling)
+
+====================================
+📊 MONITORING & MAINTENANCE
+Supabase
+====================================
+Monitor database usage
+
+Monitor API logs
+
+Stripe
+
+Monitor failed payments
+
+Monitor disputes
+
+Vercel
+
+Monitor function logs
+
+Monitor performance
+
+==========================
+🧾 OPTIONAL IMPROVEMENTS
+==========================
+Add email notifications
+
+Add SMS reminders
+
+Add service area filtering
+
+Add subscription recurring billing
+
+Add referral system
+
+Add analytics dashboard
+
+Add service reviews
+
+Add staff assignment system
+
+===========================
+🗂 DEPLOYMENT FLOW SUMMARY
+Local Dev
+↓
+GitHub
+↓
+Vercel Auto Deploy
+↓
+Supabase (DB + Auth)
+↓
+Stripe (Payments)
+===========================

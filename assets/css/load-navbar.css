@@ -1,0 +1,13 @@
+/* Reserved for navbar dynamic states */
+.guest-only {
+  display: none;
+}
+.auth-only {
+  display: none;
+}
+.customer-only {
+  display: none;
+}
+.admin-only {
+  display: none;
+}

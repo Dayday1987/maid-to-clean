@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Schedule Service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/dashboard.css" />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"
+    ></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/dashboard-protect.js"></script>
+    <script defer src="/assets/js/main.js"></script>
+  </head>
+
+  <body>
+    <div id="navbar"></div>
+
+    <main class="dashboard-container">
+      <h1>Schedule Cleaning</h1>
+
+      <form id="scheduleForm" class="schedule-form">
+        <label>Service Type</label>
+        <select id="serviceSelect" required></select>
+
+        <label>Add-ons</label>
+        <select id="addonSelect"></select>
+
+        <label>Date</label>
+        <input type="date" id="appointmentDate" required />
+
+        <label>Available Time Slots</label>
+        <select id="timeSlots" required></select>
+
+        <label>Notes</label>
+        <textarea id="notes"></textarea>
+
+        <label>Payment Type</label>
+        <select id="paymentType">
+          <option value="card">Card</option>
+          <option value="apple">Apple Pay</option>
+          <option value="paypal">PayPal</option>
+          <option value="cash">Cash</option>
+        </select>
+
+        <button type="submit" class="btn-primary">Confirm & Pay</button>
+      </form>
+
+      <h2>Past Appointments</h2>
+      <div id="appointmentHistory"></div>
+    </main>
+  </body>
+</html>
