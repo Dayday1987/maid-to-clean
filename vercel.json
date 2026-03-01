@@ -1,6 +1,8 @@
 {
   "rewrites": [
-    { "source": "/assets(.*)", "destination": "/assets/$1" },
-    { "source": "/public(.*)", "destination": "/public/$1" }
+    {
+      "source": "/((?!assets|api|components).*)",
+      "destination": "/public/$1"
+    }
   ]
 }
