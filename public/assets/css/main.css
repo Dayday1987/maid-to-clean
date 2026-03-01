@@ -56,3 +56,17 @@ section {
 .btn-primary:hover {
   opacity: 0.9;
 }
+
+.about img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+  border-radius: 8px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
