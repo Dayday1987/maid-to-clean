@@ -1,8 +1,11 @@
 {
   "rewrites": [
-    {
-      "source": "/((?!assets|api|components).*)",
-      "destination": "/public/$1"
-    }
+    { "source": "/assets/css/:file", "destination": "/assets/css/:file" },
+    { "source": "/assets/js/:file", "destination": "/assets/js/:file" },
+    { "source": "/assets/images/:file", "destination": "/assets/images/:file" },
+    { "source": "/api/:file", "destination": "/api/:file" },
+    { "source": "/:file", "destination": "/public/:file" },
+    { "source": "/admin/:file", "destination": "/public/admin/:file" },
+    { "source": "/dashboard/:file", "destination": "/public/dashboard/:file" }
   ]
 }
