@@ -2,8 +2,6 @@
 // MAIN.JS - Residential Booking
 // ==============================
 
-import { supabase } from "./api-config.js";
-
 document.addEventListener("DOMContentLoaded", () => {
   const serviceSelect = document.getElementById("serviceSelect");
   const roomsSelect = document.getElementById("roomsSelect");
