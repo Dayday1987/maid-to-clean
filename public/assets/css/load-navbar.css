@@ -1,13 +1,16 @@
 /* Reserved for navbar dynamic states */
 .guest-only {
-  display: none;
+  display: block; /* visible by default */
 }
+
 .auth-only {
-  display: none;
+  display: none; /* hidden until logged in */
 }
+
 .customer-only {
   display: none;
 }
+
 .admin-only {
   display: none;
 }
