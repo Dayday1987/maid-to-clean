@@ -9,7 +9,7 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 // ================================
 // STRIPE CONFIGURATION
 // ================================
-const STRIPE_PUBLIC_KEY = "pk_test_51T667mGq9xS4z8CjlD4WsC9v";
+const STRIPE_PUBLIC_KEY = "pk_test_51T6671Gq9xS4z8Cj6q0NXf3PZZYHSF330e2XE8G8l0CEKhgkCujxUOD1slGiKH7BY5LtAZecT5CyPg0l1B2qqGI600zNfFw2PT";
 
 // Initialize Stripe only if the library is loaded
 let stripe = null;
