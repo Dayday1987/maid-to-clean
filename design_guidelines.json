@@ -1,0 +1,146 @@
+{
+  "project_name": "Maid To Clean",
+  "design_identity": {
+    "persona": "E1 - The Anti-AI Designer",
+    "theme": "Clinical Luxury & Futuristic Clean",
+    "core_concept": "The Future of Cleanliness. Where precision meets comfort.",
+    "emotional_tone": "Trustworthy, Advanced, Pristine, Efficient",
+    "archetype": "Archetype 4: Swiss & High-Contrast (with Archetype 7 Accents)"
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Syne, sans-serif",
+      "import_url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap",
+      "usage": "Use 'Syne' for all H1-H6. It provides that unique, futuristic geometric feel.",
+      "weights": {
+        "h1": "800",
+        "h2": "700",
+        "h3": "600"
+      },
+      "letter_spacing": "tracking-tight (-0.02em)"
+    },
+    "body": {
+      "font_family": "Inter, sans-serif",
+      "weights": {
+        "regular": "400",
+        "medium": "500"
+      },
+      "line_height": "1.6"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#F8FAFC",
+      "surface": "#FFFFFF",
+      "primary": "#0F172A",
+      "secondary": "#334155",
+      "accent": "#06B6D4",
+      "accent_glow": "0 0 20px rgba(6, 182, 212, 0.5)",
+      "border": "#E2E8F0",
+      "success": "#10B981",
+      "error": "#EF4444"
+    },
+    "gradients": {
+      "hero_overlay": "linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 100%)",
+      "button_primary": "linear-gradient(90deg, #06B6D4 0%, #3B82F6 100%)",
+      "glass_surface": "rgba(255, 255, 255, 0.7)"
+    },
+    "rules": {
+      "contrast": "Ensure text is #0F172A on light backgrounds and #FFFFFF on dark backgrounds.",
+      "forbidden": "Do not use #1B93A4 (Teal) for dashboards. Use #06B6D4 (Cyan) instead."
+    }
+  },
+  "layout_strategies": {
+    "grid_system": {
+      "type": "CSS Grid",
+      "bento_grid": "display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;",
+      "container_padding": "padding: 2rem; max-width: 1280px; margin: 0 auto;"
+    },
+    "spacing": {
+      "scale": "Use 4px base unit. 16px (1rem), 32px (2rem), 64px (4rem), 128px (8rem).",
+      "section_spacing": "padding-block: 8rem; (Generous breathing room)"
+    },
+    "z_index": {
+      "modal": 1000,
+      "sticky_nav": 900,
+      "dropdown": 800,
+      "content": 10,
+      "background": 1
+    }
+  },
+  "component_guidelines": {
+    "buttons": {
+      "primary": {
+        "css": "background: var(--gradient-primary); color: white; border-radius: 9999px; padding: 1rem 2rem; font-weight: 600; font-family: 'Syne'; transition: transform 0.2s, box-shadow 0.2s;",
+        "hover": "transform: translateY(-2px); box-shadow: var(--accent-glow);"
+      },
+      "secondary": {
+        "css": "background: transparent; border: 1px solid var(--border); color: var(--primary); border-radius: 9999px; padding: 1rem 2rem;",
+        "hover": "background: var(--surface); border-color: var(--accent);"
+      }
+    },
+    "cards": {
+      "glass_panel": {
+        "css": "background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius: 16px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);"
+      },
+      "feature_card": {
+        "css": "background: white; border: 1px solid var(--border); border-radius: 12px; transition: border-color 0.3s;",
+        "hover": "border-color: var(--accent);"
+      }
+    },
+    "inputs": {
+      "style": "background: white; border: 1px solid var(--border); padding: 0.75rem 1rem; border-radius: 8px; font-family: 'Inter';",
+      "focus": "outline: 2px solid var(--accent); border-color: transparent;"
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_bg": {
+        "url": "https://images.unsplash.com/photo-1725042893312-5ec0dea9e369?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBmdXR1cmlzdGljJTIwbGl2aW5nJTIwcm9vbSUyMGNsZWFuJTIwd2hpdGUlMjBicmlnaHQlMjBsdXh1cnklMjBpbnRlcmlvcnxlbnwwfHx8fDE3NzI3Nzc5NDJ8MA&ixlib=rb-4.1.0&q=85",
+        "alt": "Futuristic clean living room with round window",
+        "description": "Use as full-screen hero background with dark overlay."
+      },
+      "service_deep_clean": {
+        "url": "https://images.unsplash.com/photo-1758273238947-7eb530b408e4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBob3VzZSUyMGNsZWFuaW5nJTIwc2VydmljZSUyMG1haWQlMjB0ZWFtJTIwd29ya2luZyUyMG1vZGVybnxlbnwwfHx8fDE3NzI3Nzc5NDh8MA&ixlib=rb-4.1.0&q=85",
+        "alt": "Deep cleaning service in action",
+        "description": "Bright modern room vacuuming."
+      },
+      "service_move_in": {
+        "url": "https://images.unsplash.com/photo-1630699144035-c0f6311ec482?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBmdXR1cmlzdGljJTIwbGl2aW5nJTIwcm9vbSUyMGNsZWFuJTIwd2hpdGUlMjBicmlnaHQlMjBsdXh1cnklMjBpbnRlcmlvcnxlbnwwfHx8fDE3NzI3Nzc5NDJ8MA&ixlib=rb-4.1.0&q=85",
+        "alt": "Move in/out cleaning - Empty pristine room",
+        "description": "Empty room with white rug."
+      },
+      "team_photo": {
+        "url": "https://images.unsplash.com/photo-1758273705792-a2887e079e83?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBob3VzZSUyMGNsZWFuaW5nJTIwc2VydmljZSUyMG1haWQlMjB0ZWFtJTIwd29ya2luZyUyMG1vZGVybnxlbnwwfHx8fDE3NzI3Nzc5NDh8MA&ixlib=rb-4.1.0&q=85",
+        "alt": "Professional Maid Team",
+        "description": "Cleaner focusing on work."
+      }
+    },
+    "icons": {
+      "library": "Phosphor Icons (via CDN)",
+      "cdn_link": "<script src=\"https://unpkg.com/@phosphor-icons/web\"></script>",
+      "style": "duotone"
+    }
+  },
+  "accessibility": {
+    "contrast_ratio": "Ensure 4.5:1 for normal text.",
+    "focus_states": "All interactive elements must have a visible focus ring.",
+    "aria_labels": "Buttons with icons only must have aria-label."
+  },
+  "instructions_to_main_agent": [
+    "You are working with Vanilla HTML/CSS/JS. DO NOT attempt to import React components.",
+    "Use the CDN links provided for Fonts and Icons in the <head> of every HTML file.",
+    "Define the CSS Variables in 'assets/css/main.css' :root first.",
+    "Implement the 'Glassmorphism' effect for the Navbar and Service Cards.",
+    "Use the 'Syne' font for all headings to establish the brand identity.",
+    "The Dashboard should use the 'Swiss & High-Contrast' archetype: Stark white backgrounds with bold black text and Cyan accents.",
+    "Ensure all images use the 'object-fit: cover' property to maintain aspect ratio.",
+    "Add 'data-testid' to all buttons and inputs (e.g., 'login-btn', 'email-input')."
+  ],
+  "universal_guidelines": [
+    "Avoid gradients for text color.",
+    "Do not use generic 'SaaS blue' (#3B82F6) as the primary brand color; stick to the defined Deep Space Blue and Cyan accent.",
+    "Ensure 80vh max height for hero images on mobile.",
+    "Use 'sonner' style toast notifications (implemented via custom JS/CSS since no React)."
+  ]
+}
