@@ -213,10 +213,10 @@
 
     async function approveBooking(bookingId) {
       try {
-        // Get the booking details
+        // Get the booking details with user and service info
         const { data: booking } = await supabase
           .from('appointments')
-          .select('*, services (base_price)')
+          .select('*, services (name, base_price), users (email, full_name)')
           .eq('id', bookingId)
           .single();
 
@@ -235,6 +235,24 @@
           .eq('id', bookingId);
 
         if (error) throw error;
+
+        // Send approval email to customer
+        try {
+          await fetch('/api/notify-booking', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customerEmail: booking.users?.email,
+              customerName: booking.users?.full_name || '',
+              serviceName: booking.services?.name || 'Cleaning Service',
+              appointmentDate: new Date(booking.appointment_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
+              appointmentTime: booking.appointment_time,
+              type: 'approved'
+            })
+          });
+        } catch (emailErr) {
+          console.error('Approval email failed:', emailErr);
+        }
 
         showToast('Booking approved! Customer can now pay.', 'success');
         await loadAdminDashboard();

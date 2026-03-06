@@ -1,19 +1,20 @@
 # Maid To Clean - Product Requirements Document
 
 ## Original Problem Statement
-Finish building a cleaning service website "Maid To Clean" deployed through Vercel with Supabase and Stripe integration. User requested futuristic design, service cards grid, CTAs throughout, and specific About page content.
+Finish building a cleaning service website "Maid To Clean" deployed through Vercel with Supabase and Stripe integration. User requested futuristic design, service cards grid, CTAs throughout, and specific About page content. Added email notifications for bookings.
 
 ## Architecture
 - **Frontend**: Vanilla HTML5, CSS3, JavaScript (static site)
 - **Backend**: Supabase (PostgreSQL + Auth)
 - **Payments**: Stripe Checkout
-- **Deployment**: Vercel (static hosting)
+- **Email**: Resend (transactional emails)
+- **Deployment**: Vercel (static hosting + serverless functions)
 - **Icons**: Phosphor Icons
 - **Fonts**: Syne (headings) + Inter (body)
 
 ## User Personas
 1. **Customers**: Homeowners/businesses seeking cleaning services
-2. **Admin**: Business owner managing bookings, customers, billing
+2. **Admin**: Business owner (stephanie.maidtoclean@gmail.com) managing bookings, customers, billing
 
 ## Core Requirements
 - [x] Public marketing pages (Home, About, Services, Contact)
@@ -22,6 +23,7 @@ Finish building a cleaning service website "Maid To Clean" deployed through Verc
 - [x] Admin panel (Dashboard, Customers, Messages, Billing)
 - [x] Stripe payment integration
 - [x] Supabase database schema
+- [x] Email notifications (booking, approval, payment)
 
 ## What's Been Implemented (March 2026)
 
@@ -54,6 +56,11 @@ Finish building a cleaning service website "Maid To Clean" deployed through Verc
 - Message system (individual + broadcast)
 - Billing & revenue tracking
 
+### Email Notifications (NEW)
+- **New Booking**: Customer receives confirmation, Admin receives notification
+- **Booking Approved**: Customer notified to complete payment
+- **Payment Confirmed**: Customer and Admin notified
+
 ### Database
 - Users, Services, Add-ons, Appointments, Payments, Messages tables
 - Row Level Security policies
@@ -62,6 +69,19 @@ Finish building a cleaning service website "Maid To Clean" deployed through Verc
 ## Configuration
 - Supabase URL: https://lihyhtcjrmkivmbvgnqp.supabase.co
 - Stripe Public Key: pk_test_51T6671Gq9xS4z8Cj...
+- Admin Email: stephanie.maidtoclean@gmail.com
+
+## Vercel Environment Variables Required
+- SUPABASE_URL
+- SUPABASE_ANON_KEY
+- SUPABASE_SERVICE_ROLE_KEY
+- STRIPE_SECRET_KEY
+- STRIPE_WEBHOOK_SECRET
+- STRIPE_PUBLIC_KEY
+- RESEND_API_KEY
+- SENDER_EMAIL (or use default: onboarding@resend.dev)
+- ADMIN_EMAIL (stephanie.maidtoclean@gmail.com)
+- BASE_URL (https://maid-to-clean.vercel.app)
 
 ## Prioritized Backlog
 
@@ -69,9 +89,10 @@ Finish building a cleaning service website "Maid To Clean" deployed through Verc
 - [x] Deploy updated files to Vercel
 - [ ] Run Supabase schema migration
 - [ ] Run seed data
+- [ ] Set up Resend API key in Vercel
 
 ### P1 (Important)
-- [ ] Email notifications for bookings
+- [ ] Custom email domain (notifications@maidtoclean.com)
 - [ ] SMS reminders via Twilio
 - [ ] Real-time booking calendar
 
@@ -83,7 +104,8 @@ Finish building a cleaning service website "Maid To Clean" deployed through Verc
 
 ## Next Tasks
 1. Push code to GitHub to trigger Vercel deployment
-2. Run schema.sql in Supabase SQL Editor
-3. Run seed.sql to populate services/add-ons
-4. Test full booking + payment flow
-5. Create admin user in database
+2. Add Resend API key to Vercel environment variables
+3. Run schema.sql in Supabase SQL Editor
+4. Run seed.sql to populate services/add-ons
+5. Test full booking + payment + email flow
+6. Create admin user in database

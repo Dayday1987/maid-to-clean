@@ -45,6 +45,13 @@ export default async function handler(req, res) {
     const userId = session.metadata.user_id;
 
     try {
+      // Get appointment and user details for email
+      const { data: appointment } = await supabase
+        .from("appointments")
+        .select("*, services (name), users (email, full_name)")
+        .eq("id", appointmentId)
+        .single();
+
       // Update appointment
       await supabase
         .from("appointments")
@@ -61,6 +68,26 @@ export default async function handler(req, res) {
           stripe_session_id: session.id,
         },
       ]);
+
+      // Send payment confirmation email
+      if (appointment) {
+        try {
+          await fetch(`${process.env.BASE_URL}/api/notify-booking`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customerEmail: appointment.users?.email || session.customer_email,
+              customerName: appointment.users?.full_name || '',
+              serviceName: appointment.services?.name || 'Cleaning Service',
+              appointmentDate: new Date(appointment.appointment_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
+              appointmentTime: appointment.appointment_time,
+              type: 'payment_confirmed'
+            })
+          });
+        } catch (emailErr) {
+          console.error('Payment confirmation email failed:', emailErr);
+        }
+      }
 
       console.log("Payment recorded successfully");
     } catch (err) {

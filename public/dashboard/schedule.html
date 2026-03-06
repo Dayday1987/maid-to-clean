@@ -325,6 +325,10 @@
           };
         }
 
+        // Get service name for email
+        const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+        const serviceName = selectedOption.dataset.name || 'Cleaning Service';
+
         const { data, error } = await supabase.from('appointments').insert([{
           user_id: user.id,
           service_id: serviceId,
@@ -339,6 +343,27 @@
         }]);
 
         if (error) throw error;
+
+        // Send email notifications
+        try {
+          const profile = await getUserProfile();
+          await fetch('/api/notify-booking', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customerEmail: user.email,
+              customerName: profile?.full_name || '',
+              serviceName: serviceName,
+              appointmentDate: new Date(date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
+              appointmentTime: time,
+              notes: notes,
+              type: 'new_booking'
+            })
+          });
+        } catch (emailErr) {
+          console.error('Email notification failed:', emailErr);
+          // Don't block the booking if email fails
+        }
 
         showToast('Booking request submitted! We will review and confirm shortly.', 'success');
         scheduleForm.reset();
