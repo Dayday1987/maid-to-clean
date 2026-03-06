@@ -1,0 +1,42 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/index.html" class="logo">
+      <img
+        src="/assets/images/new-logo.png"
+        alt="Maid To Clean Logo"
+        class="logo-img"
+      />
+      <span class="logo-text">Maid To Clean</span>
+    </a>
+
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/services.html">Services</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+
+      <li class="guest-only"><a href="/login.html">Login</a></li>
+
+      <li class="customer-only">
+        <a href="/dashboard/dashboard.html">Dashboard</a>
+      </li>
+
+      <li class="admin-only">
+        <a href="/admin/admin-dashboard.html">Admin</a>
+      </li>
+
+      <li class="auth-only"><a href="#" id="logoutBtn">Logout</a></li>
+    </ul>
+  </div>
+</nav>

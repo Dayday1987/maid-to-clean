@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard | <!-- BUSINESS_NAME --></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"
+    ></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/dashboard-protect.js"></script>
+    <script defer src="/assets/js/main.js"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
+
+    <main class="dashboard-container">
+      <h1>Welcome, <span id="userEmail"></span></h1>
+
+      <section class="dashboard-grid">
+        <div class="card">
+          <h3>Last Scheduled Service</h3>
+          <div id="lastService">Loading...</div>
+        </div>
+
+        <div class="card">
+          <h3>Next Scheduled Service</h3>
+          <div id="nextService">Loading...</div>
+        </div>
+
+        <div class="card">
+          <h3>Overview</h3>
+          <div id="statsOverview"></div>
+        </div>
+
+        <div class="card">
+          <h3>Admin Message</h3>
+          <div id="adminMessage"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
