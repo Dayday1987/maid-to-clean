@@ -1,25 +1,245 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Payments</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/assets/css/dashboard.css" />
-    <script defer src="https://js.stripe.com/v3/"></script>
-    <script defer src="/assets/js/api-config.js"></script>
-    <script defer src="/assets/js/auth.js"></script>
-    <script defer src="/assets/js/dashboard-protect.js"></script>
-    <script defer src="/assets/js/main.js"></script>
-  </head>
-  <body>
-    <div id="navbar"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments | Maid To Clean</title>
 
-    <main class="dashboard-container">
-      <h1>Payment History</h1>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/dashboard.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="/assets/js/api-config.js"></script>
+  <script defer src="/assets/js/auth.js"></script>
+  <script defer src="/assets/js/dashboard-protect.js"></script>
+  <script defer src="/assets/js/load-navbar.js"></script>
+</head>
+<body>
 
-      <div id="balanceDisplay"></div>
-      <div id="transactionHistory"></div>
-    </main>
-  </body>
+  <div id="navbar"></div>
+
+  <main class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Payments</h1>
+      <p>View and manage your payment history</p>
+    </div>
+
+    <!-- Balance Overview -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <h4>Outstanding</h4>
+          <div class="icon"><i class="ph-duotone ph-warning-circle"></i></div>
+        </div>
+        <div class="value" id="outstandingBalance">$0.00</div>
+        <div class="label">Amount due</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <h4>Total Paid</h4>
+          <div class="icon"><i class="ph-duotone ph-check-circle"></i></div>
+        </div>
+        <div class="value" id="totalPaid">$0.00</div>
+        <div class="label">All time</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <h4>Transactions</h4>
+          <div class="icon"><i class="ph-duotone ph-receipt"></i></div>
+        </div>
+        <div class="value" id="transactionCount">0</div>
+        <div class="label">Total payments</div>
+      </div>
+    </div>
+
+    <!-- Pending Payments -->
+    <div class="dashboard-card mb-6">
+      <h3><i class="ph-duotone ph-clock"></i> Pending Payments</h3>
+      <div id="pendingPayments">
+        <div class="empty-state">
+          <i class="ph-duotone ph-check-circle"></i>
+          <p>No pending payments</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment History -->
+    <div class="dashboard-card">
+      <h3><i class="ph-duotone ph-clock-counter-clockwise"></i> Payment History</h3>
+      <div id="paymentHistory" style="overflow-x: auto;">
+        <div class="empty-state">
+          <i class="ph-duotone ph-receipt"></i>
+          <p>No payment history yet</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script>
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <i class="ph-duotone ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await getCurrentUser();
+      if (!user) return;
+
+      await loadPaymentData(user.id);
+    });
+
+    async function loadPaymentData(userId) {
+      try {
+        // Get all payments
+        const { data: payments, error } = await supabase
+          .from('payments')
+          .select(`
+            *,
+            appointments (
+              appointment_date,
+              services (name)
+            )
+          `)
+          .eq('user_id', userId)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        // Calculate totals
+        const paidPayments = payments?.filter(p => p.status === 'paid') || [];
+        const pendingPayments = payments?.filter(p => p.status === 'pending') || [];
+
+        const totalPaid = paidPayments.reduce((sum, p) => sum + (p.amount || 0), 0);
+        const outstanding = pendingPayments.reduce((sum, p) => sum + (p.amount || 0), 0);
+
+        document.getElementById('totalPaid').textContent = `$${totalPaid.toFixed(2)}`;
+        document.getElementById('outstandingBalance').textContent = `$${outstanding.toFixed(2)}`;
+        document.getElementById('transactionCount').textContent = paidPayments.length;
+
+        // Show pending payments with pay button
+        if (pendingPayments.length > 0) {
+          document.getElementById('pendingPayments').innerHTML = pendingPayments.map(payment => `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--background); border-radius: var(--radius-md); margin-bottom: 0.75rem; border-left: 3px solid #D97706;">
+              <div>
+                <p style="font-weight: 600;">${payment.appointments?.services?.name || 'Cleaning Service'}</p>
+                <p style="font-size: 0.875rem; color: var(--secondary);">
+                  ${payment.appointments?.appointment_date ? new Date(payment.appointments.appointment_date).toLocaleDateString() : 'Pending'}
+                </p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="font-weight: 700; font-size: 1.125rem;">$${payment.amount?.toFixed(2) || '0.00'}</span>
+                <button class="btn btn-primary btn-sm" onclick="initiatePayment('${payment.appointment_id}')" data-testid="pay-btn-${payment.id}">
+                  <i class="ph-duotone ph-credit-card"></i> Pay Now
+                </button>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // Get approved appointments without payment record
+        const { data: approvedAppointments } = await supabase
+          .from('appointments')
+          .select(`
+            *,
+            services (name, base_price)
+          `)
+          .eq('user_id', userId)
+          .eq('status', 'approved');
+
+        if (approvedAppointments && approvedAppointments.length > 0) {
+          const pendingHtml = approvedAppointments.map(apt => `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--background); border-radius: var(--radius-md); margin-bottom: 0.75rem; border-left: 3px solid var(--accent);">
+              <div>
+                <p style="font-weight: 600;">${apt.services?.name || 'Cleaning Service'}</p>
+                <p style="font-size: 0.875rem; color: var(--secondary);">
+                  ${new Date(apt.appointment_date).toLocaleDateString()} at ${apt.appointment_time}
+                </p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="font-weight: 700; font-size: 1.125rem;">$${apt.quoted_price?.toFixed(2) || apt.services?.base_price?.toFixed(2) || '0.00'}</span>
+                <button class="btn btn-primary btn-sm" onclick="initiatePayment('${apt.id}')" data-testid="pay-apt-btn-${apt.id}">
+                  <i class="ph-duotone ph-credit-card"></i> Pay Now
+                </button>
+              </div>
+            </div>
+          `).join('');
+
+          document.getElementById('pendingPayments').innerHTML = pendingHtml;
+        }
+
+        // Payment history
+        if (paidPayments.length > 0) {
+          document.getElementById('paymentHistory').innerHTML = `
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Service</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${paidPayments.map(payment => `
+                  <tr>
+                    <td>${new Date(payment.created_at).toLocaleDateString()}</td>
+                    <td>${payment.appointments?.services?.name || 'Cleaning Service'}</td>
+                    <td style="font-weight: 600;">$${payment.amount?.toFixed(2) || '0.00'}</td>
+                    <td><span class="status-badge paid">Paid</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          `;
+        }
+
+      } catch (error) {
+        console.error('Error loading payment data:', error);
+        showToast('Failed to load payment data', 'error');
+      }
+    }
+
+    async function initiatePayment(appointmentId) {
+      try {
+        showToast('Redirecting to payment...', 'info');
+
+        const response = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ appointmentId })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+          throw new Error(data.error);
+        }
+
+        if (data.url) {
+          window.location.href = data.url;
+        }
+      } catch (error) {
+        console.error('Payment error:', error);
+        showToast(error.message || 'Payment initiation failed', 'error');
+      }
+    }
+  </script>
+
+</body>
 </html>

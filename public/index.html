@@ -1,85 +1,183 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Maid To Clean Professional cleaning services."
-    />
-    <title>Maid To Clean | Professional Cleaning</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maid To Clean - Professional cleaning services built on integrity and excellence. Book your cleaning today.">
+  <title>Maid To Clean | Professional Cleaning Services</title>
 
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/assets/css/load-navbar.css" />
-    <link rel="stylesheet" href="/assets/css/navbar.css" />
-    <link rel="stylesheet" href="/assets/css/responsive.css" />
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="/assets/js/api-config.js"></script>
+  <script defer src="/assets/js/auth.js"></script>
+  <script defer src="/assets/js/load-navbar.js"></script>
+</head>
+<body>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script defer src="/assets/js/api-config.js"></script>
-    <script defer src="/assets/js/auth.js"></script>
-    <script defer src="/assets/js/load-navbar.js"></script>
-    <script defer src="/assets/js/main.js"></script>
-  </head>
+  <div id="navbar"></div>
 
-  <body>
-    <div id="navbar"></div>
-
-    <section class="hero">
-      <img
-        src="/assets/images/livingroom.png"
-        alt="Cleaning Service"
-        class="hero-bg"
-      />
-
-      <div class="hero-content">
-        <h1>Maid To Clean</h1>
-        <p>
-          Built on integrity, driven by excellence—your trusted partner for
-          professional cleaning services.
-        </p>
-        <a href="register.html" class="btn-primary">Book Today</a>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img 
+      src="https://images.unsplash.com/photo-1725042893312-5ec0dea9e369?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBmdXR1cmlzdGljJTIwbGl2aW5nJTIwcm9vbSUyMGNsZWFuJTIwd2hpdGUlMjBicmlnaHQlMjBsdXh1cnklMjBpbnRlcmlvcnxlbnwwfHx8fDE3NzI3Nzc5NDJ8MA&ixlib=rb-4.1.0&q=85" 
+      alt="Modern clean living space" 
+      class="hero-bg"
+    >
+    <div class="hero-content">
+      <h1>The Future of Clean</h1>
+      <p>Built on integrity, driven by excellence—your trusted partner for professional cleaning services that transform spaces and exceed expectations.</p>
+      <div class="hero-buttons">
+        <a href="/register.html" class="btn btn-primary btn-lg" data-testid="hero-book-btn">
+          <i class="ph-duotone ph-calendar-check"></i>
+          Book Today
+        </a>
+        <a href="/services.html" class="btn btn-outline btn-lg" data-testid="hero-services-btn">
+          <i class="ph-duotone ph-sparkle"></i>
+          View Services
+        </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="services-preview">
+  <!-- Services Preview -->
+  <section class="services-preview">
+    <div class="container">
       <h2>Our Services</h2>
-      <ul></ul>
-      <a href="services.html" class="btn-secondary">View All Services</a>
-    </section>
+      <div class="grid grid-3" id="servicesGrid">
+        <!-- Service Card 1 -->
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1758273238947-7eb530b408e4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBob3VzZSUyMGNsZWFuaW5nJTIwc2VydmljZSUyMG1haWQlMjB0ZWFtJTIwd29ya2luZyUyMG1vZGVybnxlbnwwfHx8fDE3NzI3Nzc5NDh8MA&ixlib=rb-4.1.0&q=85" alt="Deep Cleaning Service" class="service-card-image">
+          <div class="service-card-content">
+            <h3>Deep Cleaning</h3>
+            <p>Comprehensive cleaning that reaches every corner, leaving your space immaculately refreshed.</p>
+            <span class="price">From $150</span>
+          </div>
+        </div>
 
-    <section class="why-us">
+        <!-- Service Card 2 -->
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1630699144035-c0f6311ec482?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBmdXR1cmlzdGljJTIwbGl2aW5nJTIwcm9vbSUyMGNsZWFuJTIwd2hpdGUlMjBicmlnaHQlMjBsdXh1cnklMjBpbnRlcmlvcnxlbnwwfHx8fDE3NzI3Nzc5NDJ8MA&ixlib=rb-4.1.0&q=85" alt="Move In/Out Cleaning" class="service-card-image">
+          <div class="service-card-content">
+            <h3>Move In/Out</h3>
+            <p>Perfect for transitions—ensure your new home is spotless or leave your old one pristine.</p>
+            <span class="price">From $200</span>
+          </div>
+        </div>
+
+        <!-- Service Card 3 -->
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop" alt="Regular Maintenance" class="service-card-image">
+          <div class="service-card-content">
+            <h3>Regular Maintenance</h3>
+            <p>Scheduled cleaning to keep your space consistently fresh. Weekly, bi-weekly, or monthly.</p>
+            <span class="price">From $100</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="/services.html" class="btn btn-secondary" data-testid="view-all-services-btn">
+          View All Services
+          <i class="ph-duotone ph-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="why-us">
+    <div class="container">
       <h2>Why Clients Choose Maid To Clean</h2>
-      <ul>
-        <li>
-          ✓ Eco-Friendly Cleaning Solutions: We use safe, effective products
-          that protect your family, pets, and the environment.
-        </li>
-        <li>
-          ✓ Flexible Scheduling: We work around your schedule with convenient
-          booking options and recurring service plans.
-        </li>
-        <li>
-          ✓ Satisfaction Guarantee: If you're not completely satisfied, we'll
-          make it right—no questions asked.
-        </li>
-        <li>
-          ✓ Transparent Pricing: No hidden fees or surprises. Get a clear,
-          upfront quote before we begin.
-        </li>
-      </ul>
-    </section>
+      <div class="why-us-grid">
+        <div class="why-us-item">
+          <div class="icon"><i class="ph-duotone ph-leaf"></i></div>
+          <h4>Eco-Friendly Solutions</h4>
+          <p>We use safe, effective products that protect your family, pets, and the environment.</p>
+        </div>
+        <div class="why-us-item">
+          <div class="icon"><i class="ph-duotone ph-calendar-dots"></i></div>
+          <h4>Flexible Scheduling</h4>
+          <p>We work around your schedule with convenient booking options and recurring service plans.</p>
+        </div>
+        <div class="why-us-item">
+          <div class="icon"><i class="ph-duotone ph-seal-check"></i></div>
+          <h4>Satisfaction Guarantee</h4>
+          <p>If you're not completely satisfied, we'll make it right—no questions asked.</p>
+        </div>
+        <div class="why-us-item">
+          <div class="icon"><i class="ph-duotone ph-receipt"></i></div>
+          <h4>Transparent Pricing</h4>
+          <p>No hidden fees or surprises. Get a clear, upfront quote before we begin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="contact-cta">
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Experience the Maid To Clean Difference</h2>
+      <p>Join our family of satisfied clients and discover what happens when integrity meets excellence. We're more than a service; we're your neighbors, and we're here to help.</p>
+      <a href="/register.html" class="btn btn-primary btn-lg" data-testid="cta-register-btn">
+        <i class="ph-duotone ph-user-plus"></i>
+        Connect With Us Today
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact Preview -->
+  <section class="contact-cta">
+    <div class="container">
       <h2>Ready to Schedule?</h2>
       <p>
-        <a href="tel:+13344254566">Call Us</a>
+        <i class="ph-duotone ph-phone"></i>
+        <a href="tel:+13344254566">(334) 425-4566</a>
       </p>
       <p>
-        <a href="mailto:ohsostephy777@gmail.com">Email Us</a>
+        <i class="ph-duotone ph-envelope"></i>
+        <a href="mailto:ohsostephy777@gmail.com">ohsostephy777@gmail.com</a>
       </p>
-      <a href="register.html" class="btn-primary">Create Account</a>
-    </section>
+      <div class="mt-6">
+        <a href="/contact.html" class="btn btn-secondary" data-testid="contact-btn">
+          Get In Touch
+          <i class="ph-duotone ph-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <div id="footer"></div>
-  </body>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Maid To Clean</h4>
+        <p>Polishing homes, empowering communities, and building relationships that last.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="/about.html">About Us</a>
+        <a href="/services.html">Services</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="/login.html">Login</a>
+        <a href="/register.html">Register</a>
+        <a href="/dashboard/dashboard.html">Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><a href="tel:+13344254566">(334) 425-4566</a></p>
+        <p><a href="mailto:ohsostephy777@gmail.com">ohsostephy777@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Maid To Clean. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
 </html>

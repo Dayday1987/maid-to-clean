@@ -1,26 +1,39 @@
-async function registerUser(email, password) {
+// ================================
+// AUTH FUNCTIONS
+// ================================
+
+async function registerUser(email, password, metadata = {}) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
+    options: {
+      data: metadata
+    }
   });
 
   if (error) throw error;
 
-  await supabase.from("users").insert([
-    {
+  // Insert user into users table with customer role
+  if (data.user) {
+    await supabase.from("users").insert([{
       id: data.user.id,
+      email: email,
       role: "customer",
-    },
-  ]);
+      ...metadata
+    }]);
+  }
+
+  return data;
 }
 
 async function loginUser(email, password) {
-  const { error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
   if (error) throw error;
+  return data;
 }
 
 async function logoutUser() {
@@ -33,15 +46,51 @@ async function getCurrentUser() {
   return data.user;
 }
 
+async function getSession() {
+  const { data } = await supabase.auth.getSession();
+  return data.session;
+}
+
 async function getUserRole() {
   const user = await getCurrentUser();
   if (!user) return null;
 
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("users")
     .select("role")
     .eq("id", user.id)
     .single();
 
+  if (error) {
+    console.error("Error fetching user role:", error);
+    return null;
+  }
+
   return data?.role;
 }
+
+async function getUserProfile() {
+  const user = await getCurrentUser();
+  if (!user) return null;
+
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", user.id)
+    .single();
+
+  if (error) {
+    console.error("Error fetching user profile:", error);
+    return null;
+  }
+
+  return data;
+}
+
+// Listen for auth state changes
+supabase.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_OUT') {
+    // Clear any local state if needed
+    console.log('User signed out');
+  }
+});

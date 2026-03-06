@@ -1,39 +1,133 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | Maid To Clean</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about Maid To Clean - our mission, values, and commitment to polishing homes and empowering communities.">
+  <title>About Us | Maid To Clean</title>
 
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/assets/css/navbar.css" />
-    <link rel="stylesheet" href="/assets/css/responsive.css" />
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="/assets/js/api-config.js"></script>
+  <script defer src="/assets/js/auth.js"></script>
+  <script defer src="/assets/js/load-navbar.js"></script>
+</head>
+<body>
 
-    <script defer src="/assets/js/load-navbar.js"></script>
-  </head>
+  <div id="navbar"></div>
 
-  <body>
-    <div id="navbar"></div>
+  <!-- About Hero -->
+  <section class="about-hero">
+    <div class="container">
+      <h1>About Maid To Clean</h1>
+      <p class="tagline">"Polishing Homes, Empowering Communities, and Building Relationships That Last."</p>
+    </div>
+  </section>
 
-    <main class="page-container">
-      <h1>About Us</h1>
+  <!-- Our Story -->
+  <section style="background: var(--background);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+        <div>
+          <h2>Our Story</h2>
+          <p class="mb-4">Maid To Clean was born from a simple belief: every home deserves care, and every community deserves support. What started as one person's determination to provide honest, thorough cleaning services has grown into a trusted team dedicated to transforming spaces and building lasting relationships.</p>
+          <p>Our founder, Stephanie, began this journey with nothing but grit, attention to detail, and an unwavering commitment to doing things right. That spirit—what we call the "Stephanie Standard"—still guides everything we do today.</p>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1758273705792-a2887e079e83?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBob3VzZSUyMGNsZWFuaW5nJTIwc2VydmljZSUyMG1haWQlMjB0ZWFtJTIwd29ya2luZyUyMG1vZGVybnxlbnwwfHx8fDE3NzI3Nzc5NDh8MA&ixlib=rb-4.1.0&q=85" alt="Professional cleaning team" style="border-radius: var(--radius-lg); width: 100%;">
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <img src="/assets/images/profilepic.jpeg" alt="About Image" />
-      <p>
-        Stephanie founded Maid To Clean with a simple vision: to provide
-        reliable, detail-oriented cleaning services that make a real difference
-        in people's lives. With years of experience in the cleaning industry,
-        she recognized a need for trustworthy, professional service backed by
-        genuine care for customers. Stephanie's commitment to excellence and
-        customer satisfaction has been the driving force behind Maid To Clean's
-        success. She personally oversees every aspect of the business, from
-        hiring and training staff to ensuring that every job meets her high
-        standards. Stephanie's hands-on approach and dedication to quality have
-        earned Maid To Clean a loyal customer base and a reputation for
-        exceptional service.
-      </p>
+  <!-- Core Values -->
+  <section class="core-values">
+    <div class="container">
+      <h2>Our Core Values</h2>
+      <p class="intro">These serve as the "Maid To Clean" promise—the principles that guide every visit, every interaction, and every decision we make.</p>
+      
+      <div class="grid grid-4">
+        <div class="value-card">
+          <div class="icon"><i class="ph-duotone ph-heart"></i></div>
+          <h3>People Over Profit</h3>
+          <p>We measure our success by the strength of our relationships and the smiles on our clients' faces, not just the numbers on a ledger.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="icon"><i class="ph-duotone ph-shield-check"></i></div>
+          <h3>Uncompromising Integrity</h3>
+          <p>We treat every home and office with the utmost respect, ensuring that honesty and transparency are at the heart of every visit.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="icon"><i class="ph-duotone ph-users-three"></i></div>
+          <h3>Community-Centric Service</h3>
+          <p>We don't just work here; we live here. We are dedicated to lifting up our neighbors and investing in the local community that supports us.</p>
+        </div>
+        
+        <div class="value-card">
+          <div class="icon"><i class="ph-duotone ph-star-four"></i></div>
+          <h3>The "Stephanie Standard"</h3>
+          <p>Inspired by our founder's beginnings, we approach every task with the same grit, detail, and dedication that started it all.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <img src="/assets/images/profilepic.jpeg" alt="About Image" />
-    </main>
-  </body>
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Experience the Maid To Clean Difference</h2>
+      <p>Join our family of satisfied clients and discover what happens when integrity meets excellence. We're more than a service; we're your neighbors, and we're here to help.</p>
+      <a href="/register.html" class="btn btn-primary btn-lg" data-testid="about-cta-btn">
+        <i class="ph-duotone ph-handshake"></i>
+        Connect With Us Today
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Maid To Clean</h4>
+        <p>Polishing homes, empowering communities, and building relationships that last.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="/about.html">About Us</a>
+        <a href="/services.html">Services</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="/login.html">Login</a>
+        <a href="/register.html">Register</a>
+        <a href="/dashboard/dashboard.html">Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><a href="tel:+13344254566">(334) 425-4566</a></p>
+        <p><a href="mailto:ohsostephy777@gmail.com">ohsostephy777@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Maid To Clean. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <style>
+    @media (max-width: 768px) {
+      section > .container > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+      }
+    }
+  </style>
+
+</body>
 </html>

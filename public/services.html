@@ -1,142 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Services | Maid To Clean</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore our professional cleaning services - Deep Cleaning, Move In/Out, Regular Maintenance, Custom Cleaning and more.">
+  <title>Our Services | Maid To Clean</title>
 
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/assets/css/navbar.css" />
-    <link rel="stylesheet" href="/assets/css/responsive.css" />
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="/assets/js/api-config.js"></script>
+  <script defer src="/assets/js/auth.js"></script>
+  <script defer src="/assets/js/load-navbar.js"></script>
+</head>
+<body>
 
-    <script defer src="/assets/js/load-navbar.js"></script>
-  </head>
+  <div id="navbar"></div>
 
-  <body>
-    <div id="navbar"></div>
-
-    <main class="page-container">
+  <!-- Services Hero -->
+  <section class="services-hero">
+    <div class="container">
       <h1>Our Services</h1>
-      <article class="service-card">
-        <img
-          src="../img/IMG_6923.png"
-          alt="Professional deep cleaning service"
-        />
-        <h3>Deep Cleaning</h3>
-        <p>
-          Our most thorough service includes baseboards, ceiling fans, vents,
-          appliances, and hard-to-reach areas. Perfect for seasonal refreshes or
-          first-time cleanings.
-        </p>
-      </article>
+      <p>Professional cleaning solutions tailored to your needs. Every service backed by our quality guarantee.</p>
+    </div>
+  </section>
 
-      <article class="service-card">
-        <img src="../img/IMG_6922.png" alt="Standard residential cleaning" />
-        <h3>Standard / Basic Cleaning</h3>
-        <p>
-          Weekly or bi-weekly maintenance to keep your home consistently clean.
-          We handle dusting, vacuuming, mopping, bathrooms, and kitchens with
-          reliable care.
-        </p>
-      </article>
-
-      <article class="service-card">
-        <img src="../img/IMG_6924.png" alt="Move-in and move-out cleaning" />
-        <h3>Move-In / Move-Out Cleaning</h3>
-        <p>
-          Comprehensive cleaning for empty properties. We ensure every surface
-          is spotless for new tenants or to help you get your deposit back.
-        </p>
-      </article>
-
-      <article class="service-card">
-        <img src="../img/IMG_6925.png" alt="Commercial office cleaning" />
-        <h3>Office Cleaning</h3>
-        <p>
-          Professional commercial cleaning for workplaces of all sizes.
-          Scheduled cleanings that maintain a healthy, productive environment
-          for your team and clients.
-        </p>
-      </article>
-
-      <article class="service-card">
-        <img
-          src="../img/IMG_6926.jpeg"
-          alt="Post-construction debris removal"
-        />
-        <h3>Post-Construction Cleaning</h3>
-        <p>
-          Specialized removal of construction dust, debris, and residue. We
-          transform your newly built or renovated space into a move-in ready
-          environment.
-        </p>
-      </article>
-
-      <article class="service-card">
-        <img src="../img/IMG_6927.png" alt="Custom cleaning solutions" />
-        <h3>Custom Cleaning Solutions</h3>
-        <p>
-          Need something specific? We tailor our services to your unique
-          requirements—whether it's special event prep, seasonal tasks, or
-          one-time projects.
-        </p>
-      </article>
-
-      <section class="cta" style="margin: 3rem 0 2rem">
-        <div class="cta-inner">
-          <h3 class="cta-title">Ready to Experience the Difference?</h3>
-          <p class="cta-text">
-            Let our professional team handle the cleaning so you can focus on
-            what matters most. Request your free, no-obligation quote today.
-          </p>
-          <a href="contact.html" class="btn btn-primary">
-            Get Your Free Quote Now
-          </a>
-        </div>
-      </section>
-
-      <section class="container mt-4 mb-4">
-        <article class="card">
-          <h2
-            class="center mb-2"
-            style="font-size: 1.75rem; color: var(--blue)"
-          >
-            Why Choose Maid To Clean?
-          </h2>
-
-          <div class="grid-3 mt-3">
-            <div>
-              <h4 style="color: var(--pink); margin-bottom: 0.5rem">
-                ✓ Background-Checked Team
-              </h4>
-              <p style="font-size: 0.95rem">
-                Every cleaner on our team passes thorough background checks and
-                training for your peace of mind.
-              </p>
-            </div>
-
-            <div>
-              <h4 style="color: var(--pink); margin-bottom: 0.5rem">
-                ✓ Eco-Friendly Products
-              </h4>
-              <p style="font-size: 0.95rem">
-                We use safe, effective cleaning solutions that protect your
-                family, pets, and the environment.
-              </p>
-            </div>
-
-            <div>
-              <h4 style="color: var(--pink); margin-bottom: 0.5rem">
-                ✓ Satisfaction Guaranteed
-              </h4>
-              <p style="font-size: 0.95rem">
-                Not happy with our work? We'll make it right. Your satisfaction
-                is our top priority.
-              </p>
-            </div>
+  <!-- Services Grid -->
+  <section class="services-grid-section">
+    <div class="container">
+      <h2>Choose Your Service</h2>
+      
+      <div class="grid grid-3">
+        <!-- Deep Cleaning -->
+        <div class="service-detail-card">
+          <img src="https://images.unsplash.com/photo-1758273238947-7eb530b408e4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBob3VzZSUyMGNsZWFuaW5nJTIwc2VydmljZSUyMG1haWQlMjB0ZWFtJTIwd29ya2luZyUyMG1vZGVybnxlbnwwfHx8fDE3NzI3Nzc5NDh8MA&ixlib=rb-4.1.0&q=85" alt="Deep Cleaning">
+          <div class="service-detail-card-body">
+            <h3>Deep Cleaning</h3>
+            <p>Our most thorough cleaning service. We reach every corner, scrub every surface, and leave your home immaculately refreshed from top to bottom.</p>
+            <span class="price-tag">From $150</span>
           </div>
-        </article>
-      </section>
-    </main>
-  </body>
+        </div>
+
+        <!-- Move In/Out -->
+        <div class="service-detail-card">
+          <img src="https://images.unsplash.com/photo-1630699144035-c0f6311ec482?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBmdXR1cmlzdGljJTIwbGl2aW5nJTIwcm9vbSUyMGNsZWFuJTIwd2hpdGUlMjBicmlnaHQlMjBsdXh1cnklMjBpbnRlcmlvcnxlbnwwfHx8fDE3NzI3Nzc5NDJ8MA&ixlib=rb-4.1.0&q=85" alt="Move In/Out Cleaning">
+          <div class="service-detail-card-body">
+            <h3>Move In/Out Cleaning</h3>
+            <p>Perfect for transitions. Whether moving into a new home or preparing to hand over keys, we ensure every space is spotless and ready.</p>
+            <span class="price-tag">From $200</span>
+          </div>
+        </div>
+
+        <!-- Regular Maintenance -->
+        <div class="service-detail-card">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop" alt="Regular Maintenance">
+          <div class="service-detail-card-body">
+            <h3>Regular Maintenance</h3>
+            <p>Keep your space consistently fresh with scheduled cleaning services. Available weekly, bi-weekly, or monthly to fit your lifestyle.</p>
+            <span class="price-tag">From $100</span>
+          </div>
+        </div>
+
+        <!-- Custom Cleaning -->
+        <div class="service-detail-card">
+          <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=800&auto=format&fit=crop" alt="Custom Cleaning">
+          <div class="service-detail-card-body">
+            <h3>Custom Cleaning</h3>
+            <p>Create your own cleaning package. Select specific rooms, appliances, and tasks—pay only for what you need.</p>
+            <span class="price-tag">Custom Quote</span>
+          </div>
+        </div>
+
+        <!-- Office Cleaning -->
+        <div class="service-detail-card">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&auto=format&fit=crop" alt="Office Cleaning">
+          <div class="service-detail-card-body">
+            <h3>Office Cleaning</h3>
+            <p>Professional workspace cleaning to keep your business environment productive, healthy, and impressive for clients.</p>
+            <span class="price-tag">From $125</span>
+          </div>
+        </div>
+
+        <!-- Post-Construction -->
+        <div class="service-detail-card">
+          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&auto=format&fit=crop" alt="Post-Construction Cleaning">
+          <div class="service-detail-card-body">
+            <h3>Post-Construction</h3>
+            <p>Specialized cleaning after renovations or construction. We remove dust, debris, and residue to reveal your finished space.</p>
+            <span class="price-tag">From $250</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Add-Ons Section -->
+  <section style="background: var(--surface);">
+    <div class="container">
+      <h2 class="text-center mb-6">Popular Add-Ons</h2>
+      <div class="grid grid-4">
+        <div class="card text-center">
+          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-oven"></i></div>
+          <h4>Oven Cleaning</h4>
+          <p class="text-sm">+$35</p>
+        </div>
+        <div class="card text-center">
+          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-snowflake"></i></div>
+          <h4>Refrigerator</h4>
+          <p class="text-sm">+$40</p>
+        </div>
+        <div class="card text-center">
+          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-window"></i></div>
+          <h4>Interior Windows</h4>
+          <p class="text-sm">+$30</p>
+        </div>
+        <div class="card text-center">
+          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-t-shirt"></i></div>
+          <h4>Laundry Service</h4>
+          <p class="text-sm">+$25</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Experience the Difference?</h2>
+      <p>Book your cleaning service today and see why our clients trust us with their homes and offices.</p>
+      <div class="hero-buttons">
+        <a href="/register.html" class="btn btn-primary btn-lg" data-testid="services-book-btn">
+          <i class="ph-duotone ph-calendar-check"></i>
+          Book Now
+        </a>
+        <a href="/contact.html" class="btn btn-outline btn-lg" data-testid="services-contact-btn">
+          <i class="ph-duotone ph-chat-circle-dots"></i>
+          Get a Quote
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Maid To Clean</h4>
+        <p>Polishing homes, empowering communities, and building relationships that last.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="/about.html">About Us</a>
+        <a href="/services.html">Services</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="/login.html">Login</a>
+        <a href="/register.html">Register</a>
+        <a href="/dashboard/dashboard.html">Dashboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><a href="tel:+13344254566">(334) 425-4566</a></p>
+        <p><a href="mailto:ohsostephy777@gmail.com">ohsostephy777@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Maid To Clean. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
 </html>

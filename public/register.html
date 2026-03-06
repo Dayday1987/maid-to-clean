@@ -1,37 +1,120 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | Maid To Clean</title>
 
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link rel="stylesheet" href="/assets/css/navbar.css" />
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="/assets/js/api-config.js"></script>
+  <script defer src="/assets/js/auth.js"></script>
+  <script defer src="/assets/js/load-navbar.js"></script>
+</head>
+<body>
 
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"
-    ></script>
-    <script defer src="/assets/js/api-config.js"></script>
-    <script defer src="/assets/js/auth.js"></script>
-  </head>
+  <div id="navbar"></div>
 
-  <body>
-    <div id="navbar"></div>
+  <main class="auth-container">
+    <h1>Create Account</h1>
+    
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="registerName">Full Name</label>
+        <input type="text" id="registerName" placeholder="John Doe" required data-testid="register-name-input">
+      </div>
+      <div class="form-group">
+        <label for="registerEmail">Email Address</label>
+        <input type="email" id="registerEmail" placeholder="you@example.com" required data-testid="register-email-input">
+      </div>
+      <div class="form-group">
+        <label for="registerPhone">Phone Number</label>
+        <input type="tel" id="registerPhone" placeholder="(334) 123-4567" data-testid="register-phone-input">
+      </div>
+      <div class="form-group">
+        <label for="registerPassword">Password</label>
+        <input type="password" id="registerPassword" placeholder="Create a password (min. 6 characters)" required minlength="6" data-testid="register-password-input">
+      </div>
+      <button type="submit" class="btn btn-primary" data-testid="register-submit-btn">
+        <i class="ph-duotone ph-user-plus"></i>
+        Create Account
+      </button>
+    </form>
+    
+    <div class="auth-link">
+      Already have an account? <a href="/login.html">Login</a>
+    </div>
+  </main>
 
-    <main class="auth-container">
-      <h1>Create Account</h1>
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
 
-      <form id="registerForm">
-        <input type="email" id="registerEmail" placeholder="Email" required />
-        <input
-          type="password"
-          id="registerPassword"
-          placeholder="Password"
-          required
-        />
-        <button class="btn-primary">Register</button>
-      </form>
-    </main>
-  </body>
+  <script>
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <i class="ph-duotone ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('registerName').value;
+      const email = document.getElementById('registerEmail').value;
+      const phone = document.getElementById('registerPhone').value;
+      const password = document.getElementById('registerPassword').value;
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading"></span> Creating account...';
+      
+      try {
+        // Register with Supabase Auth
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: name,
+              phone: phone
+            }
+          }
+        });
+
+        if (error) throw error;
+
+        // Insert into users table
+        if (data.user) {
+          await supabase.from('users').insert([{
+            id: data.user.id,
+            email: email,
+            full_name: name,
+            phone: phone,
+            role: 'customer'
+          }]);
+        }
+
+        showToast('Account created successfully! Please check your email to verify.', 'success');
+        setTimeout(() => {
+          window.location.href = '/login.html';
+        }, 2000);
+      } catch (error) {
+        showToast(error.message || 'Registration failed. Please try again.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="ph-duotone ph-user-plus"></i> Create Account';
+      }
+    });
+  </script>
+
+</body>
 </html>

@@ -1,22 +1,315 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Customers</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customers | Maid To Clean Admin</title>
 
-    <link rel="stylesheet" href="/assets/css/admin.css" />
-    <script defer src="/assets/js/api-config.js"></script>
-    <script defer src="/assets/js/auth.js"></script>
-    <script defer src="/assets/js/dashboard-protect.js"></script>
-  </head>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/navbar.css">
+  <link rel="stylesheet" href="/assets/css/admin.css">
+  <link rel="stylesheet" href="/assets/css/responsive.css">
+  
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="/assets/js/api-config.js"></script>
+  <script defer src="/assets/js/auth.js"></script>
+  <script defer src="/assets/js/dashboard-protect.js"></script>
+  <script defer src="/assets/js/load-navbar.js"></script>
+</head>
+<body>
 
-  <body>
-    <div id="navbar"></div>
+  <div id="navbar"></div>
 
-    <main class="admin-container">
+  <main class="admin-container">
+    <div class="admin-header">
       <h1>Customers</h1>
-      <div id="customerList"></div>
-    </main>
-  </body>
+      <a href="/admin/admin-dashboard.html" class="btn btn-secondary btn-sm">
+        <i class="ph-duotone ph-arrow-left"></i> Back to Dashboard
+      </a>
+    </div>
+
+    <!-- Customer List -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h3><i class="ph-duotone ph-users"></i> All Customers</h3>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="searchCustomers" placeholder="Search customers..." style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-sm);" data-testid="search-customers-input">
+        </div>
+      </div>
+      <div class="admin-card-body">
+        <div id="customerList" style="overflow-x: auto;">
+          <div class="empty-state">
+            <i class="ph-duotone ph-users"></i>
+            <p>Loading customers...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Appointments -->
+    <div class="admin-card mt-6">
+      <div class="admin-card-header">
+        <h3><i class="ph-duotone ph-calendar-check"></i> All Appointments</h3>
+        <select id="statusFilter" style="padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-sm);">
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="paid">Paid</option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div class="admin-card-body">
+        <div id="appointmentList" style="overflow-x: auto;">
+          <div class="empty-state">
+            <i class="ph-duotone ph-calendar-blank"></i>
+            <p>Loading appointments...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script>
+    let allCustomers = [];
+    let allAppointments = [];
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <i class="ph-duotone ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadCustomers();
+      await loadAppointments();
+
+      // Search functionality
+      document.getElementById('searchCustomers').addEventListener('input', (e) => {
+        const search = e.target.value.toLowerCase();
+        const filtered = allCustomers.filter(c => 
+          (c.full_name || '').toLowerCase().includes(search) ||
+          (c.email || '').toLowerCase().includes(search)
+        );
+        renderCustomers(filtered);
+      });
+
+      // Status filter
+      document.getElementById('statusFilter').addEventListener('change', (e) => {
+        const status = e.target.value;
+        const filtered = status 
+          ? allAppointments.filter(a => a.status === status)
+          : allAppointments;
+        renderAppointments(filtered);
+      });
+    });
+
+    async function loadCustomers() {
+      try {
+        const { data: customers, error } = await supabase
+          .from('users')
+          .select('*')
+          .eq('role', 'customer')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        allCustomers = customers || [];
+        renderCustomers(allCustomers);
+      } catch (error) {
+        console.error('Error loading customers:', error);
+        showToast('Failed to load customers', 'error');
+      }
+    }
+
+    function renderCustomers(customers) {
+      const container = document.getElementById('customerList');
+      
+      if (!customers || customers.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="ph-duotone ph-users"></i>
+            <p>No customers found</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Joined</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${customers.map(customer => `
+              <tr>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div class="customer-avatar">${(customer.full_name || customer.email || 'U').charAt(0).toUpperCase()}</div>
+                    <div>
+                      <p style="font-weight: 500;">${customer.full_name || 'No name'}</p>
+                      <small style="color: var(--secondary);">${customer.email}</small>
+                    </div>
+                  </div>
+                </td>
+                <td>${customer.phone || '-'}</td>
+                <td>${new Date(customer.created_at).toLocaleDateString()}</td>
+                <td>
+                  <button class="action-btn view" onclick="sendMessage('${customer.id}')" data-testid="message-btn-${customer.id}">
+                    <i class="ph-duotone ph-envelope"></i>
+                  </button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    async function loadAppointments() {
+      try {
+        const { data: appointments, error } = await supabase
+          .from('appointments')
+          .select(`
+            *,
+            users (email, full_name),
+            services (name, base_price)
+          `)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        allAppointments = appointments || [];
+        renderAppointments(allAppointments);
+      } catch (error) {
+        console.error('Error loading appointments:', error);
+        showToast('Failed to load appointments', 'error');
+      }
+    }
+
+    function renderAppointments(appointments) {
+      const container = document.getElementById('appointmentList');
+      
+      if (!appointments || appointments.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="ph-duotone ph-calendar-blank"></i>
+            <p>No appointments found</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = `
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Customer</th>
+              <th>Service</th>
+              <th>Date</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${appointments.map(apt => `
+              <tr>
+                <td>${apt.users?.full_name || apt.users?.email || 'Unknown'}</td>
+                <td>${apt.services?.name || 'Cleaning'}</td>
+                <td>${new Date(apt.appointment_date).toLocaleDateString()} ${apt.appointment_time}</td>
+                <td>$${apt.quoted_price || apt.services?.base_price || '-'}</td>
+                <td><span class="status-badge ${apt.status}">${apt.status}</span></td>
+                <td>
+                  ${apt.status === 'pending' ? `
+                    <button class="action-btn view" onclick="updateStatus('${apt.id}', 'approved')" data-testid="approve-apt-${apt.id}">
+                      <i class="ph-duotone ph-check"></i> Approve
+                    </button>
+                  ` : ''}
+                  ${apt.status === 'paid' ? `
+                    <button class="action-btn view" onclick="updateStatus('${apt.id}', 'completed')" data-testid="complete-apt-${apt.id}">
+                      <i class="ph-duotone ph-check-circle"></i> Complete
+                    </button>
+                  ` : ''}
+                  ${apt.status !== 'cancelled' && apt.status !== 'completed' ? `
+                    <button class="action-btn delete" onclick="updateStatus('${apt.id}', 'cancelled')" data-testid="cancel-apt-${apt.id}">
+                      <i class="ph-duotone ph-x"></i>
+                    </button>
+                  ` : ''}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    async function updateStatus(appointmentId, newStatus) {
+      try {
+        const updates = { status: newStatus };
+        
+        // If approving, set a quoted price
+        if (newStatus === 'approved') {
+          const apt = allAppointments.find(a => a.id === appointmentId);
+          updates.quoted_price = apt?.services?.base_price || 100;
+        }
+
+        const { error } = await supabase
+          .from('appointments')
+          .update(updates)
+          .eq('id', appointmentId);
+
+        if (error) throw error;
+
+        showToast(`Appointment ${newStatus}!`, 'success');
+        await loadAppointments();
+      } catch (error) {
+        console.error('Error updating status:', error);
+        showToast('Failed to update status', 'error');
+      }
+    }
+
+    function sendMessage(customerId) {
+      const message = prompt('Enter message to send to customer:');
+      if (!message) return;
+
+      sendMessageToCustomer(customerId, message);
+    }
+
+    async function sendMessageToCustomer(customerId, content) {
+      try {
+        const admin = await getCurrentUser();
+        
+        const { error } = await supabase.from('messages').insert([{
+          sender_id: admin.id,
+          receiver_id: customerId,
+          content: content
+        }]);
+
+        if (error) throw error;
+
+        showToast('Message sent!', 'success');
+      } catch (error) {
+        console.error('Error sending message:', error);
+        showToast('Failed to send message', 'error');
+      }
+    }
+  </script>
+
+</body>
 </html>
