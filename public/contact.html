@@ -159,20 +159,80 @@
     </div>
   </footer>
 
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
   <script>
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `
+        <i class="ph-duotone ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 5000);
+    }
+
     document.getElementById('contactForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      
-      const formData = {
-        name: document.getElementById('contactName').value,
-        email: document.getElementById('contactEmail').value,
-        phone: document.getElementById('contactPhone').value,
-        subject: document.getElementById('contactSubject').value,
-        message: document.getElementById('contactMessage').value
-      };
 
-      alert('Thank you for your message! We will get back to you soon.');
-      e.target.reset();
+      const name    = document.getElementById('contactName').value.trim();
+      const email   = document.getElementById('contactEmail').value.trim();
+      const phone   = document.getElementById('contactPhone').value.trim();
+      const subject = document.getElementById('contactSubject').value;
+      const message = document.getElementById('contactMessage').value.trim();
+
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            to: 'stephanie.maidtoclean@gmail.com',
+            subject: `📬 Contact Form: ${subject} — ${name}`,
+            html: `
+              <!DOCTYPE html>
+              <html>
+              <body style="font-family: Arial, sans-serif; padding: 24px; color: #1f2937;">
+                <h2 style="color: #0F172A;">New Contact Form Submission</h2>
+                <table style="width:100%; border-collapse: collapse;">
+                  <tr><td style="padding:8px 0; font-weight:600; width:120px;">Name:</td><td>${name}</td></tr>
+                  <tr><td style="padding:8px 0; font-weight:600;">Email:</td><td><a href="mailto:${email}">${email}</a></td></tr>
+                  <tr><td style="padding:8px 0; font-weight:600;">Phone:</td><td>${phone || 'Not provided'}</td></tr>
+                  <tr><td style="padding:8px 0; font-weight:600;">Subject:</td><td>${subject}</td></tr>
+                </table>
+                <hr style="margin: 16px 0; border-color: #e2e8f0;">
+                <p style="font-weight:600; margin-bottom:8px;">Message:</p>
+                <p style="background:#f8fafc; padding:16px; border-radius:8px; border-left:4px solid #06B6D4;">${message.replace(/\n/g, '<br>')}</p>
+                <p style="margin-top:24px; color:#64748b; font-size:14px;">Submitted from maid-to-clean.vercel.app/contact.html</p>
+              </body>
+              </html>
+            `
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to send message');
+        }
+
+        showToast("Message sent! We'll get back to you within 1 business day.", 'success');
+        e.target.reset();
+
+      } catch (err) {
+        console.error('Contact form error:', err);
+        // Graceful fallback — direct contact info is visible on the page
+        showToast('Could not send message. Please call (334) 425-4566 or email us directly.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="ph-duotone ph-paper-plane-tilt"></i> Send Message';
+      }
     });
   </script>
 
