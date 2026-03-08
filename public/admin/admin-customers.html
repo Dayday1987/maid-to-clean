@@ -71,6 +71,25 @@
     </div>
   </main>
 
+  <!-- Approve Modal -->
+  <div id="approveModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:var(--surface); border-radius:var(--radius-lg); padding:2rem; width:100%; max-width:420px; margin:1rem;">
+      <h3 style="margin-bottom:1.5rem;"><i class="ph-duotone ph-check-circle"></i> Approve Appointment</h3>
+      <input type="hidden" id="approveAptId">
+      <div class="form-group">
+        <label for="quotedPriceInput">Quoted Price ($)</label>
+        <input type="number" id="quotedPriceInput" min="0" step="0.01" placeholder="e.g. 150.00" data-testid="quoted-price-input">
+        <small style="color:var(--secondary);">Customer will see this amount when paying.</small>
+      </div>
+      <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+        <button class="btn btn-primary" onclick="confirmApprove()" data-testid="confirm-approve-btn">
+          <i class="ph-duotone ph-check"></i> Approve & Notify Customer
+        </button>
+        <button class="btn btn-secondary" onclick="closeApproveModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Container -->
   <div id="toastContainer" class="toast-container"></div>
 
@@ -94,7 +113,6 @@
       await loadCustomers();
       await loadAppointments();
 
-      // Search functionality
       document.getElementById('searchCustomers').addEventListener('input', (e) => {
         const search = e.target.value.toLowerCase();
         const filtered = allCustomers.filter(c => 
@@ -104,7 +122,6 @@
         renderCustomers(filtered);
       });
 
-      // Status filter
       document.getElementById('statusFilter').addEventListener('change', (e) => {
         const status = e.target.value;
         const filtered = status 
@@ -233,11 +250,11 @@
                 <td>${apt.users?.full_name || apt.users?.email || 'Unknown'}</td>
                 <td>${apt.services?.name || 'Cleaning'}</td>
                 <td>${new Date(apt.appointment_date).toLocaleDateString()} ${apt.appointment_time}</td>
-                <td>$${apt.quoted_price || apt.services?.base_price || '-'}</td>
+                <td>${apt.quoted_price ? '$' + apt.quoted_price.toFixed(2) : apt.services?.base_price ? '$' + apt.services.base_price.toFixed(2) : '-'}</td>
                 <td><span class="status-badge ${apt.status}">${apt.status}</span></td>
                 <td>
                   ${apt.status === 'pending' ? `
-                    <button class="action-btn view" onclick="updateStatus('${apt.id}', 'approved')" data-testid="approve-apt-${apt.id}">
+                    <button class="action-btn view" onclick="openApproveModal('${apt.id}')" data-testid="approve-apt-${apt.id}">
                       <i class="ph-duotone ph-check"></i> Approve
                     </button>
                   ` : ''}
@@ -259,19 +276,76 @@
       `;
     }
 
-    async function updateStatus(appointmentId, newStatus) {
+    // ─── Approve Modal ───────────────────────────────────────────────
+
+    function openApproveModal(appointmentId) {
+      const apt = allAppointments.find(a => a.id === appointmentId);
+      document.getElementById('approveAptId').value = appointmentId;
+      // Pre-fill with base price as a helpful default
+      document.getElementById('quotedPriceInput').value = apt?.services?.base_price || '';
+      const modal = document.getElementById('approveModal');
+      modal.style.display = 'flex';
+    }
+
+    function closeApproveModal() {
+      document.getElementById('approveModal').style.display = 'none';
+      document.getElementById('quotedPriceInput').value = '';
+    }
+
+    async function confirmApprove() {
+      const appointmentId = document.getElementById('approveAptId').value;
+      const priceRaw = document.getElementById('quotedPriceInput').value;
+      const quotedPrice = parseFloat(priceRaw);
+
+      if (!priceRaw || isNaN(quotedPrice) || quotedPrice <= 0) {
+        showToast('Please enter a valid quoted price', 'error');
+        return;
+      }
+
       try {
-        const updates = { status: newStatus };
-        
-        // If approving, set a quoted price
-        if (newStatus === 'approved') {
-          const apt = allAppointments.find(a => a.id === appointmentId);
-          updates.quoted_price = apt?.services?.base_price || 100;
-        }
+        const apt = allAppointments.find(a => a.id === appointmentId);
 
         const { error } = await supabase
           .from('appointments')
-          .update(updates)
+          .update({ status: 'approved', quoted_price: quotedPrice })
+          .eq('id', appointmentId);
+
+        if (error) throw error;
+
+        // Send approval email to customer
+        try {
+          await fetch('/api/notify-booking', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              customerEmail: apt?.users?.email,
+              customerName: apt?.users?.full_name || '',
+              serviceName: apt?.services?.name || 'Cleaning Service',
+              appointmentDate: new Date(apt.appointment_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
+              appointmentTime: apt.appointment_time,
+              type: 'approved'
+            })
+          });
+        } catch (emailErr) {
+          console.error('Approval email failed:', emailErr);
+        }
+
+        closeApproveModal();
+        showToast(`Appointment approved at $${quotedPrice.toFixed(2)}! Customer notified.`, 'success');
+        await loadAppointments();
+      } catch (error) {
+        console.error('Error approving appointment:', error);
+        showToast('Failed to approve appointment', 'error');
+      }
+    }
+
+    // ─── Generic status update (complete / cancel) ────────────────────
+
+    async function updateStatus(appointmentId, newStatus) {
+      try {
+        const { error } = await supabase
+          .from('appointments')
+          .update({ status: newStatus })
           .eq('id', appointmentId);
 
         if (error) throw error;
@@ -287,7 +361,6 @@
     function sendMessage(customerId) {
       const message = prompt('Enter message to send to customer:');
       if (!message) return;
-
       sendMessageToCustomer(customerId, message);
     }
 
@@ -310,6 +383,14 @@
       }
     }
   </script>
+
+  <style>
+    @media (max-width: 900px) {
+      .admin-container > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
 
 </body>
 </html>
