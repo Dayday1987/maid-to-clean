@@ -1,27 +1,19 @@
+# Dependencies
 node_modules/
+
+# Environment files
 .env
+.env.local
+.env.production
+.env.*
+
+# Vercel
 .vercel
-.DS_Store-e 
-# Environment files
-*.env
-*.env.*
--e 
-# Environment files
-*.env
-*.env.*
--e 
-# Environment files
-*.env
-*.env.*
--e 
-# Environment files
-*.env
-*.env.*
--e 
-# Environment files
-*.env
-*.env.*
--e 
-# Environment files
-*.env
-*.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
