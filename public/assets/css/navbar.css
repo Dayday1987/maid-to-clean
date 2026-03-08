@@ -138,12 +138,18 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Role-based visibility - hidden by default */
+/*
+  Role-based visibility.
+  NOTE: Do NOT use !important here — JavaScript in load-navbar.js
+  sets element.style.display directly and needs to override these rules.
+  Default: hide all role-specific items; JS reveals the correct ones
+  after checking the auth session.
+*/
 .guest-only,
 .customer-only,
 .admin-only,
 .auth-only {
-  display: none !important;
+  display: none;
 }
 
 /* Mobile Styles */
