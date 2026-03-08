@@ -140,15 +140,16 @@
 
 /*
   Role-based visibility.
-  NOTE: Do NOT use !important here — JavaScript in load-navbar.js
-  sets element.style.display directly and needs to override these rules.
-  Default: hide all role-specific items; JS reveals the correct ones
-  after checking the auth session.
+  Use .nav-links li.xxx selectors (specificity 0,1,1) so these rules
+  beat the generic `.nav-links li { display: block }` rule (also 0,1,1
+  but declared earlier, so same-specificity later rule wins here).
+  JS sets element.style.display inline, which always wins over class rules,
+  so the show/hide logic in load-navbar.js works correctly.
 */
-.guest-only,
-.customer-only,
-.admin-only,
-.auth-only {
+.nav-links li.guest-only,
+.nav-links li.customer-only,
+.nav-links li.admin-only,
+.nav-links li.auth-only {
   display: none;
 }
 
