@@ -9,6 +9,7 @@ export default async function handler(req, res) {
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
   const SENDER_EMAIL = process.env.SENDER_EMAIL || 'Maid To Clean <onboarding@resend.dev>';
   const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'stephanie.maidtoclean@gmail.com';
+  const BASE_URL = process.env.BASE_URL || 'https://maid-to-clean-ashen.vercel.app';
 
   if (!RESEND_API_KEY) {
     console.error('RESEND_API_KEY not configured');
@@ -29,7 +30,6 @@ export default async function handler(req, res) {
     let customerSubject, customerHtml, adminSubject, adminHtml;
 
     if (type === 'new_booking') {
-      // Email to customer
       customerSubject = 'Booking Request Received - Maid To Clean';
       customerHtml = `
         <!DOCTYPE html>
@@ -44,7 +44,6 @@ export default async function handler(req, res) {
             .details { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; }
             .details p { margin: 8px 0; }
             .label { font-weight: 600; color: #0F172A; }
-            .accent { color: #06B6D4; }
             .footer { text-align: center; padding: 20px; color: #64748b; font-size: 14px; }
           </style>
         </head>
@@ -56,14 +55,12 @@ export default async function handler(req, res) {
             <div class="content">
               <h2>Thank You, ${customerName || 'Valued Customer'}!</h2>
               <p>We've received your booking request and will review it shortly. You'll receive a confirmation email once approved.</p>
-              
               <div class="details">
                 <p><span class="label">Service:</span> ${serviceName}</p>
                 <p><span class="label">Date:</span> ${appointmentDate}</p>
                 <p><span class="label">Time:</span> ${appointmentTime}</p>
                 ${notes ? `<p><span class="label">Notes:</span> ${notes}</p>` : ''}
               </div>
-              
               <p>If you have any questions, feel free to reach out:</p>
               <p>📞 <a href="tel:+13344254566">(334) 425-4566</a></p>
               <p>📧 <a href="mailto:stephanie.maidtoclean@gmail.com">stephanie.maidtoclean@gmail.com</a></p>
@@ -77,7 +74,6 @@ export default async function handler(req, res) {
         </html>
       `;
 
-      // Email to admin
       adminSubject = `🆕 New Booking Request - ${customerName || customerEmail}`;
       adminHtml = `
         <!DOCTYPE html>
@@ -99,7 +95,6 @@ export default async function handler(req, res) {
             </div>
             <div class="content">
               <p>A new booking request has been submitted:</p>
-              
               <div class="details">
                 <p><strong>Customer:</strong> ${customerName || 'Not provided'}</p>
                 <p><strong>Email:</strong> ${customerEmail}</p>
@@ -108,8 +103,7 @@ export default async function handler(req, res) {
                 <p><strong>Time:</strong> ${appointmentTime}</p>
                 ${notes ? `<p><strong>Notes:</strong> ${notes}</p>` : ''}
               </div>
-              
-              <a href="https://maid-to-clean.vercel.app/admin/admin-customers.html" class="btn">Review in Admin Panel</a>
+              <a href="${BASE_URL}/admin/admin-customers.html" class="btn">Review in Admin Panel</a>
             </div>
           </div>
         </body>
@@ -140,16 +134,13 @@ export default async function handler(req, res) {
             <div class="content">
               <h2>Great news, ${customerName || 'Valued Customer'}!</h2>
               <p>Your cleaning appointment has been approved and is ready for payment.</p>
-              
               <div class="details">
                 <p><strong>Service:</strong> ${serviceName}</p>
                 <p><strong>Date:</strong> ${appointmentDate}</p>
                 <p><strong>Time:</strong> ${appointmentTime}</p>
               </div>
-              
               <p>Please complete your payment to confirm your booking:</p>
-              <a href="https://maid-to-clean.vercel.app/dashboard/payments.html" class="btn">Complete Payment</a>
-              
+              <a href="${BASE_URL}/dashboard/payments.html" class="btn">Complete Payment</a>
               <p style="margin-top: 20px; color: #64748b;">Questions? Call us at (334) 425-4566</p>
             </div>
             <div class="footer">
@@ -159,7 +150,7 @@ export default async function handler(req, res) {
         </body>
         </html>
       `;
-      adminHtml = null; // No admin email needed for approval
+      adminHtml = null;
 
     } else if (type === 'payment_confirmed') {
       customerSubject = '💳 Payment Confirmed - Maid To Clean';
@@ -184,15 +175,12 @@ export default async function handler(req, res) {
             <div class="content">
               <h2>Payment Confirmed!</h2>
               <p>Thank you for your payment. Your cleaning service is now scheduled and confirmed.</p>
-              
               <div class="details">
                 <p><strong>Service:</strong> ${serviceName}</p>
                 <p><strong>Date:</strong> ${appointmentDate}</p>
                 <p><strong>Time:</strong> ${appointmentTime}</p>
               </div>
-              
               <p>We look forward to serving you! Our team will arrive at the scheduled time.</p>
-              
               <p style="margin-top: 20px;">Questions? Contact us:</p>
               <p>📞 (334) 425-4566</p>
               <p>📧 stephanie.maidtoclean@gmail.com</p>
@@ -206,7 +194,6 @@ export default async function handler(req, res) {
         </html>
       `;
 
-      // Notify admin of payment
       adminSubject = `💰 Payment Received - ${customerName || customerEmail}`;
       adminHtml = `
         <!DOCTYPE html>
@@ -216,7 +203,7 @@ export default async function handler(req, res) {
           <p><strong>Customer:</strong> ${customerName || customerEmail}</p>
           <p><strong>Service:</strong> ${serviceName}</p>
           <p><strong>Date:</strong> ${appointmentDate} at ${appointmentTime}</p>
-          <p><a href="https://maid-to-clean.vercel.app/admin/admin-billing.html">View in Admin</a></p>
+          <p><a href="${BASE_URL}/admin/admin-billing.html">View in Admin</a></p>
         </body>
         </html>
       `;
