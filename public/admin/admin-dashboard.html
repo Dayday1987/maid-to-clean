@@ -65,7 +65,7 @@
       </div>
     </div>
 
-    <!-- Quick Actions -->
+    <!-- Quick Actions + Broadcast -->
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
       <div class="admin-card">
         <div class="admin-card-header">
@@ -104,10 +104,32 @@
     </div>
   </main>
 
+  <!-- Approve Modal -->
+  <div id="approveModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:var(--surface); border-radius:var(--radius-lg); padding:2rem; width:100%; max-width:420px; margin:1rem;">
+      <h3 style="margin-bottom:1.5rem;"><i class="ph-duotone ph-check-circle"></i> Approve Booking</h3>
+      <input type="hidden" id="approveBookingId">
+      <p id="approveBookingMeta" style="color:var(--secondary); margin-bottom:1rem; font-size:0.9375rem;"></p>
+      <div class="form-group">
+        <label for="quotedPriceInput">Quoted Price ($)</label>
+        <input type="number" id="quotedPriceInput" min="0" step="0.01" placeholder="e.g. 150.00" data-testid="quoted-price-input">
+        <small style="color:var(--secondary);">Customer will see this amount when they go to pay.</small>
+      </div>
+      <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+        <button class="btn btn-primary" onclick="confirmApprove()" data-testid="confirm-approve-btn">
+          <i class="ph-duotone ph-check"></i> Approve & Notify
+        </button>
+        <button class="btn btn-secondary" onclick="closeApproveModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Container -->
   <div id="toastContainer" class="toast-container"></div>
 
   <script>
+    let pendingBookingsData = [];
+
     function showToast(message, type = 'info') {
       const container = document.getElementById('toastContainer');
       const toast = document.createElement('div');
@@ -126,7 +148,7 @@
 
     async function loadAdminDashboard() {
       try {
-        // Get total customers
+        // Total customers
         const { count: customerCount } = await supabase
           .from('users')
           .select('*', { count: 'exact', head: true })
@@ -134,20 +156,20 @@
 
         document.getElementById('totalCustomers').textContent = customerCount || 0;
 
-        // Get pending bookings
+        // Pending bookings
         const { data: pendingBookings, count: pendingCount } = await supabase
           .from('appointments')
           .select(`
             *,
             users (email, full_name),
-            services (name)
+            services (name, base_price)
           `, { count: 'exact' })
           .eq('status', 'pending')
           .order('created_at', { ascending: false });
 
+        pendingBookingsData = pendingBookings || [];
         document.getElementById('pendingBookings').textContent = pendingCount || 0;
 
-        // Show recent bookings
         if (pendingBookings && pendingBookings.length > 0) {
           document.getElementById('recentBookings').innerHTML = `
             <table class="admin-table">
@@ -176,7 +198,7 @@
                     <td>${new Date(booking.appointment_date).toLocaleDateString()}</td>
                     <td><span class="status-badge pending">${booking.status}</span></td>
                     <td>
-                      <button class="action-btn view" onclick="approveBooking('${booking.id}')" data-testid="approve-btn-${booking.id}">
+                      <button class="action-btn view" onclick="openApproveModal('${booking.id}')" data-testid="approve-btn-${booking.id}">
                         <i class="ph-duotone ph-check"></i> Approve
                       </button>
                     </td>
@@ -187,7 +209,7 @@
           `;
         }
 
-        // Get payments
+        // Revenue stats
         const { data: payments } = await supabase
           .from('payments')
           .select('amount, created_at')
@@ -197,11 +219,11 @@
           const totalRevenue = payments.reduce((sum, p) => sum + (p.amount || 0), 0);
           document.getElementById('totalRevenue').textContent = `$${totalRevenue.toFixed(2)}`;
 
-          // This month's revenue
           const thisMonth = new Date();
           const monthStart = new Date(thisMonth.getFullYear(), thisMonth.getMonth(), 1).toISOString();
-          const monthPayments = payments.filter(p => p.created_at >= monthStart);
-          const monthRevenue = monthPayments.reduce((sum, p) => sum + (p.amount || 0), 0);
+          const monthRevenue = payments
+            .filter(p => p.created_at >= monthStart)
+            .reduce((sum, p) => sum + (p.amount || 0), 0);
           document.getElementById('monthRevenue').textContent = `$${monthRevenue.toFixed(2)}`;
         }
 
@@ -211,32 +233,43 @@
       }
     }
 
-    async function approveBooking(bookingId) {
+    // ─── Approve Modal ─────────────────────────────────────────────────
+
+    function openApproveModal(bookingId) {
+      const booking = pendingBookingsData.find(b => b.id === bookingId);
+      document.getElementById('approveBookingId').value = bookingId;
+      document.getElementById('quotedPriceInput').value = booking?.services?.base_price || '';
+      document.getElementById('approveBookingMeta').textContent =
+        `${booking?.services?.name || 'Cleaning'} — ${new Date(booking.appointment_date).toLocaleDateString()} at ${booking.appointment_time}`;
+      document.getElementById('approveModal').style.display = 'flex';
+    }
+
+    function closeApproveModal() {
+      document.getElementById('approveModal').style.display = 'none';
+      document.getElementById('quotedPriceInput').value = '';
+    }
+
+    async function confirmApprove() {
+      const bookingId = document.getElementById('approveBookingId').value;
+      const priceRaw = document.getElementById('quotedPriceInput').value;
+      const quotedPrice = parseFloat(priceRaw);
+
+      if (!priceRaw || isNaN(quotedPrice) || quotedPrice <= 0) {
+        showToast('Please enter a valid price', 'error');
+        return;
+      }
+
       try {
-        // Get the booking details with user and service info
-        const { data: booking } = await supabase
-          .from('appointments')
-          .select('*, services (name, base_price), users (email, full_name)')
-          .eq('id', bookingId)
-          .single();
+        const booking = pendingBookingsData.find(b => b.id === bookingId);
 
-        if (!booking) throw new Error('Booking not found');
-
-        // Calculate quoted price (base price for now, can add add-ons later)
-        const quotedPrice = booking.services?.base_price || 100;
-
-        // Update appointment status
         const { error } = await supabase
           .from('appointments')
-          .update({ 
-            status: 'approved',
-            quoted_price: quotedPrice
-          })
+          .update({ status: 'approved', quoted_price: quotedPrice })
           .eq('id', bookingId);
 
         if (error) throw error;
 
-        // Send approval email to customer
+        // Notify customer via email
         try {
           await fetch('/api/notify-booking', {
             method: 'POST',
@@ -254,7 +287,8 @@
           console.error('Approval email failed:', emailErr);
         }
 
-        showToast('Booking approved! Customer can now pay.', 'success');
+        closeApproveModal();
+        showToast(`Booking approved at $${quotedPrice.toFixed(2)}! Customer has been notified.`, 'success');
         await loadAdminDashboard();
       } catch (error) {
         console.error('Error approving booking:', error);
@@ -262,7 +296,8 @@
       }
     }
 
-    // Broadcast message
+    // ─── Broadcast ────────────────────────────────────────────────────
+
     document.getElementById('broadcastForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       
@@ -279,14 +314,12 @@
       try {
         const admin = await getCurrentUser();
         
-        // Get all customers
         const { data: customers } = await supabase
           .from('users')
           .select('id')
           .eq('role', 'customer');
 
         if (customers && customers.length > 0) {
-          // Insert message for each customer
           const messages = customers.map(c => ({
             sender_id: admin.id,
             receiver_id: c.id,
