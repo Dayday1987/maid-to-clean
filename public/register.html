@@ -23,9 +23,15 @@
     <h1>Create Account</h1>
     
     <form id="registerForm">
-      <div class="form-group">
-        <label for="registerName">Full Name</label>
-        <input type="text" id="registerName" placeholder="John Doe" required data-testid="register-name-input">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="form-group">
+          <label for="registerFirstName">First Name</label>
+          <input type="text" id="registerFirstName" placeholder="Jane" required data-testid="register-firstname-input">
+        </div>
+        <div class="form-group">
+          <label for="registerLastName">Last Name</label>
+          <input type="text" id="registerLastName" placeholder="Doe" required data-testid="register-lastname-input">
+        </div>
       </div>
       <div class="form-group">
         <label for="registerEmail">Email Address</label>
@@ -69,45 +75,40 @@
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      const name = document.getElementById('registerName').value;
-      const email = document.getElementById('registerEmail').value;
-      const phone = document.getElementById('registerPhone').value;
-      const password = document.getElementById('registerPassword').value;
+      const firstName = document.getElementById('registerFirstName').value.trim();
+      const lastName  = document.getElementById('registerLastName').value.trim();
+      const email     = document.getElementById('registerEmail').value.trim();
+      const phone     = document.getElementById('registerPhone').value.trim();
+      const password  = document.getElementById('registerPassword').value;
       const submitBtn = e.target.querySelector('button[type="submit"]');
       
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span class="loading"></span> Creating account...';
       
       try {
-        // Register with Supabase Auth
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             data: {
-              full_name: name,
-              phone: phone
+              // Store as full_name in auth metadata so the DB trigger
+              // can split it into first_name / last_name
+              full_name: `${firstName} ${lastName}`.trim(),
+              phone
             }
           }
         });
 
         if (error) throw error;
 
-        // Insert into users table
-        if (data.user) {
-          await supabase.from('users').insert([{
-            id: data.user.id,
-            email: email,
-            full_name: name,
-            phone: phone,
-            role: 'customer'
-          }]);
-        }
+        // Note: the public.users row is created automatically by a
+        // Supabase database trigger (handle_new_user) so no manual
+        // insert is needed here.
 
-        showToast('Account created successfully! Please check your email to verify.', 'success');
-        setTimeout(() => {
-          window.location.href = '/login.html';
-        }, 2000);
+        // Redirect to confirmation page — passes email so it can display
+        // it and offer a resend button
+        window.location.href = `/confirm-email.html?email=${encodeURIComponent(email)}`;
+
       } catch (error) {
         showToast(error.message || 'Registration failed. Please try again.', 'error');
         submitBtn.disabled = false;
