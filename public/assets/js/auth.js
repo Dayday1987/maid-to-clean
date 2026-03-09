@@ -12,17 +12,6 @@ async function registerUser(email, password, metadata = {}) {
   });
 
   if (error) throw error;
-
-  // Insert user into users table with customer role
-  if (data.user) {
-    await supabase.from("users").insert([{
-      id: data.user.id,
-      email: email,
-      role: "customer",
-      ...metadata
-    }]);
-  }
-
   return data;
 }
 
@@ -84,13 +73,20 @@ async function getUserProfile() {
     return null;
   }
 
+  // Convenience helper — provides a display name regardless of how
+  // first_name / last_name are filled in
+  if (data) {
+    const first = data.first_name || '';
+    const last  = data.last_name  || '';
+    data.full_name = [first, last].filter(Boolean).join(' ') || data.email;
+  }
+
   return data;
 }
 
 // Listen for auth state changes
 supabase.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_OUT') {
-    // Clear any local state if needed
     console.log('User signed out');
   }
 });
