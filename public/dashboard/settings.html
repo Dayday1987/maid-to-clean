@@ -33,8 +33,12 @@
         <h3><i class="ph-duotone ph-user"></i> Profile Information</h3>
         <form id="profileForm">
           <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" placeholder="Your name" data-testid="profile-name-input">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="Jane" data-testid="profile-firstname-input">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="Doe" data-testid="profile-lastname-input">
           </div>
           <div class="form-group">
             <label for="email">Email Address</label>
@@ -116,13 +120,13 @@
       const user = await getCurrentUser();
       if (!user) return;
 
-      // Load profile data
       const profile = await getUserProfile();
       if (profile) {
-        document.getElementById('fullName').value = profile.full_name || '';
-        document.getElementById('email').value = profile.email || user.email;
-        document.getElementById('phone').value = profile.phone || '';
-        document.getElementById('address').value = profile.address || '';
+        document.getElementById('firstName').value = profile.first_name || '';
+        document.getElementById('lastName').value  = profile.last_name  || '';
+        document.getElementById('email').value     = profile.email || user.email;
+        document.getElementById('phone').value     = profile.phone || '';
+        document.getElementById('address').value   = profile.address || '';
       } else {
         document.getElementById('email').value = user.email;
       }
@@ -143,9 +147,10 @@
         const { error } = await supabase
           .from('users')
           .update({
-            full_name: document.getElementById('fullName').value,
-            phone: document.getElementById('phone').value,
-            address: document.getElementById('address').value
+            first_name: document.getElementById('firstName').value.trim(),
+            last_name:  document.getElementById('lastName').value.trim(),
+            phone:      document.getElementById('phone').value.trim(),
+            address:    document.getElementById('address').value.trim()
           })
           .eq('id', user.id);
 
@@ -154,7 +159,7 @@
         showToast('Profile updated successfully!', 'success');
       } catch (error) {
         console.error('Error updating profile:', error);
-        showToast('Failed to update profile', 'error');
+        showToast(error.message || 'Failed to update profile', 'error');
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="ph-duotone ph-floppy-disk"></i> Save Changes';
@@ -165,7 +170,7 @@
     document.getElementById('passwordForm').addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const newPassword = document.getElementById('newPassword').value;
+      const newPassword     = document.getElementById('newPassword').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
 
       if (newPassword !== confirmPassword) {
@@ -178,10 +183,7 @@
       submitBtn.innerHTML = '<span class="loading"></span> Updating...';
 
       try {
-        const { error } = await supabase.auth.updateUser({
-          password: newPassword
-        });
-
+        const { error } = await supabase.auth.updateUser({ password: newPassword });
         if (error) throw error;
 
         showToast('Password updated successfully!', 'success');
@@ -198,23 +200,16 @@
     // Delete account
     async function confirmDeleteAccount() {
       const confirmed = confirm('Are you sure you want to delete your account? This action cannot be undone.');
-      
       if (!confirmed) return;
 
       const user = await getCurrentUser();
       if (!user) return;
 
       try {
-        // Delete user data from users table
         await supabase.from('users').delete().eq('id', user.id);
-        
-        // Sign out
         await supabase.auth.signOut();
-        
         showToast('Account deleted. Redirecting...', 'success');
-        setTimeout(() => {
-          window.location.href = '/index.html';
-        }, 1500);
+        setTimeout(() => { window.location.href = '/index.html'; }, 1500);
       } catch (error) {
         console.error('Error deleting account:', error);
         showToast('Failed to delete account. Please contact support.', 'error');
