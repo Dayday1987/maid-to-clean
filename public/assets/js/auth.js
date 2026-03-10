@@ -2,12 +2,16 @@
 // AUTH FUNCTIONS
 // ================================
 
-async function registerUser(email, password, metadata = {}) {
+async function registerUser(email, password, firstName, lastName, phone) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      data: metadata
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+        phone: phone
+      }
     }
   });
 
