@@ -23,7 +23,7 @@
 
   <main class="dashboard-container" style="overflow-x: hidden;">
     <div class="dashboard-header">
-      <h1>Welcome, <span id="userName">there</span>!</h1>
+      <h1 style="font-size: clamp(1.5rem, 4vw, 2.5rem); overflow-wrap: break-word; word-break: break-word; max-width: 100%;">Welcome, <span id="userName">there</span>!</h1>
       <p>Here's an overview of your cleaning services</p>
     </div>
 
@@ -113,13 +113,15 @@
       if (!user) return;
 
       const profile = await getUserProfile();
-      if (profile) {
-        // Prefer first_name, fall back to the part before @ in the email
-        const displayName = profile.first_name
-          || profile.full_name
-          || user.email.split('@')[0];
-        document.getElementById('userName').textContent = displayName;
-      }
+
+      // Build display name with multiple fallbacks:
+      // 1. first_name from users table
+      // 2. first word of full_name from auth metadata (set at registration)
+      // 3. part before @ in email
+      const metaFull = user.user_metadata?.full_name || '';
+      const metaFirst = metaFull.split(' ')[0];
+      const displayName = profile?.first_name || metaFirst || user.email.split('@')[0];
+      document.getElementById('userName').textContent = displayName;
 
       await loadDashboardData(user.id);
     });
