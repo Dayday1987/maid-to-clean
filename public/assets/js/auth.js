@@ -8,8 +8,8 @@ async function registerUser(email, password, firstName, lastName, phone) {
     password,
     options: {
       data: {
-        first_name: firstName,
-        last_name: lastName,
+        first_name: firstName, // MUST match trigger
+        last_name: lastName,   // MUST match trigger
         phone: phone
       }
     }
