@@ -3,81 +3,132 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Maid To Clean Professional cleaning services."
+    <title>Maid to Clean</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
     />
-    <title>Maid To Clean | Professional Cleaning</title>
 
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/load-navbar.css" />
-    <link rel="stylesheet" href="assets/css/navbar.css" />
-    <link rel="stylesheet" href="assets/css/responsive.css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script defer src="assets/js/api-config.js"></script>
-    <script defer src="assets/js/auth.js"></script>
-    <script defer src="assets/js/load-navbar.js"></script>
-    <script defer src="assets/js/main.js"></script>
+    <link rel="stylesheet" href="main.css" />
   </head>
 
   <body>
-    <div id="navbar"></div>
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+      <div class="logo">MaidToClean</div>
 
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Areas</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <a href="#" class="btn-primary nav-cta">Book Now</a>
+    </nav>
+
+    <!-- ================= HERO ================= -->
     <section class="hero">
       <img
-        src="assets/images/livingroom.png"
-        alt="Cleaning Service"
+        src="https://images.unsplash.com/photo-1581578731548-c64695cc6952"
         class="hero-bg"
       />
 
       <div class="hero-content">
-        <h1>Maid To Clean</h1>
-        <p>Built on integrity, driven by excellence.</p>
-        <p>your trusted partner for professional cleaning services.</p>
-        <a href="register.html" class="btn-primary">Book Today</a>
+        <h1>Professional Cleaning You Can Trust</h1>
+        <p>
+          Serving Central Alabama with reliable, high-quality cleaning services.
+        </p>
+
+        <div class="cta-group">
+          <a href="#" class="btn-primary">Book Now</a>
+          <a href="#" class="btn-secondary">Get Free Quote</a>
+        </div>
       </div>
     </section>
 
-    <section class="services-preview">
+    <!-- ================= SERVICES ================= -->
+    <section class="services">
       <h2>Our Services</h2>
-      <ul></ul>
-      <a href="services.html" class="btn-secondary">View All Services</a>
+      <p>Professional cleaning tailored to your needs.</p>
+
+      <div class="services-grid">
+        <div class="card">
+          <h3>Standard Cleaning</h3>
+          <p>Routine cleaning to keep your home fresh.</p>
+        </div>
+
+        <div class="card">
+          <h3>Deep Cleaning</h3>
+          <p>Detailed cleaning for a spotless finish.</p>
+        </div>
+
+        <div class="card">
+          <h3>Move-In / Move-Out</h3>
+          <p>Perfect for transitions and fresh starts.</p>
+        </div>
+
+        <div class="card">
+          <h3>Commercial Cleaning</h3>
+          <p>Reliable service for offices and businesses.</p>
+        </div>
+      </div>
+
+      <a href="/services.html" class="btn-primary" style="margin-top: 20px">
+        View All Services & Pricing
+      </a>
     </section>
 
-    <section class="why-us">
-      <h2>Why Clients Choose Maid To Clean</h2>
-      <ul>
-        <li>
-          ✓ Eco-Friendly Cleaning Solutions: We use safe, effective products
-          that protect your family, pets, and the environment.
-        </li>
-        <li>
-          ✓ Flexible Scheduling: We work around your schedule with convenient
-          booking options and recurring service plans.
-        </li>
-        <li>
-          ✓ Satisfaction Guarantee: If you're not completely satisfied, we'll
-          make it right—no questions asked.
-        </li>
-        <li>
-          ✓ Transparent Pricing: No hidden fees or surprises. Get a clear,
-          upfront quote before we begin.
-        </li>
-      </ul>
+    <!-- ================= TRUST / TESTIMONIALS ================= -->
+    <section class="trust">
+      <h2>What Our Customers Say</h2>
+
+      <div class="testimonials">
+        <div class="testimonial">
+          <p>"Absolutely amazing service. My house looked brand new!"</p>
+          <span>- Sarah M.</span>
+        </div>
+
+        <div class="testimonial">
+          <p>"Reliable, professional, and worth every penny."</p>
+          <span>- James T.</span>
+        </div>
+
+        <div class="testimonial">
+          <p>"They showed up on time and exceeded expectations."</p>
+          <span>- Stephanie K.</span>
+        </div>
+      </div>
     </section>
 
-    <section class="contact-cta">
-      <h2>Ready to Schedule?</h2>
-      <p>
-        <a href="tel:+13344254566">Call Us</a>
-      </p>
-      <p>
-        <a href="mailto:ohsostephy777@gmail.com">Email Us</a>
-      </p>
-      <a href="register.html" class="btn-primary">Create Account</a>
+    <!-- ================= SERVICE AREAS ================= -->
+    <section class="areas">
+      <h2>Service Areas</h2>
+
+      <div class="areas-grid">
+        <span>Montgomery</span>
+        <span>Autauga</span>
+        <span>Elmore</span>
+        <span>Crenshaw</span>
+        <span>Pike</span>
+        <span>Tallapoosa</span>
+        <span>Auburn</span>
+        <span>Lowndes</span>
+        <span>Macon</span>
+      </div>
     </section>
 
-    <div id="footer"></div>
+    <!-- ================= FINAL CTA ================= -->
+    <section class="final-cta">
+      <h2>Ready for a Spotless Home?</h2>
+      <a href="#" class="btn-primary">Book Your Cleaning Now</a>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <p>© 2026 Maid to Clean | All Rights Reserved</p>
+    </footer>
   </body>
 </html>
