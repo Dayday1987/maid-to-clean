@@ -148,6 +148,18 @@
 
     async function loadAdminDashboard() {
       try {
+        // 🔍 DEBUG START
+const { data: { user } } = await supabase.auth.getUser();
+console.log("CURRENT USER:", user);
+
+const { data: roleCheck, error: roleError } = await supabase
+  .from('users')
+  .select('role')
+  .eq('id', user?.id)
+  .single();
+
+console.log("USER ROLE:", roleCheck, roleError);
+// 🔍 DEBUG END
         // Total customers
         const { count: customerCount } = await supabase
           .from('users')
