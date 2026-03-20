@@ -1,190 +1,258 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard | Maid To Clean</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | Maid To Clean</title>
 
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/navbar.css">
-  <link rel="stylesheet" href="/assets/css/admin.css">
-  <link rel="stylesheet" href="/assets/css/responsive.css">
-  
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="/assets/js/api-config.js"></script>
-  <script defer src="/assets/js/auth.js"></script>
-  <script defer src="/assets/js/dashboard-protect.js"></script>
-  <script defer src="/assets/js/load-navbar.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/admin.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-  <div id="navbar"></div>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/dashboard-protect.js"></script>
+    <script defer src="/assets/js/load-navbar.js"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
 
-  <main class="admin-container">
-    <div class="admin-header">
-      <h1>Admin Dashboard</h1>
-      <a href="/admin/admin-customers.html" class="btn btn-secondary btn-sm">
-        <i class="ph-duotone ph-users"></i> View Customers
-      </a>
-    </div>
+    <main class="admin-container">
+      <div class="admin-header">
+        <h1>Admin Dashboard</h1>
+        <a href="/admin/admin-customers.html" class="btn btn-secondary btn-sm">
+          <i class="ph-duotone ph-users"></i> View Customers
+        </a>
+      </div>
 
-    <!-- Stats Grid -->
-    <div class="admin-stats-grid">
-      <div class="admin-stat-card">
-        <h4>Total Customers</h4>
-        <div class="value" id="totalCustomers">0</div>
-      </div>
-      <div class="admin-stat-card">
-        <h4>Pending Bookings</h4>
-        <div class="value" id="pendingBookings">0</div>
-      </div>
-      <div class="admin-stat-card">
-        <h4>This Month Revenue</h4>
-        <div class="value" id="monthRevenue">$0</div>
-      </div>
-      <div class="admin-stat-card">
-        <h4>Total Revenue</h4>
-        <div class="value" id="totalRevenue">$0</div>
-      </div>
-    </div>
-
-    <!-- Recent Bookings -->
-    <div class="admin-card">
-      <div class="admin-card-header">
-        <h3><i class="ph-duotone ph-calendar-check"></i> Recent Booking Requests</h3>
-        <a href="/admin/admin-customers.html" class="btn btn-secondary btn-sm">View All</a>
-      </div>
-      <div class="admin-card-body">
-        <div id="recentBookings" style="overflow-x: auto;">
-          <div class="empty-state">
-            <i class="ph-duotone ph-calendar-blank"></i>
-            <p>No pending bookings</p>
-          </div>
+      <!-- Stats Grid -->
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card">
+          <h4>Total Customers</h4>
+          <div class="value" id="totalCustomers">0</div>
+        </div>
+        <div class="admin-stat-card">
+          <h4>Pending Bookings</h4>
+          <div class="value" id="pendingBookings">0</div>
+        </div>
+        <div class="admin-stat-card">
+          <h4>This Month Revenue</h4>
+          <div class="value" id="monthRevenue">$0</div>
+        </div>
+        <div class="admin-stat-card">
+          <h4>Total Revenue</h4>
+          <div class="value" id="totalRevenue">$0</div>
         </div>
       </div>
-    </div>
 
-    <!-- Quick Actions + Broadcast -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+      <!-- Recent Bookings -->
       <div class="admin-card">
         <div class="admin-card-header">
-          <h3><i class="ph-duotone ph-lightning"></i> Quick Actions</h3>
+          <h3>
+            <i class="ph-duotone ph-calendar-check"></i> Recent Booking Requests
+          </h3>
+          <a href="/admin/admin-customers.html" class="btn btn-secondary btn-sm"
+            >View All</a
+          >
         </div>
         <div class="admin-card-body">
-          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-            <a href="/admin/admin-customers.html" class="btn btn-secondary">
-              <i class="ph-duotone ph-users"></i> Manage Customers
-            </a>
-            <a href="/admin/admin-messages.html" class="btn btn-secondary">
-              <i class="ph-duotone ph-envelope"></i> Send Message
-            </a>
-            <a href="/admin/admin-billing.html" class="btn btn-secondary">
-              <i class="ph-duotone ph-chart-line-up"></i> View Billing
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="admin-card">
-        <div class="admin-card-header">
-          <h3><i class="ph-duotone ph-megaphone"></i> Broadcast Message</h3>
-        </div>
-        <div class="admin-card-body">
-          <form id="broadcastForm">
-            <div class="form-group">
-              <textarea id="broadcastMessage" placeholder="Type a message to send to all customers..." style="min-height: 100px;"></textarea>
+          <div id="recentBookings" style="overflow-x: auto">
+            <div class="empty-state">
+              <i class="ph-duotone ph-calendar-blank"></i>
+              <p>No pending bookings</p>
             </div>
-            <button type="submit" class="btn btn-primary w-full" data-testid="send-broadcast-btn">
-              <i class="ph-duotone ph-paper-plane-tilt"></i> Send to All
-            </button>
-          </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions + Broadcast -->
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.5rem;
+          margin-top: 1.5rem;
+        "
+      >
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3><i class="ph-duotone ph-lightning"></i> Quick Actions</h3>
+          </div>
+          <div class="admin-card-body">
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <a href="/admin/admin-customers.html" class="btn btn-secondary">
+                <i class="ph-duotone ph-users"></i> Manage Customers
+              </a>
+              <a href="/admin/admin-messages.html" class="btn btn-secondary">
+                <i class="ph-duotone ph-envelope"></i> Send Message
+              </a>
+              <a href="/admin/admin-billing.html" class="btn btn-secondary">
+                <i class="ph-duotone ph-chart-line-up"></i> View Billing
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3><i class="ph-duotone ph-megaphone"></i> Broadcast Message</h3>
+          </div>
+          <div class="admin-card-body">
+            <form id="broadcastForm">
+              <div class="form-group">
+                <textarea
+                  id="broadcastMessage"
+                  placeholder="Type a message to send to all customers..."
+                  style="min-height: 100px"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary w-full"
+                data-testid="send-broadcast-btn"
+              >
+                <i class="ph-duotone ph-paper-plane-tilt"></i> Send to All
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Approve Modal -->
+    <div
+      id="approveModal"
+      style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          background: var(--surface);
+          border-radius: var(--radius-lg);
+          padding: 2rem;
+          width: 100%;
+          max-width: 420px;
+          margin: 1rem;
+        "
+      >
+        <h3 style="margin-bottom: 1.5rem">
+          <i class="ph-duotone ph-check-circle"></i> Approve Booking
+        </h3>
+        <input type="hidden" id="approveBookingId" />
+        <p
+          id="approveBookingMeta"
+          style="
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9375rem;
+          "
+        ></p>
+        <div class="form-group">
+          <label for="quotedPriceInput">Quoted Price ($)</label>
+          <input
+            type="number"
+            id="quotedPriceInput"
+            min="0"
+            step="0.01"
+            placeholder="e.g. 150.00"
+            data-testid="quoted-price-input"
+          />
+          <small style="color: var(--secondary)"
+            >Customer will see this amount when they go to pay.</small
+          >
+        </div>
+        <div style="display: flex; gap: 1rem; margin-top: 1.5rem">
+          <button
+            class="btn btn-primary"
+            onclick="confirmApprove()"
+            data-testid="confirm-approve-btn"
+          >
+            <i class="ph-duotone ph-check"></i> Approve & Notify
+          </button>
+          <button class="btn btn-secondary" onclick="closeApproveModal()">
+            Cancel
+          </button>
         </div>
       </div>
     </div>
-  </main>
 
-  <!-- Approve Modal -->
-  <div id="approveModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
-    <div style="background:var(--surface); border-radius:var(--radius-lg); padding:2rem; width:100%; max-width:420px; margin:1rem;">
-      <h3 style="margin-bottom:1.5rem;"><i class="ph-duotone ph-check-circle"></i> Approve Booking</h3>
-      <input type="hidden" id="approveBookingId">
-      <p id="approveBookingMeta" style="color:var(--secondary); margin-bottom:1rem; font-size:0.9375rem;"></p>
-      <div class="form-group">
-        <label for="quotedPriceInput">Quoted Price ($)</label>
-        <input type="number" id="quotedPriceInput" min="0" step="0.01" placeholder="e.g. 150.00" data-testid="quoted-price-input">
-        <small style="color:var(--secondary);">Customer will see this amount when they go to pay.</small>
-      </div>
-      <div style="display:flex; gap:1rem; margin-top:1.5rem;">
-        <button class="btn btn-primary" onclick="confirmApprove()" data-testid="confirm-approve-btn">
-          <i class="ph-duotone ph-check"></i> Approve & Notify
-        </button>
-        <button class="btn btn-secondary" onclick="closeApproveModal()">Cancel</button>
-      </div>
-    </div>
-  </div>
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
 
-  <!-- Toast Container -->
-  <div id="toastContainer" class="toast-container"></div>
+    <script>
+      let pendingBookingsData = [];
 
-  <script>
-    let pendingBookingsData = [];
-
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `
-        <i class="ph-duotone ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+      function showToast(message, type = "info") {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+        <i class="ph-duotone ph-${type === "success" ? "check-circle" : type === "error" ? "x-circle" : "info"}"></i>
         <span>${message}</span>
       `;
-      container.appendChild(toast);
-      setTimeout(() => toast.remove(), 4000);
-    }
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
+      }
 
-    document.addEventListener('DOMContentLoaded', async () => {
-      await loadAdminDashboard();
-    });
+      document.addEventListener("DOMContentLoaded", async () => {
+        await loadAdminDashboard();
+      });
 
-    async function loadAdminDashboard() {
-      try {
-        // 🔍 DEBUG START
-const { data: { user } } = await supabase.auth.getUser();
-console.log("CURRENT USER:", user);
+      async function loadAdminDashboard() {
+        try {
+          // 🔍 DEBUG START
+          const {
+            data: { user },
+          } = await supabase.auth.getUser();
+          console.log("CURRENT USER:", user);
 
-const { data: roleCheck, error: roleError } = await supabase
-  .from('users')
-  .select('role')
-  .eq('id', user?.id)
-  .single();
+          const { data: roleCheck, error: roleError } = await supabase
+            .from("users")
+            .select("role")
+            .eq("id", user?.id)
+            .single();
 
-console.log("USER ROLE:", roleCheck, roleError);
-// 🔍 DEBUG END
-        // Total customers
-        const { count: customerCount } = await supabase
-          .from('users')
-          .select('*', { count: 'exact', head: true })
-          .eq('role', 'customer');
+          console.log("USER ROLE:", roleCheck, roleError);
+          // 🔍 DEBUG END
+          // Total customers
+          const { count: customerCount } = await supabase
+            .from("users")
+            .select("*", { count: "exact", head: true })
+            .eq("role", "customer");
 
-        document.getElementById('totalCustomers').textContent = customerCount || 0;
+          document.getElementById("totalCustomers").textContent =
+            customerCount || 0;
 
-        // Pending bookings
-        const { data: pendingBookings, count: pendingCount } = await supabase
-          .from('appointments')
-          .select(`
+          // Pending bookings
+          const { data: pendingBookings, count: pendingCount } = await supabase
+            .from("appointments")
+            .select(
+              `
   *,
   users (email, first_name, last_name),
   services (name, base_price)
 `,
-                  { count: 'exact' })
-          .eq('status', 'pending')
-          .order('created_at', { ascending: false });
+              { count: "exact" },
+            )
+            .eq("status", "pending")
+            .order("created_at", { ascending: false });
 
-        pendingBookingsData = pendingBookings || [];
-        document.getElementById('pendingBookings').textContent = pendingCount || 0;
+          pendingBookingsData = pendingBookings || [];
+          document.getElementById("pendingBookings").textContent =
+            pendingCount || 0;
 
-        if (pendingBookings && pendingBookings.length > 0) {
-          document.getElementById('recentBookings').innerHTML = `
+          if (pendingBookings && pendingBookings.length > 0) {
+            document.getElementById("recentBookings").innerHTML = `
             <table class="admin-table">
               <thead>
                 <tr>
@@ -196,18 +264,25 @@ console.log("USER ROLE:", roleCheck, roleError);
                 </tr>
               </thead>
               <tbody>
-                ${pendingBookings.slice(0, 5).map(booking => `
+                ${pendingBookings
+                  .slice(0, 5)
+                  .map(
+                    (booking) => `
                   <tr>
                     <td>
                       <div style="display: flex; align-items: center; gap: 0.75rem;">
-                        <div class="customer-avatar">${(booking.users?.full_name || booking.users?.email || 'U').charAt(0).toUpperCase()}</div>
-                        <div>
-                          <p style="font-weight: 500;">${booking.users?.full_name || 'Unknown'}</p>
-                          <small style="color: var(--secondary);">${booking.users?.email || ''}</small>
+                        <div class="customer-avatar">
+  ${(booking.users?.first_name || booking.users?.email || "U").charAt(0).toUpperCase()}
+</div>
+<div>
+  <p style="font-weight: 500;">
+    ${`${booking.users?.first_name || ""} ${booking.users?.last_name || ""}`.trim() || "Unknown"}
+  </p>
+                          <small style="color: var(--secondary);">${booking.users?.email || ""}</small>
                         </div>
                       </div>
                     </td>
-                    <td>${booking.services?.name || 'Cleaning'}</td>
+                    <td>${booking.services?.name || "Cleaning"}</td>
                     <td>${new Date(booking.appointment_date).toLocaleDateString()}</td>
                     <td><span class="status-badge pending">${booking.status}</span></td>
                     <td>
@@ -216,154 +291,185 @@ console.log("USER ROLE:", roleCheck, roleError);
                       </button>
                     </td>
                   </tr>
-                `).join('')}
+                `,
+                  )
+                  .join("")}
               </tbody>
             </table>
           `;
+          }
+
+          // Revenue stats
+          const { data: payments } = await supabase
+            .from("payments")
+            .select("amount, created_at")
+            .eq("status", "paid");
+
+          if (payments) {
+            const totalRevenue = payments.reduce(
+              (sum, p) => sum + (p.amount || 0),
+              0,
+            );
+            document.getElementById("totalRevenue").textContent =
+              `$${totalRevenue.toFixed(2)}`;
+
+            const thisMonth = new Date();
+            const monthStart = new Date(
+              thisMonth.getFullYear(),
+              thisMonth.getMonth(),
+              1,
+            ).toISOString();
+            const monthRevenue = payments
+              .filter((p) => p.created_at >= monthStart)
+              .reduce((sum, p) => sum + (p.amount || 0), 0);
+            document.getElementById("monthRevenue").textContent =
+              `$${monthRevenue.toFixed(2)}`;
+          }
+        } catch (error) {
+          console.error("Error loading dashboard:", error);
+          showToast("Failed to load dashboard data", "error");
         }
-
-        // Revenue stats
-        const { data: payments } = await supabase
-          .from('payments')
-          .select('amount, created_at')
-          .eq('status', 'paid');
-
-        if (payments) {
-          const totalRevenue = payments.reduce((sum, p) => sum + (p.amount || 0), 0);
-          document.getElementById('totalRevenue').textContent = `$${totalRevenue.toFixed(2)}`;
-
-          const thisMonth = new Date();
-          const monthStart = new Date(thisMonth.getFullYear(), thisMonth.getMonth(), 1).toISOString();
-          const monthRevenue = payments
-            .filter(p => p.created_at >= monthStart)
-            .reduce((sum, p) => sum + (p.amount || 0), 0);
-          document.getElementById('monthRevenue').textContent = `$${monthRevenue.toFixed(2)}`;
-        }
-
-      } catch (error) {
-        console.error('Error loading dashboard:', error);
-        showToast('Failed to load dashboard data', 'error');
-      }
-    }
-
-    // ─── Approve Modal ─────────────────────────────────────────────────
-
-    function openApproveModal(bookingId) {
-      const booking = pendingBookingsData.find(b => b.id === bookingId);
-      document.getElementById('approveBookingId').value = bookingId;
-      document.getElementById('quotedPriceInput').value = booking?.services?.base_price || '';
-      document.getElementById('approveBookingMeta').textContent =
-        `${booking?.services?.name || 'Cleaning'} — ${new Date(booking.appointment_date).toLocaleDateString()} at ${booking.appointment_time}`;
-      document.getElementById('approveModal').style.display = 'flex';
-    }
-
-    function closeApproveModal() {
-      document.getElementById('approveModal').style.display = 'none';
-      document.getElementById('quotedPriceInput').value = '';
-    }
-
-    async function confirmApprove() {
-      const bookingId = document.getElementById('approveBookingId').value;
-      const priceRaw = document.getElementById('quotedPriceInput').value;
-      const quotedPrice = parseFloat(priceRaw);
-
-      if (!priceRaw || isNaN(quotedPrice) || quotedPrice <= 0) {
-        showToast('Please enter a valid price', 'error');
-        return;
       }
 
-      try {
-        const booking = pendingBookingsData.find(b => b.id === bookingId);
+      // ─── Approve Modal ─────────────────────────────────────────────────
 
-        const { error } = await supabase
-          .from('appointments')
-          .update({ status: 'approved', quoted_price: quotedPrice })
-          .eq('id', bookingId);
+      function openApproveModal(bookingId) {
+        const booking = pendingBookingsData.find((b) => b.id === bookingId);
+        document.getElementById("approveBookingId").value = bookingId;
+        document.getElementById("quotedPriceInput").value =
+          booking?.services?.base_price || "";
+        document.getElementById("approveBookingMeta").textContent =
+          `${booking?.services?.name || "Cleaning"} — ${new Date(booking.appointment_date).toLocaleDateString()} at ${booking.appointment_time}`;
+        document.getElementById("approveModal").style.display = "flex";
+      }
 
-        if (error) throw error;
+      function closeApproveModal() {
+        document.getElementById("approveModal").style.display = "none";
+        document.getElementById("quotedPriceInput").value = "";
+      }
 
-        // Notify customer via email
+      async function confirmApprove() {
+        const bookingId = document.getElementById("approveBookingId").value;
+        const priceRaw = document.getElementById("quotedPriceInput").value;
+        const quotedPrice = parseFloat(priceRaw);
+
+        if (!priceRaw || isNaN(quotedPrice) || quotedPrice <= 0) {
+          showToast("Please enter a valid price", "error");
+          return;
+        }
+
         try {
-          await fetch('/api/notify-booking', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              customerEmail: booking.users?.email,
-              customerName: `${booking.users?.first_name || ''} ${booking.users?.last_name || ''}`.trim(),
-              serviceName: booking.services?.name || 'Cleaning Service',
-              appointmentDate: new Date(booking.appointment_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
-              appointmentTime: booking.appointment_time,
-              type: 'approved'
-            })
-          });
-        } catch (emailErr) {
-          console.error('Approval email failed:', emailErr);
-        }
+          const booking = pendingBookingsData.find((b) => b.id === bookingId);
 
-        closeApproveModal();
-        showToast(`Booking approved at $${quotedPrice.toFixed(2)}! Customer has been notified.`, 'success');
-        await loadAdminDashboard();
-      } catch (error) {
-        console.error('Error approving booking:', error);
-        showToast('Failed to approve booking', 'error');
-      }
-    }
+          const { error } = await supabase
+            .from("appointments")
+            .update({ status: "approved", quoted_price: quotedPrice })
+            .eq("id", bookingId);
 
-    // ─── Broadcast ────────────────────────────────────────────────────
-
-    document.getElementById('broadcastForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const message = document.getElementById('broadcastMessage').value.trim();
-      if (!message) {
-        showToast('Please enter a message', 'error');
-        return;
-      }
-
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="loading"></span> Sending...';
-
-      try {
-        const admin = await getCurrentUser();
-        
-        const { data: customers } = await supabase
-          .from('users')
-          .select('id')
-          .eq('role', 'customer');
-
-        if (customers && customers.length > 0) {
-          const messages = customers.map(c => ({
-            sender_id: admin.id,
-            receiver_id: c.id,
-            content: message
-          }));
-
-          const { error } = await supabase.from('messages').insert(messages);
           if (error) throw error;
 
-          showToast(`Message sent to ${customers.length} customers!`, 'success');
-          document.getElementById('broadcastMessage').value = '';
-        } else {
-          showToast('No customers to send message to', 'info');
+          // Notify customer via email
+          try {
+            await fetch("/api/notify-booking", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                customerEmail: booking.users?.email,
+                customerName:
+                  `${booking.users?.first_name || ""} ${booking.users?.last_name || ""}`.trim(),
+                serviceName: booking.services?.name || "Cleaning Service",
+                appointmentDate: new Date(
+                  booking.appointment_date,
+                ).toLocaleDateString("en-US", {
+                  weekday: "long",
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                }),
+                appointmentTime: booking.appointment_time,
+                type: "approved",
+              }),
+            });
+          } catch (emailErr) {
+            console.error("Approval email failed:", emailErr);
+          }
+
+          closeApproveModal();
+          showToast(
+            `Booking approved at $${quotedPrice.toFixed(2)}! Customer has been notified.`,
+            "success",
+          );
+          await loadAdminDashboard();
+        } catch (error) {
+          console.error("Error approving booking:", error);
+          showToast("Failed to approve booking", "error");
         }
-      } catch (error) {
-        console.error('Error sending broadcast:', error);
-        showToast('Failed to send message', 'error');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="ph-duotone ph-paper-plane-tilt"></i> Send to All';
       }
-    });
-  </script>
 
-  <style>
-    @media (max-width: 900px) {
-      .admin-container > div[style*="grid-template-columns: 1fr 1fr"] {
-        grid-template-columns: 1fr !important;
+      // ─── Broadcast ────────────────────────────────────────────────────
+
+      document
+        .getElementById("broadcastForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const message = document
+            .getElementById("broadcastMessage")
+            .value.trim();
+          if (!message) {
+            showToast("Please enter a message", "error");
+            return;
+          }
+
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+
+          try {
+            const admin = await getCurrentUser();
+
+            const { data: customers } = await supabase
+              .from("users")
+              .select("id")
+              .eq("role", "customer");
+
+            if (customers && customers.length > 0) {
+              const messages = customers.map((c) => ({
+                sender_id: admin.id,
+                receiver_id: c.id,
+                content: message,
+              }));
+
+              const { error } = await supabase
+                .from("messages")
+                .insert(messages);
+              if (error) throw error;
+
+              showToast(
+                `Message sent to ${customers.length} customers!`,
+                "success",
+              );
+              document.getElementById("broadcastMessage").value = "";
+            } else {
+              showToast("No customers to send message to", "info");
+            }
+          } catch (error) {
+            console.error("Error sending broadcast:", error);
+            showToast("Failed to send message", "error");
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML =
+              '<i class="ph-duotone ph-paper-plane-tilt"></i> Send to All';
+          }
+        });
+    </script>
+
+    <style>
+      @media (max-width: 900px) {
+        .admin-container > div[style*="grid-template-columns: 1fr 1fr"] {
+          grid-template-columns: 1fr !important;
+        }
       }
-    }
-  </style>
-
-</body>
+    </style>
+  </body>
 </html>

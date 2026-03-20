@@ -9,10 +9,10 @@ async function registerUser(email, password, firstName, lastName, phone) {
     options: {
       data: {
         first_name: firstName, // MUST match trigger
-        last_name: lastName,   // MUST match trigger
-        phone: phone
-      }
-    }
+        last_name: lastName, // MUST match trigger
+        phone: phone,
+      },
+    },
   });
 
   if (error) throw error;
@@ -80,9 +80,10 @@ async function getUserProfile() {
   // Convenience helper — provides a display name regardless of how
   // first_name / last_name are filled in
   if (data) {
-    const first = data.first_name || '';
-    const last  = data.last_name  || '';
-    data.full_name = [first, last].filter(Boolean).join(' ') || data.email;
+    const first = data.first_name || "";
+    const last = data.last_name || "";
+
+    data.full_name = `${first} ${last}`.trim() || data.email;
   }
 
   return data;
@@ -90,7 +91,7 @@ async function getUserProfile() {
 
 // Listen for auth state changes
 supabase.auth.onAuthStateChange((event, session) => {
-  if (event === 'SIGNED_OUT') {
-    console.log('User signed out');
+  if (event === "SIGNED_OUT") {
+    console.log("User signed out");
   }
 });

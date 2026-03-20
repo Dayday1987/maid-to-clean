@@ -1,248 +1,285 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Messages | Maid To Clean Admin</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Messages | Maid To Clean Admin</title>
 
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/navbar.css">
-  <link rel="stylesheet" href="/assets/css/admin.css">
-  <link rel="stylesheet" href="/assets/css/responsive.css">
-  
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="/assets/js/api-config.js"></script>
-  <script defer src="/assets/js/auth.js"></script>
-  <script defer src="/assets/js/dashboard-protect.js"></script>
-  <script defer src="/assets/js/load-navbar.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/admin.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-  <div id="navbar"></div>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/dashboard-protect.js"></script>
+    <script defer src="/assets/js/load-navbar.js"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
 
-  <main class="admin-container">
-    <div class="admin-header">
-      <h1>Messages</h1>
-      <a href="/admin/admin-dashboard.html" class="btn btn-secondary btn-sm">
-        <i class="ph-duotone ph-arrow-left"></i> Back to Dashboard
-      </a>
-    </div>
+    <main class="admin-container">
+      <div class="admin-header">
+        <h1>Messages</h1>
+        <a href="/admin/admin-dashboard.html" class="btn btn-secondary btn-sm">
+          <i class="ph-duotone ph-arrow-left"></i> Back to Dashboard
+        </a>
+      </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-      <!-- Send Message -->
-      <div class="admin-card">
-        <div class="admin-card-header">
-          <h3><i class="ph-duotone ph-paper-plane-tilt"></i> Send Message</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem">
+        <!-- Send Message -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3><i class="ph-duotone ph-paper-plane-tilt"></i> Send Message</h3>
+          </div>
+          <div class="admin-card-body">
+            <form id="sendMessageForm">
+              <div class="form-group">
+                <label for="recipientSelect">Select Recipient</label>
+                <select
+                  id="recipientSelect"
+                  required
+                  data-testid="recipient-select"
+                >
+                  <option value="">Choose a customer...</option>
+                  <option value="all">All Customers (Broadcast)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="messageContent">Message</label>
+                <textarea
+                  id="messageContent"
+                  placeholder="Type your message..."
+                  required
+                  data-testid="message-content-input"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary w-full"
+                data-testid="send-message-btn"
+              >
+                <i class="ph-duotone ph-paper-plane-tilt"></i> Send Message
+              </button>
+            </form>
+          </div>
         </div>
-        <div class="admin-card-body">
-          <form id="sendMessageForm">
-            <div class="form-group">
-              <label for="recipientSelect">Select Recipient</label>
-              <select id="recipientSelect" required data-testid="recipient-select">
-                <option value="">Choose a customer...</option>
-                <option value="all">All Customers (Broadcast)</option>
-              </select>
+
+        <!-- Message History -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3>
+              <i class="ph-duotone ph-clock-counter-clockwise"></i> Sent
+              Messages
+            </h3>
+          </div>
+          <div class="admin-card-body">
+            <div id="messageHistory">
+              <div class="empty-state">
+                <i class="ph-duotone ph-chats"></i>
+                <p>No messages sent yet</p>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="messageContent">Message</label>
-              <textarea id="messageContent" placeholder="Type your message..." required data-testid="message-content-input"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary w-full" data-testid="send-message-btn">
-              <i class="ph-duotone ph-paper-plane-tilt"></i> Send Message
-            </button>
-          </form>
+          </div>
         </div>
       </div>
 
-      <!-- Message History -->
-      <div class="admin-card">
+      <!-- Contact Form Submissions -->
+      <div class="admin-card mt-6">
         <div class="admin-card-header">
-          <h3><i class="ph-duotone ph-clock-counter-clockwise"></i> Sent Messages</h3>
+          <h3>
+            <i class="ph-duotone ph-envelope"></i> Contact Form Submissions
+          </h3>
         </div>
         <div class="admin-card-body">
-          <div id="messageHistory">
+          <div id="contactSubmissions">
             <div class="empty-state">
-              <i class="ph-duotone ph-chats"></i>
-              <p>No messages sent yet</p>
+              <i class="ph-duotone ph-envelope-simple"></i>
+              <p>No contact form submissions yet</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
-    <!-- Contact Form Submissions -->
-    <div class="admin-card mt-6">
-      <div class="admin-card-header">
-        <h3><i class="ph-duotone ph-envelope"></i> Contact Form Submissions</h3>
-      </div>
-      <div class="admin-card-body">
-        <div id="contactSubmissions">
-          <div class="empty-state">
-            <i class="ph-duotone ph-envelope-simple"></i>
-            <p>No contact form submissions yet</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
 
-  <!-- Toast Container -->
-  <div id="toastContainer" class="toast-container"></div>
-
-  <script>
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `
-        <i class="ph-duotone ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+    <script>
+      function showToast(message, type = "info") {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+        <i class="ph-duotone ph-${type === "success" ? "check-circle" : type === "error" ? "x-circle" : "info"}"></i>
         <span>${message}</span>
       `;
-      container.appendChild(toast);
-      setTimeout(() => toast.remove(), 4000);
-    }
-
-    document.addEventListener('DOMContentLoaded', async () => {
-      await loadCustomersForSelect();
-      await loadMessageHistory();
-    });
-
-    async function loadCustomersForSelect() {
-      try {
-        const { data: customers } = await supabase
-          .from('users')
-          .select('id, email, full_name')
-          .eq('role', 'customer')
-          .order('full_name');
-
-        const select = document.getElementById('recipientSelect');
-        
-        if (customers) {
-          customers.forEach(c => {
-            const option = document.createElement('option');
-            option.value = c.id;
-            option.textContent = `${c.full_name || 'No name'} (${c.email})`;
-            select.appendChild(option);
-          });
-        }
-      } catch (error) {
-        console.error('Error loading customers:', error);
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
       }
-    }
 
-    async function loadMessageHistory() {
-      try {
-        const admin = await getCurrentUser();
-        
-        const { data: messages, error } = await supabase
-          .from('messages')
-          .select(`
-            *,
-            receiver:receiver_id (email, full_name)
-          `)
-          .eq('sender_id', admin.id)
-          .order('created_at', { ascending: false })
-          .limit(20);
+      document.addEventListener("DOMContentLoaded", async () => {
+        await loadCustomersForSelect();
+        await loadMessageHistory();
+      });
 
-        if (error) throw error;
+      async function loadCustomersForSelect() {
+        try {
+          const { data: customers } = await supabase
+            .from("users")
+            .select("id, email, first_name, last_name")
+            .eq("role", "customer")
+            .order("first_name");
 
-        const container = document.getElementById('messageHistory');
+          const select = document.getElementById("recipientSelect");
 
-        if (!messages || messages.length === 0) {
-          return;
+          if (customers) {
+            customers.forEach((c) => {
+              const option = document.createElement("option");
+              option.value = c.id;
+              option.textContent = `${c.first_name} ${c.last_name} (${c.email})`;
+              select.appendChild(option);
+            });
+          }
+        } catch (error) {
+          console.error("Error loading customers:", error);
         }
+      }
 
-        container.innerHTML = `
+      async function loadMessageHistory() {
+        try {
+          const admin = await getCurrentUser();
+
+          const { data: messages, error } = await supabase
+            .from("messages")
+            .select(
+              `
+  *,
+  receiver:receiver_id (email, first_name, last_name)
+`,
+            )
+            .eq("sender_id", admin.id)
+            .order("created_at", { ascending: false })
+            .limit(20);
+
+          if (error) throw error;
+
+          const container = document.getElementById("messageHistory");
+
+          if (!messages || messages.length === 0) {
+            return;
+          }
+
+          container.innerHTML = `
           <div style="max-height: 400px; overflow-y: auto;">
-            ${messages.map(msg => `
+            ${messages
+              .map(
+                (msg) => `
               <div style="padding: 1rem; background: var(--background); border-radius: var(--radius-md); margin-bottom: 0.75rem;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                   <span style="font-weight: 500; font-size: 0.875rem;">
-                    To: ${msg.receiver?.full_name || msg.receiver?.email || 'Unknown'}
+                    To: ${
+                      msg.receiver?.first_name && msg.receiver?.last_name
+                        ? `${msg.receiver.first_name} ${msg.receiver.last_name}`
+                        : msg.receiver?.email || "Unknown"
+                    }
                   </span>
                   <small style="color: var(--secondary);">${new Date(msg.created_at).toLocaleDateString()}</small>
                 </div>
                 <p style="font-size: 0.9375rem; color: var(--secondary);">${msg.content}</p>
               </div>
-            `).join('')}
+            `,
+              )
+              .join("")}
           </div>
         `;
-      } catch (error) {
-        console.error('Error loading messages:', error);
-      }
-    }
-
-    document.getElementById('sendMessageForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const recipientId = document.getElementById('recipientSelect').value;
-      const content = document.getElementById('messageContent').value.trim();
-
-      if (!content) {
-        showToast('Please enter a message', 'error');
-        return;
-      }
-
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="loading"></span> Sending...';
-
-      try {
-        const admin = await getCurrentUser();
-
-        if (recipientId === 'all') {
-          // Broadcast to all customers
-          const { data: customers } = await supabase
-            .from('users')
-            .select('id')
-            .eq('role', 'customer');
-
-          if (customers && customers.length > 0) {
-            const messages = customers.map(c => ({
-              sender_id: admin.id,
-              receiver_id: c.id,
-              content: content
-            }));
-
-            const { error } = await supabase.from('messages').insert(messages);
-            if (error) throw error;
-
-            showToast(`Message sent to ${customers.length} customers!`, 'success');
-          }
-        } else {
-          // Send to single customer
-          const { error } = await supabase.from('messages').insert([{
-            sender_id: admin.id,
-            receiver_id: recipientId,
-            content: content
-          }]);
-
-          if (error) throw error;
-
-          showToast('Message sent!', 'success');
+        } catch (error) {
+          console.error("Error loading messages:", error);
         }
-
-        document.getElementById('messageContent').value = '';
-        await loadMessageHistory();
-
-      } catch (error) {
-        console.error('Error sending message:', error);
-        showToast('Failed to send message', 'error');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="ph-duotone ph-paper-plane-tilt"></i> Send Message';
       }
-    });
-  </script>
 
-  <style>
-    @media (max-width: 900px) {
-      .admin-container > div[style*="grid-template-columns: 1fr 1fr"] {
-        grid-template-columns: 1fr !important;
+      document
+        .getElementById("sendMessageForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const recipientId = document.getElementById("recipientSelect").value;
+          const content = document
+            .getElementById("messageContent")
+            .value.trim();
+
+          if (!content) {
+            showToast("Please enter a message", "error");
+            return;
+          }
+
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+
+          try {
+            const admin = await getCurrentUser();
+
+            if (recipientId === "all") {
+              // Broadcast to all customers
+              const { data: customers } = await supabase
+                .from("users")
+                .select("id")
+                .eq("role", "customer");
+
+              if (customers && customers.length > 0) {
+                const messages = customers.map((c) => ({
+                  sender_id: admin.id,
+                  receiver_id: c.id,
+                  content: content,
+                }));
+
+                const { error } = await supabase
+                  .from("messages")
+                  .insert(messages);
+                if (error) throw error;
+
+                showToast(
+                  `Message sent to ${customers.length} customers!`,
+                  "success",
+                );
+              }
+            } else {
+              // Send to single customer
+              const { error } = await supabase.from("messages").insert([
+                {
+                  sender_id: admin.id,
+                  receiver_id: recipientId,
+                  content: content,
+                },
+              ]);
+
+              if (error) throw error;
+
+              showToast("Message sent!", "success");
+            }
+
+            document.getElementById("messageContent").value = "";
+            await loadMessageHistory();
+          } catch (error) {
+            console.error("Error sending message:", error);
+            showToast("Failed to send message", "error");
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML =
+              '<i class="ph-duotone ph-paper-plane-tilt"></i> Send Message';
+          }
+        });
+    </script>
+
+    <style>
+      @media (max-width: 900px) {
+        .admin-container > div[style*="grid-template-columns: 1fr 1fr"] {
+          grid-template-columns: 1fr !important;
+        }
       }
-    }
-  </style>
-
-</body>
+    </style>
+  </body>
 </html>
