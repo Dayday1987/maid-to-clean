@@ -212,7 +212,8 @@ section {
   position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* ⬅️ pushes content LOWER */
+  padding-bottom: 4rem;
   justify-content: center;
   overflow: hidden;
 }
@@ -224,8 +225,7 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%; /* ⬅️ move image UP */
-  z-index: 1;
+  object-position: center 10%;
 }
 
 .hero::after {
@@ -235,7 +235,7 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--hero-overlay);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 2;
 }
 
@@ -248,13 +248,12 @@ section {
 }
 
 .hero-content h1 {
-  color: white;
-  font-size: clamp(2.8rem, 6vw, 4rem); /* ⬅️ stronger */
-  line-height: 1.05;
-  font-weight: 700;
+  font-size: clamp(2.2rem, 4vw, 3rem); /* ⬅️ controlled */
+  line-height: 1.1;
 }
 
 .hero-content p {
+  color: white;
   font-size: clamp(1.1rem, 2vw, 1.35rem);
 }
 
