@@ -1,202 +1,247 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Maid To Clean</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Maid To Clean</title>
 
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/navbar.css">
-  <link rel="stylesheet" href="/assets/css/dashboard.css">
-  <link rel="stylesheet" href="/assets/css/responsive.css">
-  
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="/assets/js/api-config.js"></script>
-  <script defer src="/assets/js/auth.js"></script>
-  <script defer src="/assets/js/dashboard-protect.js"></script>
-  <script defer src="/assets/js/load-navbar.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/dashboard.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-  <div id="navbar"></div>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/dashboard-protect.js"></script>
+    <script defer src="/assets/js/load-navbar.js"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
 
-  <main class="dashboard-container" style="overflow-x: hidden;">
-    <div class="dashboard-header">
-      <h1 style="font-size: clamp(1.5rem, 4vw, 2.5rem); overflow-wrap: break-word; word-break: break-word; max-width: 100%;">Welcome, <span id="userName">there</span>!</h1>
-      <p>Here's an overview of your cleaning services</p>
-    </div>
-
-    <!-- Stats Grid -->
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-card-header">
-          <h4>Upcoming</h4>
-          <div class="icon"><i class="ph-duotone ph-calendar-check"></i></div>
-        </div>
-        <div class="value" id="upcomingCount">0</div>
-        <div class="label">Scheduled appointments</div>
+    <main class="dashboard-container" style="overflow-x: hidden">
+      <div class="dashboard-header">
+        <h1
+          style="
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            overflow-wrap: break-word;
+            word-break: break-word;
+            max-width: 100%;
+          "
+        >
+          Welcome, <span id="userName">there</span>!
+        </h1>
+        <p>Here's an overview of your cleaning services</p>
       </div>
-      <div class="stat-card">
-        <div class="stat-card-header">
-          <h4>Completed</h4>
-          <div class="icon"><i class="ph-duotone ph-check-circle"></i></div>
-        </div>
-        <div class="value" id="completedCount">0</div>
-        <div class="label">Cleanings this year</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-header">
-          <h4>Balance</h4>
-          <div class="icon"><i class="ph-duotone ph-wallet"></i></div>
-        </div>
-        <div class="value" id="balanceAmount">$0</div>
-        <div class="label">Outstanding balance</div>
-      </div>
-    </div>
 
-    <!-- Dashboard Grid -->
-    <div class="dashboard-grid">
-      <div class="dashboard-card">
-        <h3><i class="ph-duotone ph-clock"></i> Next Appointment</h3>
-        <div id="nextAppointment">
-          <div class="empty-state">
-            <i class="ph-duotone ph-calendar-blank"></i>
-            <p>No upcoming appointments</p>
-            <a href="/dashboard/schedule.html" class="btn btn-primary btn-sm mt-4" data-testid="book-appointment-btn">
-              Book Now
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <h4>Upcoming</h4>
+            <div class="icon"><i class="ph-duotone ph-calendar-check"></i></div>
+          </div>
+          <div class="value" id="upcomingCount">0</div>
+          <div class="label">Scheduled appointments</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <h4>Completed</h4>
+            <div class="icon"><i class="ph-duotone ph-check-circle"></i></div>
+          </div>
+          <div class="value" id="completedCount">0</div>
+          <div class="label">Cleanings this year</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <h4>Balance</h4>
+            <div class="icon"><i class="ph-duotone ph-wallet"></i></div>
+          </div>
+          <div class="value" id="balanceAmount">$0</div>
+          <div class="label">Outstanding balance</div>
+        </div>
+      </div>
+
+      <!-- Dashboard Grid -->
+      <div class="dashboard-grid">
+        <div class="dashboard-card">
+          <h3><i class="ph-duotone ph-clock"></i> Next Appointment</h3>
+          <div id="nextAppointment">
+            <div class="empty-state">
+              <i class="ph-duotone ph-calendar-blank"></i>
+              <p>No upcoming appointments</p>
+              <a
+                href="/dashboard/schedule.html"
+                class="btn btn-primary btn-sm mt-4"
+                data-testid="book-appointment-btn"
+              >
+                Book Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <h3><i class="ph-duotone ph-envelope"></i> Messages</h3>
+          <div id="adminMessage">
+            <div class="empty-state">
+              <i class="ph-duotone ph-chats"></i>
+              <p>No messages yet</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <h3><i class="ph-duotone ph-clock-countdown"></i> Recent Activity</h3>
+          <div id="recentActivity">
+            <div class="empty-state">
+              <i class="ph-duotone ph-list-dashes"></i>
+              <p>No recent activity</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-card">
+          <h3><i class="ph-duotone ph-lightning"></i> Quick Actions</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem">
+            <a
+              href="/dashboard/schedule.html"
+              class="btn btn-primary"
+              data-testid="schedule-btn"
+            >
+              <i class="ph-duotone ph-calendar-plus"></i> Schedule Cleaning
+            </a>
+            <a
+              href="/dashboard/payments.html"
+              class="btn btn-secondary"
+              data-testid="payments-btn"
+            >
+              <i class="ph-duotone ph-credit-card"></i> View Payments
+            </a>
+            <a
+              href="/dashboard/settings.html"
+              class="btn btn-secondary"
+              data-testid="settings-btn"
+            >
+              <i class="ph-duotone ph-gear"></i> Account Settings
             </a>
           </div>
         </div>
       </div>
+    </main>
 
-      <div class="dashboard-card">
-        <h3><i class="ph-duotone ph-envelope"></i> Messages</h3>
-        <div id="adminMessage">
-          <div class="empty-state">
-            <i class="ph-duotone ph-chats"></i>
-            <p>No messages yet</p>
-          </div>
-        </div>
-      </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const user = await getCurrentUser();
+        if (!user) return;
 
-      <div class="dashboard-card">
-        <h3><i class="ph-duotone ph-clock-countdown"></i> Recent Activity</h3>
-        <div id="recentActivity">
-          <div class="empty-state">
-            <i class="ph-duotone ph-list-dashes"></i>
-            <p>No recent activity</p>
-          </div>
-        </div>
-      </div>
+        const profile = await getUserProfile();
 
-      <div class="dashboard-card">
-        <h3><i class="ph-duotone ph-lightning"></i> Quick Actions</h3>
-        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-          <a href="/dashboard/schedule.html" class="btn btn-primary" data-testid="schedule-btn">
-            <i class="ph-duotone ph-calendar-plus"></i> Schedule Cleaning
-          </a>
-          <a href="/dashboard/payments.html" class="btn btn-secondary" data-testid="payments-btn">
-            <i class="ph-duotone ph-credit-card"></i> View Payments
-          </a>
-          <a href="/dashboard/settings.html" class="btn btn-secondary" data-testid="settings-btn">
-            <i class="ph-duotone ph-gear"></i> Account Settings
-          </a>
-        </div>
-      </div>
-    </div>
-  </main>
+        // Build display name with multiple fallbacks:
+        // 1. first_name from users table
+        // 2. first word of full_name from auth metadata (set at registration)
+        // 3. part before @ in email
+        const metaFull = user.user_metadata?.full_name || "";
+        const metaFirst = metaFull.split(" ")[0] || "";
 
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const user = await getCurrentUser();
-      if (!user) return;
+        const displayName =
+          `${profile?.first_name || ""}`.trim() ||
+          metaFirst ||
+          user.email.split("@")[0];
 
-      const profile = await getUserProfile();
+        document.getElementById("userName").textContent = displayName;
 
-      // Build display name with multiple fallbacks:
-      // 1. first_name from users table
-      // 2. first word of full_name from auth metadata (set at registration)
-      // 3. part before @ in email
-      const metaFull = user.user_metadata?.full_name || '';
-      const metaFirst = metaFull.split(' ')[0];
-      const displayName = profile?.first_name || metaFirst || user.email.split('@')[0];
-      document.getElementById('userName').textContent = displayName;
+        await loadDashboardData(user.id);
+      });
 
-      await loadDashboardData(user.id);
-    });
+      async function loadDashboardData(userId) {
+        try {
+          const { data: appointments } = await supabase
+            .from("appointments")
+            .select("*")
+            .eq("user_id", userId)
+            .order("appointment_date", { ascending: true });
 
-    async function loadDashboardData(userId) {
-      try {
-        const { data: appointments } = await supabase
-          .from('appointments')
-          .select('*')
-          .eq('user_id', userId)
-          .order('appointment_date', { ascending: true });
+          if (appointments) {
+            const today = new Date().toISOString().split("T")[0];
+            const upcoming = appointments.filter(
+              (a) => a.appointment_date >= today && a.status !== "completed",
+            );
+            const completed = appointments.filter(
+              (a) => a.status === "completed" || a.status === "paid",
+            );
 
-        if (appointments) {
-          const today = new Date().toISOString().split('T')[0];
-          const upcoming = appointments.filter(a => a.appointment_date >= today && a.status !== 'completed');
-          const completed = appointments.filter(a => a.status === 'completed' || a.status === 'paid');
+            document.getElementById("upcomingCount").textContent =
+              upcoming.length;
+            document.getElementById("completedCount").textContent =
+              completed.length;
 
-          document.getElementById('upcomingCount').textContent = upcoming.length;
-          document.getElementById('completedCount').textContent = completed.length;
-
-          if (upcoming.length > 0) {
-            const next = upcoming[0];
-            document.getElementById('nextAppointment').innerHTML = `
+            if (upcoming.length > 0) {
+              const next = upcoming[0];
+              document.getElementById("nextAppointment").innerHTML = `
               <div style="padding: 1rem; background: var(--background); border-radius: var(--radius-md);">
-                <p style="font-weight: 600; margin-bottom: 0.5rem;">${new Date(next.appointment_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+                <p style="font-weight: 600; margin-bottom: 0.5rem;">${new Date(next.appointment_date).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</p>
                 <p style="color: var(--secondary);">at ${next.appointment_time}</p>
                 <span class="status-badge ${next.status}">${next.status}</span>
               </div>
             `;
-          }
+            }
 
-          // Recent activity
-          const recent = [...appointments].reverse().slice(0, 4);
-          if (recent.length > 0) {
-            document.getElementById('recentActivity').innerHTML = recent.map(a => `
+            // Recent activity
+            const recent = [...appointments].reverse().slice(0, 4);
+            if (recent.length > 0) {
+              document.getElementById("recentActivity").innerHTML = recent
+                .map(
+                  (a) => `
               <div style="display:flex; justify-content:space-between; align-items:center; padding:0.75rem 0; border-bottom:1px solid var(--border);">
-                <p style="font-size:0.9375rem;">${new Date(a.appointment_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</p>
+                <p style="font-size:0.9375rem;">${new Date(a.appointment_date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</p>
                 <span class="status-badge ${a.status}">${a.status}</span>
               </div>
-            `).join('');
+            `,
+                )
+                .join("");
+            }
           }
-        }
 
-        const { data: payments } = await supabase
-          .from('payments')
-          .select('amount, status')
-          .eq('user_id', userId)
-          .eq('status', 'pending');
+          const { data: payments } = await supabase
+            .from("payments")
+            .select("amount, status")
+            .eq("user_id", userId)
+            .eq("status", "pending");
 
-        if (payments) {
-          const totalBalance = payments.reduce((sum, p) => sum + (p.amount || 0), 0);
-          document.getElementById('balanceAmount').textContent = `$${totalBalance.toFixed(2)}`;
-        }
+          if (payments) {
+            const totalBalance = payments.reduce(
+              (sum, p) => sum + (p.amount || 0),
+              0,
+            );
+            document.getElementById("balanceAmount").textContent =
+              `$${totalBalance.toFixed(2)}`;
+          }
 
-        const { data: messages } = await supabase
-          .from('messages')
-          .select('*')
-          .eq('receiver_id', userId)
-          .order('created_at', { ascending: false })
-          .limit(3);
+          const { data: messages } = await supabase
+            .from("messages")
+            .select("*")
+            .eq("receiver_id", userId)
+            .order("created_at", { ascending: false })
+            .limit(3);
 
-        if (messages && messages.length > 0) {
-          document.getElementById('adminMessage').innerHTML = messages.map(m => `
+          if (messages && messages.length > 0) {
+            document.getElementById("adminMessage").innerHTML = messages
+              .map(
+                (m) => `
             <div style="padding: 0.75rem; background: var(--background); border-radius: var(--radius-sm); margin-bottom: 0.5rem;">
               <p style="font-size: 0.875rem;">${m.content}</p>
               <small style="color: var(--secondary);">${new Date(m.created_at).toLocaleDateString()}</small>
             </div>
-          `).join('');
+          `,
+              )
+              .join("");
+          }
+        } catch (error) {
+          console.error("Error loading dashboard data:", error);
         }
-
-      } catch (error) {
-        console.error('Error loading dashboard data:', error);
       }
-    }
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>
