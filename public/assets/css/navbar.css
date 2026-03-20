@@ -73,7 +73,7 @@
   text-decoration: none;
   color: var(--secondary);
   font-family: var(--font-body);
-  font-size: 0.9375rem;
+  font-size: 1rem; /* ⬅️ cleaner + readable */
   font-weight: 500;
   border-radius: var(--radius-sm);
   transition:
