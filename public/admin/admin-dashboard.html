@@ -172,10 +172,11 @@ console.log("USER ROLE:", roleCheck, roleError);
         const { data: pendingBookings, count: pendingCount } = await supabase
           .from('appointments')
           .select(`
-            *,
-            users (email, full_name),
-            services (name, base_price)
-          `, { count: 'exact' })
+  *,
+  users (email, first_name, last_name),
+  services (name, base_price)
+`,
+                  { count: 'exact' })
           .eq('status', 'pending')
           .order('created_at', { ascending: false });
 
@@ -288,7 +289,7 @@ console.log("USER ROLE:", roleCheck, roleError);
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               customerEmail: booking.users?.email,
-              customerName: booking.users?.full_name || '',
+              customerName: `${booking.users?.first_name || ''} ${booking.users?.last_name || ''}`.trim(),
               serviceName: booking.services?.name || 'Cleaning Service',
               appointmentDate: new Date(booking.appointment_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
               appointmentTime: booking.appointment_time,
