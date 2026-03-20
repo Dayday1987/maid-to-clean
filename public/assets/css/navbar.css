@@ -59,10 +59,9 @@
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 0.75rem; /* ⬅️ slightly tighter */
-  align-items: center;
-  margin-left: auto;
   gap: 0.75rem;
+  align-items: center;
+  margin-left: 1rem; /* ⬅️ controlled spacing */
 }
 
 .nav-links li {
