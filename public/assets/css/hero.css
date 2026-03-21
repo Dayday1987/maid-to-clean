@@ -81,7 +81,7 @@
 
 /* Specific background images per page */
 .hero {
-  background: url("/assets/images/services.webp") center/cover no-repeat;
+  background: url("/assets/images/profilepic.webp") center/cover no-repeat;
   height: 100vh; /* full viewport height */
   display: flex;
   align-items: center;
