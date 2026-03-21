@@ -19,22 +19,25 @@ fetch("/components/navbar.html")
     // Handle hamburger menu
     const hamburger = document.getElementById("hamburger");
     const navLinks = document.getElementById("nav-links");
-    
-    if (hamburger) {
+
+    if (hamburger && navLinks) {
       hamburger.addEventListener("click", () => {
         hamburger.classList.toggle("active");
         navLinks.classList.toggle("open");
-        hamburger.setAttribute("aria-expanded", navLinks.classList.contains("open"));
+        hamburger.setAttribute(
+          "aria-expanded",
+          navLinks.classList.contains("open"),
+        );
+      });
+
+      // Close menu when clicking a link (mobile)
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("open");
+        });
       });
     }
-
-    // Close menu when clicking a link (mobile)
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        hamburger.classList.remove("active");
-        navLinks.classList.remove("open");
-      });
-    });
 
     // Show/hide nav links based on auth state
     updateNavState();
@@ -44,13 +47,13 @@ fetch("/components/navbar.html")
     window.addEventListener("scroll", () => {
       const nav = document.getElementById("mainNav");
       const currentScroll = window.pageYOffset;
-      
+
       if (currentScroll > 50) {
         nav.classList.add("scrolled");
       } else {
         nav.classList.remove("scrolled");
       }
-      
+
       lastScroll = currentScroll;
     });
   })
@@ -60,7 +63,7 @@ fetch("/components/navbar.html")
 async function updateNavState() {
   try {
     const session = await getSession();
-    
+
     if (session && session.user) {
       // User is logged in
       document.querySelectorAll(".guest-only").forEach((el) => {
@@ -72,9 +75,10 @@ async function updateNavState() {
 
       // Check role for customer/admin links
       const role = await getUserRole();
-      
+
       document.querySelectorAll(".customer-only").forEach((el) => {
-        el.style.display = role === "customer" || role === "admin" ? "block" : "none";
+        el.style.display =
+          role === "customer" || role === "admin" ? "block" : "none";
       });
       document.querySelectorAll(".admin-only").forEach((el) => {
         el.style.display = role === "admin" ? "block" : "none";
