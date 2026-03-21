@@ -81,7 +81,7 @@
 
 /* Specific background images per page */
 .hero {
-  background: url("/assets/images/profilepic.webp") center/cover no-repeat;
+  background: url("/assets/images/livingroom.webp") center/cover no-repeat;
   height: 100vh; /* full viewport height */
   display: flex;
   align-items: center;
@@ -107,15 +107,15 @@
 }
 
 .services-hero {
-  background-image: url("/assets/images/services-bg.jpg"); /* Replace with relevant image */
+  background-image: url("/assets/images/services.webp"); /* Replace with relevant image */
 }
 
 .about-hero {
-  background-image: url("/assets/images/about-bg.jpg"); /* Replace with relevant image */
+  background-image: url("/assets/images/profilepic.webp"); /* Replace with relevant image */
 }
 
 .contact-hero {
-  background-image: url("/assets/images/contact-bg.jpg"); /* Replace with relevant image */
+  background-image: url("/assets/images/contact-bg.webp"); /* Replace with relevant image */
 }
 
 /* Mobile adjustments */
