@@ -22,12 +22,7 @@
       <li><a href="/about.html">About</a></li>
       <li><a href="/services.html">Services</a></li>
       <li><a href="/contact.html">Contact</a></li>
-      <li class="guest-only">
-        <a href="/login.html" data-testid="nav-login-link">Login</a>
-      </li>
-      <li class="guest-only nav-cta">
-        <a href="/register.html" data-testid="nav-register-link">Book Now</a>
-      </li>
+
       <li class="customer-only">
         <a href="/dashboard/dashboard.html" data-testid="nav-dashboard-link">
           <i class="ph-duotone ph-house-line"></i> Dashboard
@@ -54,5 +49,16 @@
         </a>
       </li>
     </ul>
+    <div class="nav-actions">
+      <a href="/login.html" class="guest-only" data-testid="nav-login-link"
+        >Login</a
+      >
+      <a
+        href="/register.html"
+        class="guest-only nav-cta"
+        data-testid="nav-register-link"
+        >Book Now</a
+      >
+    </div>
   </div>
 </nav>
