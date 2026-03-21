@@ -81,7 +81,29 @@
 
 /* Specific background images per page */
 .hero {
-  background-image: url("/assets/images/livingroom.png");
+  background: url("/assets/images/livingroom.png") center/cover no-repeat;
+  height: 100vh; /* full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* optional overlay for text readability */
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: white;
+  z-index: 1;
 }
 
 .services-hero {

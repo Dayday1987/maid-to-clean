@@ -24,209 +24,168 @@
     <div id="navbar"></div>
 
     <!-- Contact Hero -->
-    <section class="contact-hero">
-      <img
-        src="/assets/images/contact-bg.jpg"
-        alt="Get in touch"
-        class="hero-bg"
-      />
-      <div class="hero-content">
-        <h1>Get In Touch</h1>
-        <p>Have questions? Need a quote? We'd love to hear from you.</p>
-        <div class="hero-buttons">
-          <a href="/contact.html" class="btn btn-primary btn-lg">
-            <i class="ph-duotone ph-envelope"></i>
-            Contact Us
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-      <div class="container">
-        <div class="contact-grid">
-          <!-- Contact Form -->
-          <div class="contact-form-container">
-            <h3>Send Us a Message</h3>
-            <form id="contactForm">
-              <div class="form-group">
-                <label for="contactName">Your Name</label>
-                <input
-                  type="text"
-                  id="contactName"
-                  name="name"
-                  placeholder="John Doe"
-                  required
-                  data-testid="contact-name-input"
-                />
-              </div>
-              <div class="form-group">
-                <label for="contactEmail">Email Address</label>
-                <input
-                  type="email"
-                  id="contactEmail"
-                  name="email"
-                  placeholder="john@example.com"
-                  required
-                  data-testid="contact-email-input"
-                />
-              </div>
-              <div class="form-group">
-                <label for="contactPhone">Phone Number</label>
-                <input
-                  type="tel"
-                  id="contactPhone"
-                  name="phone"
-                  placeholder="(334) 123-4567"
-                  data-testid="contact-phone-input"
-                />
-              </div>
-              <div class="form-group">
-                <label for="contactSubject">Subject</label>
-                <select
-                  id="contactSubject"
-                  name="subject"
-                  required
-                  data-testid="contact-subject-select"
-                >
-                  <option value="">Select a subject...</option>
-                  <option value="quote">Get a Quote</option>
-                  <option value="booking">Booking Question</option>
-                  <option value="feedback">Feedback</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="contactMessage">Message</label>
-                <textarea
-                  id="contactMessage"
-                  name="message"
-                  placeholder="Tell us how we can help..."
-                  required
-                  data-testid="contact-message-input"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="btn btn-primary w-full"
-                data-testid="contact-submit-btn"
-              >
-                <i class="ph-duotone ph-paper-plane-tilt"></i>
-                Send Message
-              </button>
-            </form>
+    <main>
+      <section class="contact-hero">
+        <div class="hero-content">
+          <h1>Get In Touch</h1>
+          <p>Have questions? Need a quote? We'd love to hear from you.</p>
+          <div class="hero-buttons">
+            <a href="/contact.html" class="btn btn-primary btn-lg">
+              <i class="ph-duotone ph-envelope"></i>
+              Contact Us
+            </a>
           </div>
+        </div>
+      </section>
 
-          <!-- Contact Info -->
-          <div class="contact-info">
-            <h3>Contact Information</h3>
-
-            <div class="contact-info-item">
-              <div class="icon"><i class="ph-duotone ph-phone"></i></div>
-              <div>
-                <h4>Phone</h4>
-                <a href="tel:+13344254566">(334) 425-4566</a>
-              </div>
-            </div>
-
-            <div class="contact-info-item">
-              <div class="icon"><i class="ph-duotone ph-envelope"></i></div>
-              <div>
-                <h4>Email</h4>
-                <a href="mailto:stephanie.maidtoclean@gmail.com"
-                  >stephanie.maidtoclean@gmail.com</a
+      <!-- Contact Section -->
+      <section class="contact-section">
+        <div class="container">
+          <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+              <h3>Send Us a Message</h3>
+              <form id="contactForm">
+                <div class="form-group">
+                  <label for="contactName">Your Name</label>
+                  <input
+                    type="text"
+                    id="contactName"
+                    name="name"
+                    placeholder="John Doe"
+                    required
+                    data-testid="contact-name-input"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="contactEmail">Email Address</label>
+                  <input
+                    type="email"
+                    id="contactEmail"
+                    name="email"
+                    placeholder="john@example.com"
+                    required
+                    data-testid="contact-email-input"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="contactPhone">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="contactPhone"
+                    name="phone"
+                    placeholder="(334) 123-4567"
+                    data-testid="contact-phone-input"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="contactSubject">Subject</label>
+                  <select
+                    id="contactSubject"
+                    name="subject"
+                    required
+                    data-testid="contact-subject-select"
+                  >
+                    <option value="">Select a subject...</option>
+                    <option value="quote">Get a Quote</option>
+                    <option value="booking">Booking Question</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="contactMessage">Message</label>
+                  <textarea
+                    id="contactMessage"
+                    name="message"
+                    placeholder="Tell us how we can help..."
+                    required
+                    data-testid="contact-message-input"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary w-full"
+                  data-testid="contact-submit-btn"
                 >
-              </div>
+                  <i class="ph-duotone ph-paper-plane-tilt"></i>
+                  Send Message
+                </button>
+              </form>
             </div>
 
-            <div class="contact-info-item">
-              <div class="icon"><i class="ph-duotone ph-clock"></i></div>
-              <div>
-                <h4>Business Hours</h4>
-                <p>Monday - Friday: 8am - 6pm</p>
-                <p>Saturday: 9am - 4pm</p>
-                <p>Sunday: Closed</p>
-              </div>
-            </div>
+            <!-- Contact Info -->
+            <div class="contact-info">
+              <h3>Contact Information</h3>
 
-            <div class="contact-info-item">
-              <div class="icon"><i class="ph-duotone ph-map-pin"></i></div>
-              <div>
-                <h4>Service Area</h4>
-                <p>Proudly serving the River Region:</p>
-                <p style="margin-top: 0.5rem">
-                  Montgomery AL • Prattville AL • Wetumpka AL • Hope Hull AL •
-                  Tallassee AL
-                </p>
+              <div class="contact-info-item">
+                <div class="icon"><i class="ph-duotone ph-phone"></i></div>
+                <div>
+                  <h4>Phone</h4>
+                  <a href="tel:+13344254566">(334) 425-4566</a>
+                </div>
               </div>
-            </div>
 
-            <!-- Quick Actions -->
-            <div class="mt-8">
-              <h4 class="mb-4">Quick Actions</h4>
-              <div class="flex flex-col gap-3">
-                <a
-                  href="/register.html"
-                  class="btn btn-primary"
-                  data-testid="contact-book-btn"
-                >
-                  <i class="ph-duotone ph-calendar-check"></i>
-                  Book a Service
-                </a>
-                <a
-                  href="/services.html"
-                  class="btn btn-secondary"
-                  data-testid="contact-services-btn"
-                >
-                  <i class="ph-duotone ph-sparkle"></i>
-                  View Services
-                </a>
+              <div class="contact-info-item">
+                <div class="icon"><i class="ph-duotone ph-envelope"></i></div>
+                <div>
+                  <h4>Email</h4>
+                  <a href="mailto:stephanie.maidtoclean@gmail.com"
+                    >stephanie.maidtoclean@gmail.com</a
+                  >
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="icon"><i class="ph-duotone ph-clock"></i></div>
+                <div>
+                  <h4>Business Hours</h4>
+                  <p>Monday - Friday: 8am - 6pm</p>
+                  <p>Saturday: 9am - 4pm</p>
+                  <p>Sunday: Closed</p>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="icon"><i class="ph-duotone ph-map-pin"></i></div>
+                <div>
+                  <h4>Service Area</h4>
+                  <p>Proudly serving the River Region:</p>
+                  <p style="margin-top: 0.5rem">
+                    Montgomery AL • Prattville AL • Wetumpka AL • Hope Hull AL •
+                    Tallassee AL
+                  </p>
+                </div>
+              </div>
+
+              <!-- Quick Actions -->
+              <div class="mt-8">
+                <h4 class="mb-4">Quick Actions</h4>
+                <div class="flex flex-col gap-3">
+                  <a
+                    href="/register.html"
+                    class="btn btn-primary"
+                    data-testid="contact-book-btn"
+                  >
+                    <i class="ph-duotone ph-calendar-check"></i>
+                    Book a Service
+                  </a>
+                  <a
+                    href="/services.html"
+                    class="btn btn-secondary"
+                    data-testid="contact-services-btn"
+                  >
+                    <i class="ph-duotone ph-sparkle"></i>
+                    View Services
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Maid To Clean</h4>
-          <p>
-            Polishing homes, empowering communities, and building relationships
-            that last.
-          </p>
-        </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <a href="/about.html">About Us</a>
-          <a href="/services.html">Services</a>
-          <a href="/contact.html">Contact</a>
-        </div>
-        <div class="footer-col">
-          <h4>Service Areas</h4>
-          <p>Montgomery AL</p>
-          <p>Prattville AL</p>
-          <p>Wetumpka AL</p>
-          <p>Hope Hull AL</p>
-          <p>Tallassee AL</p>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <p><a href="tel:+13344254566">(334) 425-4566</a></p>
-          <p>
-            <a href="mailto:stephanie.maidtoclean@gmail.com"
-              >stephanie.maidtoclean@gmail.com</a
-            >
-          </p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Maid To Clean. All rights reserved.</p>
-      </div>
-    </footer>
+      </section>
+    </main>
+    <div id="footer"></div>
 
     <!-- Toast Container -->
     <div id="toastContainer" class="toast-container"></div>
@@ -314,5 +273,6 @@
           }
         });
     </script>
+    <script defer src="/assets/js/load-footer.js"></script>
   </body>
 </html>

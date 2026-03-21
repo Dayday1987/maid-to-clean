@@ -994,3 +994,19 @@ textarea {
     padding: 0 1rem;
   }
 }
+
+/* ================================
+   FOOTER FIXES
+================================ */
+
+/* Ensure quick links stack vertically */
+.footer-col.quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Optional: remove line-height override for links in quick links */
+.footer-col.quick-links a {
+  line-height: 1.5;
+}
