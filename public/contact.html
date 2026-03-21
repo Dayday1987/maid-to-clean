@@ -1,201 +1,262 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Maid To Clean - Get in touch for quotes and scheduling. Serving Montgomery AL and the River Region.">
-  <title>Contact Us | Maid To Clean</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact Maid To Clean - Get in touch for quotes and scheduling. Serving Montgomery AL and the River Region."
+    />
+    <title>Contact Us | Maid To Clean</title>
 
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/navbar.css">
-  <link rel="stylesheet" href="/assets/css/responsive.css">
-  
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="/assets/js/api-config.js"></script>
-  <script defer src="/assets/js/auth.js"></script>
-  <script defer src="/assets/js/load-navbar.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-  <div id="navbar"></div>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/load-navbar.js"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
 
-  <!-- Contact Hero -->
-  <section class="contact-hero">
-    <div class="container">
-      <h1>Get In Touch</h1>
-      <p>Have questions? Need a quote? We'd love to hear from you.</p>
-    </div>
-  </section>
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+      <div class="container">
+        <h1>Get In Touch</h1>
+        <p>Have questions? Need a quote? We'd love to hear from you.</p>
+      </div>
+    </section>
 
-  <!-- Contact Section -->
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-grid">
-        <!-- Contact Form -->
-        <div class="contact-form-container">
-          <h3>Send Us a Message</h3>
-          <form id="contactForm">
-            <div class="form-group">
-              <label for="contactName">Your Name</label>
-              <input type="text" id="contactName" name="name" placeholder="John Doe" required data-testid="contact-name-input">
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Contact Form -->
+          <div class="contact-form-container">
+            <h3>Send Us a Message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="contactName">Your Name</label>
+                <input
+                  type="text"
+                  id="contactName"
+                  name="name"
+                  placeholder="John Doe"
+                  required
+                  data-testid="contact-name-input"
+                />
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <input
+                  type="email"
+                  id="contactEmail"
+                  name="email"
+                  placeholder="john@example.com"
+                  required
+                  data-testid="contact-email-input"
+                />
+              </div>
+              <div class="form-group">
+                <label for="contactPhone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="contactPhone"
+                  name="phone"
+                  placeholder="(334) 123-4567"
+                  data-testid="contact-phone-input"
+                />
+              </div>
+              <div class="form-group">
+                <label for="contactSubject">Subject</label>
+                <select
+                  id="contactSubject"
+                  name="subject"
+                  required
+                  data-testid="contact-subject-select"
+                >
+                  <option value="">Select a subject...</option>
+                  <option value="quote">Get a Quote</option>
+                  <option value="booking">Booking Question</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="contactMessage">Message</label>
+                <textarea
+                  id="contactMessage"
+                  name="message"
+                  placeholder="Tell us how we can help..."
+                  required
+                  data-testid="contact-message-input"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary w-full"
+                data-testid="contact-submit-btn"
+              >
+                <i class="ph-duotone ph-paper-plane-tilt"></i>
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+
+            <div class="contact-info-item">
+              <div class="icon"><i class="ph-duotone ph-phone"></i></div>
+              <div>
+                <h4>Phone</h4>
+                <a href="tel:+13344254566">(334) 425-4566</a>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="contactEmail">Email Address</label>
-              <input type="email" id="contactEmail" name="email" placeholder="john@example.com" required data-testid="contact-email-input">
+
+            <div class="contact-info-item">
+              <div class="icon"><i class="ph-duotone ph-envelope"></i></div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:stephanie.maidtoclean@gmail.com"
+                  >stephanie.maidtoclean@gmail.com</a
+                >
+              </div>
             </div>
-            <div class="form-group">
-              <label for="contactPhone">Phone Number</label>
-              <input type="tel" id="contactPhone" name="phone" placeholder="(334) 123-4567" data-testid="contact-phone-input">
+
+            <div class="contact-info-item">
+              <div class="icon"><i class="ph-duotone ph-clock"></i></div>
+              <div>
+                <h4>Business Hours</h4>
+                <p>Monday - Friday: 8am - 6pm</p>
+                <p>Saturday: 9am - 4pm</p>
+                <p>Sunday: Closed</p>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="contactSubject">Subject</label>
-              <select id="contactSubject" name="subject" required data-testid="contact-subject-select">
-                <option value="">Select a subject...</option>
-                <option value="quote">Get a Quote</option>
-                <option value="booking">Booking Question</option>
-                <option value="feedback">Feedback</option>
-                <option value="other">Other</option>
-              </select>
+
+            <div class="contact-info-item">
+              <div class="icon"><i class="ph-duotone ph-map-pin"></i></div>
+              <div>
+                <h4>Service Area</h4>
+                <p>Proudly serving the River Region:</p>
+                <p style="margin-top: 0.5rem">
+                  Montgomery AL • Prattville AL • Wetumpka AL • Hope Hull AL •
+                  Tallassee AL
+                </p>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="contactMessage">Message</label>
-              <textarea id="contactMessage" name="message" placeholder="Tell us how we can help..." required data-testid="contact-message-input"></textarea>
+
+            <!-- Quick Actions -->
+            <div class="mt-8">
+              <h4 class="mb-4">Quick Actions</h4>
+              <div class="flex flex-col gap-3">
+                <a
+                  href="/register.html"
+                  class="btn btn-primary"
+                  data-testid="contact-book-btn"
+                >
+                  <i class="ph-duotone ph-calendar-check"></i>
+                  Book a Service
+                </a>
+                <a
+                  href="/services.html"
+                  class="btn btn-secondary"
+                  data-testid="contact-services-btn"
+                >
+                  <i class="ph-duotone ph-sparkle"></i>
+                  View Services
+                </a>
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary w-full" data-testid="contact-submit-btn">
-              <i class="ph-duotone ph-paper-plane-tilt"></i>
-              Send Message
-            </button>
-          </form>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Contact Info -->
-        <div class="contact-info">
-          <h3>Contact Information</h3>
-          
-          <div class="contact-info-item">
-            <div class="icon"><i class="ph-duotone ph-phone"></i></div>
-            <div>
-              <h4>Phone</h4>
-              <a href="tel:+13344254566">(334) 425-4566</a>
-            </div>
-          </div>
-
-          <div class="contact-info-item">
-            <div class="icon"><i class="ph-duotone ph-envelope"></i></div>
-            <div>
-              <h4>Email</h4>
-              <a href="mailto:stephanie.maidtoclean@gmail.com">stephanie.maidtoclean@gmail.com</a>
-            </div>
-          </div>
-
-          <div class="contact-info-item">
-            <div class="icon"><i class="ph-duotone ph-clock"></i></div>
-            <div>
-              <h4>Business Hours</h4>
-              <p>Monday - Friday: 8am - 6pm</p>
-              <p>Saturday: 9am - 4pm</p>
-              <p>Sunday: Closed</p>
-            </div>
-          </div>
-
-          <div class="contact-info-item">
-            <div class="icon"><i class="ph-duotone ph-map-pin"></i></div>
-            <div>
-              <h4>Service Area</h4>
-              <p>Proudly serving the River Region:</p>
-              <p style="margin-top: 0.5rem;">Montgomery AL • Prattville AL • Wetumpka AL • Hope Hull AL • Tallassee AL</p>
-            </div>
-          </div>
-
-          <!-- Quick Actions -->
-          <div class="mt-8">
-            <h4 class="mb-4">Quick Actions</h4>
-            <div class="flex flex-col gap-3">
-              <a href="/register.html" class="btn btn-primary" data-testid="contact-book-btn">
-                <i class="ph-duotone ph-calendar-check"></i>
-                Book a Service
-              </a>
-              <a href="/services.html" class="btn btn-secondary" data-testid="contact-services-btn">
-                <i class="ph-duotone ph-sparkle"></i>
-                View Services
-              </a>
-            </div>
-          </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Maid To Clean</h4>
+          <p>
+            Polishing homes, empowering communities, and building relationships
+            that last.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="/about.html">About Us</a>
+          <a href="/services.html">Services</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Service Areas</h4>
+          <p>Montgomery AL</p>
+          <p>Prattville AL</p>
+          <p>Wetumpka AL</p>
+          <p>Hope Hull AL</p>
+          <p>Tallassee AL</p>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p><a href="tel:+13344254566">(334) 425-4566</a></p>
+          <p>
+            <a href="mailto:stephanie.maidtoclean@gmail.com"
+              >stephanie.maidtoclean@gmail.com</a
+            >
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Maid To Clean. All rights reserved.</p>
+      </div>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Maid To Clean</h4>
-        <p>Polishing homes, empowering communities, and building relationships that last.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <a href="/about.html">About Us</a>
-        <a href="/services.html">Services</a>
-        <a href="/contact.html">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Service Areas</h4>
-        <p>Montgomery AL</p>
-        <p>Prattville AL</p>
-        <p>Wetumpka AL</p>
-        <p>Hope Hull AL</p>
-        <p>Tallassee AL</p>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <p><a href="tel:+13344254566">(334) 425-4566</a></p>
-        <p><a href="mailto:stephanie.maidtoclean@gmail.com">stephanie.maidtoclean@gmail.com</a></p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Maid To Clean. All rights reserved.</p>
-    </div>
-  </footer>
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
 
-  <!-- Toast Container -->
-  <div id="toastContainer" class="toast-container"></div>
-
-  <script>
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `
-        <i class="ph-duotone ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+    <script>
+      function showToast(message, type = "info") {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+        <i class="ph-duotone ph-${type === "success" ? "check-circle" : type === "error" ? "x-circle" : "info"}"></i>
         <span>${message}</span>
       `;
-      container.appendChild(toast);
-      setTimeout(() => toast.remove(), 5000);
-    }
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 5000);
+      }
 
-    document.getElementById('contactForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
 
-      const name    = document.getElementById('contactName').value.trim();
-      const email   = document.getElementById('contactEmail').value.trim();
-      const phone   = document.getElementById('contactPhone').value.trim();
-      const subject = document.getElementById('contactSubject').value;
-      const message = document.getElementById('contactMessage').value.trim();
+          const name = document.getElementById("contactName").value.trim();
+          const email = document.getElementById("contactEmail").value.trim();
+          const phone = document.getElementById("contactPhone").value.trim();
+          const subject = document.getElementById("contactSubject").value;
+          const message = document
+            .getElementById("contactMessage")
+            .value.trim();
 
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="loading"></span> Sending...';
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="loading"></span> Sending...';
 
-      try {
-        const response = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            to: 'stephanie.maidtoclean@gmail.com',
-            subject: `📬 Contact Form: ${subject} — ${name}`,
-            html: `
+          try {
+            const response = await fetch("/api/send-email", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                to: "stephanie.maidtoclean@gmail.com",
+                subject: `📬 Contact Form: ${subject} — ${name}`,
+                html: `
               <!DOCTYPE html>
               <html>
               <body style="font-family: Arial, sans-serif; padding: 24px; color: #1f2937;">
@@ -203,38 +264,43 @@
                 <table style="width:100%; border-collapse: collapse;">
                   <tr><td style="padding:8px 0; font-weight:600; width:120px;">Name:</td><td>${name}</td></tr>
                   <tr><td style="padding:8px 0; font-weight:600;">Email:</td><td><a href="mailto:${email}">${email}</a></td></tr>
-                  <tr><td style="padding:8px 0; font-weight:600;">Phone:</td><td>${phone || 'Not provided'}</td></tr>
+                  <tr><td style="padding:8px 0; font-weight:600;">Phone:</td><td>${phone || "Not provided"}</td></tr>
                   <tr><td style="padding:8px 0; font-weight:600;">Subject:</td><td>${subject}</td></tr>
                 </table>
                 <hr style="margin: 16px 0; border-color: #e2e8f0;">
                 <p style="font-weight:600; margin-bottom:8px;">Message:</p>
-                <p style="background:#f8fafc; padding:16px; border-radius:8px; border-left:4px solid #06B6D4;">${message.replace(/\n/g, '<br>')}</p>
+                <p style="background:#f8fafc; padding:16px; border-radius:8px; border-left:4px solid #06B6D4;">${message.replace(/\n/g, "<br>")}</p>
                 <p style="margin-top:24px; color:#64748b; font-size:14px;">Submitted from maid-to-clean.vercel.app/contact.html</p>
               </body>
               </html>
-            `
-          })
+            `,
+              }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+              throw new Error(data.error || "Failed to send message");
+            }
+
+            showToast(
+              "Message sent! We'll get back to you within 1 business day.",
+              "success",
+            );
+            e.target.reset();
+          } catch (err) {
+            console.error("Contact form error:", err);
+            // Graceful fallback — direct contact info is visible on the page
+            showToast(
+              "Could not send message. Please call (334) 425-4566 or email us directly.",
+              "error",
+            );
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML =
+              '<i class="ph-duotone ph-paper-plane-tilt"></i> Send Message';
+          }
         });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.error || 'Failed to send message');
-        }
-
-        showToast("Message sent! We'll get back to you within 1 business day.", 'success');
-        e.target.reset();
-
-      } catch (err) {
-        console.error('Contact form error:', err);
-        // Graceful fallback — direct contact info is visible on the page
-        showToast('Could not send message. Please call (334) 425-4566 or email us directly.', 'error');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="ph-duotone ph-paper-plane-tilt"></i> Send Message';
-      }
-    });
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>

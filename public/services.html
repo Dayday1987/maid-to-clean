@@ -1,203 +1,365 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Professional cleaning services in Montgomery AL - Deep Cleaning, Standard Cleaning, Move-In/Out, Office, Commercial, Post-Construction and Custom Solutions.">
-  <title>Our Services | Maid To Clean</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Professional cleaning services in Montgomery AL - Deep Cleaning, Standard Cleaning, Move-In/Out, Office, Commercial, Post-Construction and Custom Solutions."
+    />
+    <title>Our Services | Maid To Clean</title>
 
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/navbar.css">
-  <link rel="stylesheet" href="/assets/css/responsive.css">
-  
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="/assets/js/api-config.js"></script>
-  <script defer src="/assets/js/auth.js"></script>
-  <script defer src="/assets/js/load-navbar.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-  <div id="navbar"></div>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/load-navbar.js"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
 
-  <!-- Services Hero -->
-  <section class="services-hero">
-    <div class="container">
-      <h1>Our Services</h1>
-      <p>Professional cleaning solutions tailored to your needs. Serving Montgomery and the River Region.</p>
-    </div>
-  </section>
+    <!-- Services Hero -->
+    <section class="services-hero">
+      <div class="container">
+        <h1>Our Services</h1>
+        <p>
+          Professional cleaning solutions tailored to your needs. Serving
+          Montgomery and the River Region.
+        </p>
+      </div>
+    </section>
 
-  <!-- Services Grid -->
-  <section class="services-grid-section">
-    <div class="container">
-      <h2>Choose Your Service</h2>
-      
-      <div class="grid grid-3">
-        <!-- Deep Cleaning: fixed image path -->
-        <div class="service-detail-card">
-          <img src="/assets/images/deepc-lean.png" alt="Deep Cleaning">
-          <div class="service-detail-card-body">
-            <h3>Deep Cleaning</h3>
-            <p>Our most thorough cleaning service. We reach every corner, scrub every surface, and leave your home immaculately refreshed from top to bottom.</p>
+    <!-- Services Grid -->
+    <section class="services-grid-section">
+      <div class="container">
+        <h2>Choose Your Service</h2>
+
+        <div class="grid grid-3">
+          <!-- Deep Cleaning: fixed image path -->
+          <div class="service-detail-card">
+            <img src="/assets/images/deepc-lean.png" alt="Deep Cleaning" />
+            <div class="service-detail-card-body">
+              <h3>Deep Cleaning</h3>
+              <p>
+                Our most thorough cleaning service. We reach every corner, scrub
+                every surface, and leave your home immaculately refreshed from
+                top to bottom.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <!-- Standard Cleaning -->
-        <div class="service-detail-card">
-          <img src="/assets/images/livingroom.png" alt="Standard Cleaning">
-          <div class="service-detail-card-body">
-            <h3>Standard Cleaning</h3>
-            <p>Regular maintenance cleaning to keep your home consistently fresh and welcoming. Perfect for weekly, bi-weekly, or monthly scheduling.</p>
+          <!-- Standard Cleaning -->
+          <div class="service-detail-card">
+            <img src="/assets/images/livingroom.png" alt="Standard Cleaning" />
+            <div class="service-detail-card-body">
+              <h3>Standard Cleaning</h3>
+              <p>
+                Regular maintenance cleaning to keep your home consistently
+                fresh and welcoming. Perfect for weekly, bi-weekly, or monthly
+                scheduling.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <!-- Move In/Out -->
-        <div class="service-detail-card">
-          <img src="/assets/images/move-in-out.png" alt="Move In/Out Cleaning">
-          <div class="service-detail-card-body">
-            <h3>Move-In/Out Cleaning</h3>
-            <p>Perfect for transitions. Whether moving into a new home or preparing to hand over keys, we ensure every space is spotless and ready.</p>
+          <!-- Move In/Out -->
+          <div class="service-detail-card">
+            <img
+              src="/assets/images/move-in-out.png"
+              alt="Move In/Out Cleaning"
+            />
+            <div class="service-detail-card-body">
+              <h3>Move-In/Out Cleaning</h3>
+              <p>
+                Perfect for transitions. Whether moving into a new home or
+                preparing to hand over keys, we ensure every space is spotless
+                and ready.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <!-- Office Cleaning -->
-        <div class="service-detail-card">
-          <img src="/assets/images/small-office.png" alt="Office Cleaning">
-          <div class="service-detail-card-body">
-            <h3>Office Cleaning</h3>
-            <p>Professional workspace cleaning to keep your business environment productive, healthy, and impressive for clients and employees.</p>
+          <!-- Office Cleaning -->
+          <div class="service-detail-card">
+            <img src="/assets/images/small-office.png" alt="Office Cleaning" />
+            <div class="service-detail-card-body">
+              <h3>Office Cleaning</h3>
+              <p>
+                Professional workspace cleaning to keep your business
+                environment productive, healthy, and impressive for clients and
+                employees.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <!-- Commercial -->
-        <div class="service-detail-card">
-          <img src="/assets/images/commercial-office.jpeg" alt="Commercial Cleaning">
-          <div class="service-detail-card-body">
-            <h3>Commercial Cleaning</h3>
-            <p>Comprehensive cleaning solutions for businesses of all sizes. Maintain a pristine environment that reflects your professional standards.</p>
+          <!-- Commercial -->
+          <div class="service-detail-card">
+            <img
+              src="/assets/images/commercial-office.jpeg"
+              alt="Commercial Cleaning"
+            />
+            <div class="service-detail-card-body">
+              <h3>Commercial Cleaning</h3>
+              <p>
+                Comprehensive cleaning solutions for businesses of all sizes.
+                Maintain a pristine environment that reflects your professional
+                standards.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <!-- Post-Construction -->
-        <div class="service-detail-card">
-          <img src="/assets/images/construction-site.jpeg" alt="Post-Construction Cleaning">
-          <div class="service-detail-card-body">
-            <h3>Post-Construction</h3>
-            <p>Specialized cleaning after renovations or construction. We remove dust, debris, and residue to reveal your beautifully finished space.</p>
+          <!-- Post-Construction -->
+          <div class="service-detail-card">
+            <img
+              src="/assets/images/construction-site.jpeg"
+              alt="Post-Construction Cleaning"
+            />
+            <div class="service-detail-card-body">
+              <h3>Post-Construction</h3>
+              <p>
+                Specialized cleaning after renovations or construction. We
+                remove dust, debris, and residue to reveal your beautifully
+                finished space.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <!-- Custom Solutions -->
-        <div class="service-detail-card">
-          <img src="/assets/images/custom-list.png" alt="Custom Cleaning Solutions">
-          <div class="service-detail-card-body">
-            <h3>Custom Solutions</h3>
-            <p>Create your own cleaning package. Select specific rooms, appliances, and tasks—we'll tailor our service to exactly what you need.</p>
+          <!-- Custom Solutions -->
+          <div class="service-detail-card">
+            <img
+              src="/assets/images/custom-list.png"
+              alt="Custom Cleaning Solutions"
+            />
+            <div class="service-detail-card-body">
+              <h3>Custom Solutions</h3>
+              <p>
+                Create your own cleaning package. Select specific rooms,
+                appliances, and tasks—we'll tailor our service to exactly what
+                you need.
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Add-Ons Section -->
-  <section style="background: var(--surface);">
-    <div class="container">
-      <h2 class="text-center mb-6">Popular Add-Ons</h2>
-      <div class="grid grid-4">
-        <div class="card text-center">
-          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-oven"></i></div>
-          <h4>Oven Cleaning</h4>
-          <p style="font-size:0.875rem; color:var(--accent); font-weight:600;">+$35</p>
-        </div>
-        <div class="card text-center">
-          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-snowflake"></i></div>
-          <h4>Refrigerator Cleaning</h4>
-          <p style="font-size:0.875rem; color:var(--accent); font-weight:600;">+$40</p>
-        </div>
-        <div class="card text-center">
-          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-window"></i></div>
-          <h4>Interior Windows</h4>
-          <p style="font-size:0.875rem; color:var(--accent); font-weight:600;">+$30</p>
-        </div>
-        <div class="card text-center">
-          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-t-shirt"></i></div>
-          <h4>Laundry Service</h4>
-          <p style="font-size:0.875rem; color:var(--accent); font-weight:600;">+$25</p>
-        </div>
-        <div class="card text-center">
-          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-archive-box"></i></div>
-          <h4>Cabinet Organization</h4>
-          <p style="font-size:0.875rem; color:var(--accent); font-weight:600;">+$45</p>
-        </div>
-        <div class="card text-center">
-          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-paint-brush"></i></div>
-          <h4>Baseboards</h4>
-          <p style="font-size:0.875rem; color:var(--accent); font-weight:600;">+$20</p>
-        </div>
-        <div class="card text-center">
-          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-fan"></i></div>
-          <h4>Ceiling Fans</h4>
-          <p style="font-size:0.875rem; color:var(--accent); font-weight:600;">+$15</p>
-        </div>
-        <div class="card text-center">
-          <div class="card-icon" style="margin: 0 auto 1rem;"><i class="ph-duotone ph-rows"></i></div>
-          <h4>Blinds Cleaning</h4>
-          <p style="font-size:0.875rem; color:var(--accent); font-weight:600;">+$35</p>
+    <!-- Add-Ons Section -->
+    <section style="background: var(--surface)">
+      <div class="container">
+        <h2 class="text-center mb-6">Popular Add-Ons</h2>
+        <div class="grid grid-4">
+          <div class="card text-center">
+            <div class="card-icon" style="margin: 0 auto 1rem">
+              <i class="ph-duotone ph-oven"></i>
+            </div>
+            <h4>Oven Cleaning</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              +$35
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="card-icon" style="margin: 0 auto 1rem">
+              <i class="ph-duotone ph-snowflake"></i>
+            </div>
+            <h4>Refrigerator Cleaning</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              +$40
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="card-icon" style="margin: 0 auto 1rem">
+              <i class="ph-duotone ph-window"></i>
+            </div>
+            <h4>Interior Windows</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              +$30
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="card-icon" style="margin: 0 auto 1rem">
+              <i class="ph-duotone ph-t-shirt"></i>
+            </div>
+            <h4>Laundry Service</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              +$25
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="card-icon" style="margin: 0 auto 1rem">
+              <i class="ph-duotone ph-archive-box"></i>
+            </div>
+            <h4>Cabinet Organization</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              +$45
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="card-icon" style="margin: 0 auto 1rem">
+              <i class="ph-duotone ph-paint-brush"></i>
+            </div>
+            <h4>Baseboards</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              +$20
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="card-icon" style="margin: 0 auto 1rem">
+              <i class="ph-duotone ph-fan"></i>
+            </div>
+            <h4>Ceiling Fans</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              +$15
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="card-icon" style="margin: 0 auto 1rem">
+              <i class="ph-duotone ph-rows"></i>
+            </div>
+            <h4>Blinds Cleaning</h4>
+            <p
+              style="
+                font-size: 0.875rem;
+                color: var(--accent);
+                font-weight: 600;
+              "
+            >
+              +$35
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Service Area -->
-  <section style="background: var(--background);">
-    <div class="container text-center">
-      <h2>Service Area</h2>
-      <p style="font-size: 1.125rem; color: var(--secondary); margin-bottom: 1rem;">Proudly serving the River Region</p>
-      <p style="color: var(--secondary);">Montgomery AL • Prattville AL • Wetumpka AL • Hope Hull AL • Tallassee AL</p>
-    </div>
-  </section>
+    <!-- Service Area -->
+    <section style="background: var(--background)">
+      <div class="container text-center">
+        <h2>Service Area</h2>
+        <p
+          style="
+            font-size: 1.125rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+          "
+        >
+          Proudly serving the River Region
+        </p>
+        <p style="color: var(--secondary)">
+          Montgomery AL • Prattville AL • Wetumpka AL • Hope Hull AL • Tallassee
+          AL
+        </p>
+      </div>
+    </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="container">
-      <h2>Ready to Experience the Difference?</h2>
-      <p>Book your cleaning service today and see why our clients trust us with their homes and offices.</p>
-      <div class="hero-buttons">
-        <a href="/register.html" class="btn btn-primary btn-lg" data-testid="services-book-btn">
-          <i class="ph-duotone ph-calendar-check"></i>
-          Book Now
-        </a>
-        <a href="/contact.html" class="btn btn-outline btn-lg" data-testid="services-contact-btn">
-          <i class="ph-duotone ph-chat-circle-dots"></i>
-          Get a Quote
-        </a>
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Experience the Difference?</h2>
+        <p>
+          Book your cleaning service today and see why our clients trust us with
+          their homes and offices.
+        </p>
+        <div class="hero-buttons">
+          <a
+            href="/register.html"
+            class="btn btn-primary btn-lg"
+            data-testid="services-book-btn"
+          >
+            <i class="ph-duotone ph-calendar-check"></i>
+            Book Now
+          </a>
+          <a
+            href="/contact.html"
+            class="btn btn-outline btn-lg"
+            data-testid="services-contact-btn"
+          >
+            <i class="ph-duotone ph-chat-circle-dots"></i>
+            Get a Quote
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Maid To Clean</h4>
-        <p>Polishing homes, empowering communities, and building relationships that last.</p>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Maid To Clean</h4>
+          <p>
+            Polishing homes, empowering communities, and building relationships
+            that last.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="/about.html">About Us</a>
+          <a href="/services.html">Services</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Service Areas</h4>
+          <p>Montgomery AL</p>
+          <p>Prattville AL</p>
+          <p>Wetumpka AL</p>
+          <p>Hope Hull AL</p>
+          <p>Tallassee AL</p>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p><a href="tel:+13344254566">(334) 425-4566</a></p>
+          <p>
+            <a href="mailto:stephanie.maidtoclean@gmail.com"
+              >stephanie.maidtoclean@gmail.com</a
+            >
+          </p>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <a href="/about.html">About Us</a>
-        <a href="/services.html">Services</a>
-        <a href="/contact.html">Contact</a>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Maid To Clean. All rights reserved.</p>
       </div>
-      <div class="footer-col">
-        <h4>Service Areas</h4>
-        <p>Montgomery AL</p>
-        <p>Prattville AL</p>
-        <p>Wetumpka AL</p>
-        <p>Hope Hull AL</p>
-        <p>Tallassee AL</p>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <p><a href="tel:+13344254566">(334) 425-4566</a></p>
-        <p><a href="/cdn-cgi/l/email-protection#9cefe8f9ecf4fdf2f5f9b2f1fdf5f8e8f3fff0f9fdf2dcfbf1fdf5f0b2fff3f1"><span class="__cf_email__" data-cfemail="314245544159505f58541f5c505855455e525d54505f71565c50585d1f525e5c">[email&#160;protected]</span></a></p
+    </footer>
+  </body>
+</html>
