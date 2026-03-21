@@ -1,64 +1,22 @@
 <nav class="navbar" id="mainNav">
   <div class="nav-container">
-    <a href="/index.html" class="logo" data-testid="logo-link">
-      <img
-        src="/assets/images/new-logo.png"
-        alt="Maid To Clean Logo"
-        class="logo-img"
-      />
+    <a href="/" class="logo">
+      <img src="..." class="logo-img" />
+      <span class="logo-text">Maid 2 Clean</span>
     </a>
-    <button
-      class="hamburger"
-      id="hamburger"
-      aria-label="Toggle menu"
-      aria-expanded="false"
-      data-testid="hamburger-btn"
-    >
-      <span></span>
-      <span></span>
-    </button>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/about.html">About</a></li>
-      <li><a href="/services.html">Services</a></li>
-      <li><a href="/contact.html">Contact</a></li>
 
-      <li class="customer-only">
-        <a href="/dashboard/dashboard.html" data-testid="nav-dashboard-link">
-          <i class="ph-duotone ph-house-line"></i> Dashboard
-        </a>
-      </li>
-      <li class="customer-only">
-        <a href="/dashboard/schedule.html" data-testid="nav-schedule-link">
-          <i class="ph-duotone ph-calendar"></i> Schedule
-        </a>
-      </li>
-      <li class="customer-only">
-        <a href="/dashboard/payments.html" data-testid="nav-payments-link">
-          <i class="ph-duotone ph-credit-card"></i> Payments
-        </a>
-      </li>
-      <li class="admin-only">
-        <a href="/admin/admin-dashboard.html" data-testid="nav-admin-link">
-          <i class="ph-duotone ph-gear-six"></i> Admin
-        </a>
-      </li>
-      <li class="auth-only">
-        <a href="#" id="logoutBtn" data-testid="nav-logout-btn">
-          <i class="ph-duotone ph-sign-out"></i> Logout
-        </a>
-      </li>
+    <!-- LEFT SIDE -->
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
+
+    <!-- RIGHT SIDE -->
     <div class="nav-actions">
-      <a href="/login.html" class="guest-only" data-testid="nav-login-link"
-        >Login</a
-      >
-      <a
-        href="/register.html"
-        class="guest-only nav-cta"
-        data-testid="nav-register-link"
-        >Book Now</a
-      >
+      <a href="#">Login</a>
+      <a href="#" class="cta">Book Now</a>
     </div>
   </div>
 </nav>

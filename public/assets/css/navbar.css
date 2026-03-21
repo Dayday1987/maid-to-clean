@@ -61,7 +61,7 @@
   list-style: none;
   gap: 0.75rem;
   align-items: center;
-  margin-left: 0; /* ⬅️ controlled spacing */
+  margin-left: auto;
 }
 
 .nav-links li {
@@ -219,4 +219,27 @@
   .logo-img {
     height: 36px;
   }
+}
+
+.nav-actions {
+  margin-left: auto; /* ⬅️ pushes ONLY this group right */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-actions a {
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--secondary);
+  padding: 0.5rem 0.75rem;
+}
+
+.nav-actions .cta {
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
 }
