@@ -25,214 +25,218 @@
     <div id="navbar"></div>
 
     <!-- Hero Section -->
-     <main
-    <section class="hero">
-      <img
-        src="/assets/images/livingroom.png"
-        alt="Clean modern living room"
-        class="hero-bg"
-      />
-      <div class="hero-content">
-        <h1>Professional Cleaning You Can Count On</h1>
-        <p>
-          Serving Montgomery and the River Region with integrity, attention to
-          detail, and a spotless result every time.
-        </p>
-        <div class="hero-buttons">
+    <main>
+      <section class="hero">
+        <img
+          src="/assets/images/livingroom.png"
+          alt="Clean modern living room"
+          class="hero-bg"
+        />
+        <div class="hero-content">
+          <h1>Professional Cleaning You Can Count On</h1>
+          <p>
+            Serving Montgomery and the River Region with integrity, attention to
+            detail, and a spotless result every time.
+          </p>
+          <div class="hero-buttons">
+            <a
+              href="/register.html"
+              class="btn btn-primary btn-lg"
+              data-testid="hero-book-btn"
+            >
+              <i class="ph-duotone ph-calendar-check"></i>
+              Book Today
+            </a>
+            <a
+              href="/services.html"
+              class="btn btn-outline btn-lg"
+              data-testid="hero-services-btn"
+            >
+              <i class="ph-duotone ph-sparkle"></i>
+              View Services
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Preview -->
+      <section class="services-preview">
+        <div class="container">
+          <h2>Our Services</h2>
+          <div class="grid grid-3" id="servicesGrid">
+            <!-- Service Card 1: fixed image path deepc-lean.png -->
+            <div class="service-card">
+              <img
+                src="/assets/images/deepc-lean.png"
+                alt="Deep Cleaning Service"
+                class="service-card-image"
+              />
+              <div class="service-card-content">
+                <h3>Deep Cleaning</h3>
+                <p>
+                  Comprehensive cleaning that reaches every corner, leaving your
+                  space immaculately refreshed.
+                </p>
+              </div>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="service-card">
+              <img
+                src="/assets/images/livingroom.png"
+                alt="Standard Cleaning"
+                class="service-card-image"
+              />
+              <div class="service-card-content">
+                <h3>Standard Cleaning</h3>
+                <p>
+                  Regular maintenance cleaning to keep your home fresh and
+                  welcoming every day.
+                </p>
+              </div>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="service-card">
+              <img
+                src="/assets/images/move-in-out.png"
+                alt="Move In/Out Cleaning"
+                class="service-card-image"
+              />
+              <div class="service-card-content">
+                <h3>Move-In/Out</h3>
+                <p>
+                  Perfect for transitions—ensure your new home is spotless or
+                  leave your old one pristine.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-8">
+            <a
+              href="/services.html"
+              class="btn btn-secondary"
+              data-testid="view-all-services-btn"
+            >
+              View All Services
+              <i class="ph-duotone ph-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us -->
+      <section class="why-us">
+        <div class="container">
+          <h2>Why Clients Choose Maid To Clean</h2>
+          <div class="why-us-grid">
+            <div class="why-us-item">
+              <div class="icon"><i class="ph-duotone ph-heart"></i></div>
+              <h4>People Over Profit</h4>
+              <p>
+                We measure success by the strength of our relationships and the
+                smiles on our clients' faces.
+              </p>
+            </div>
+            <div class="why-us-item">
+              <div class="icon"><i class="ph-duotone ph-shield-check"></i></div>
+              <h4>Uncompromising Integrity</h4>
+              <p>
+                Honesty and transparency are at the heart of every visit. Your
+                trust is our priority.
+              </p>
+            </div>
+            <div class="why-us-item">
+              <div class="icon"><i class="ph-duotone ph-users-three"></i></div>
+              <h4>Community-Centric</h4>
+              <p>
+                We don't just work here; we live here. Proudly serving
+                Montgomery and the River Region.
+              </p>
+            </div>
+            <div class="why-us-item">
+              <div class="icon"><i class="ph-duotone ph-star-four"></i></div>
+              <h4>The Stephanie Standard</h4>
+              <p>
+                Every task done with the same grit, detail, and dedication that
+                started it all.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service Areas -->
+      <section style="background: var(--background)">
+        <div class="container text-center">
+          <h2>Proudly Serving the River Region</h2>
+          <p
+            style="
+              font-size: 1.125rem;
+              color: var(--secondary);
+              margin-bottom: 2rem;
+            "
+          >
+            Montgomery AL • Prattville AL • Wetumpka AL • Hope Hull AL •
+            Tallassee AL
+          </p>
+          <a href="/contact.html" class="btn btn-secondary">
+            <i class="ph-duotone ph-map-pin"></i>
+            Check Service Area
+          </a>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta-section">
+        <div class="container">
+          <h2>Experience the Maid To Clean Difference</h2>
+          <p>
+            Join our family of satisfied clients and discover what happens when
+            integrity meets excellence. We're more than a service; we're your
+            neighbors, and we're here to help.
+          </p>
           <a
             href="/register.html"
             class="btn btn-primary btn-lg"
-            data-testid="hero-book-btn"
+            data-testid="cta-register-btn"
           >
-            <i class="ph-duotone ph-calendar-check"></i>
-            Book Today
-          </a>
-          <a
-            href="/services.html"
-            class="btn btn-outline btn-lg"
-            data-testid="hero-services-btn"
-          >
-            <i class="ph-duotone ph-sparkle"></i>
-            View Services
+            <i class="ph-duotone ph-user-plus"></i>
+            Connect With Us Today
           </a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Services Preview -->
-    <section class="services-preview">
-      <div class="container">
-        <h2>Our Services</h2>
-        <div class="grid grid-3" id="servicesGrid">
-          <!-- Service Card 1: fixed image path deepc-lean.png -->
-          <div class="service-card">
-            <img
-              src="/assets/images/deepc-lean.png"
-              alt="Deep Cleaning Service"
-              class="service-card-image"
-            />
-            <div class="service-card-content">
-              <h3>Deep Cleaning</h3>
-              <p>
-                Comprehensive cleaning that reaches every corner, leaving your
-                space immaculately refreshed.
-              </p>
-            </div>
-          </div>
+      <!-- Contact Preview -->
+      <!-- Contact Preview / Ready to Schedule -->
+      <section class="contact-cta">
+        <div class="container">
+          <h2>Ready to Schedule?</h2>
 
-          <!-- Service Card 2 -->
-          <div class="service-card">
-            <img
-              src="/assets/images/livingroom.png"
-              alt="Standard Cleaning"
-              class="service-card-image"
-            />
-            <div class="service-card-content">
-              <h3>Standard Cleaning</h3>
-              <p>
-                Regular maintenance cleaning to keep your home fresh and
-                welcoming every day.
-              </p>
-            </div>
-          </div>
+          <p>
+            <i class="ph-duotone ph-phone"></i>
+            <a href="tel:+13344254566">(334) 425-4566</a>
+          </p>
 
-          <!-- Service Card 3 -->
-          <div class="service-card">
-            <img
-              src="/assets/images/move-in-out.png"
-              alt="Move In/Out Cleaning"
-              class="service-card-image"
-            />
-            <div class="service-card-content">
-              <h3>Move-In/Out</h3>
-              <p>
-                Perfect for transitions—ensure your new home is spotless or
-                leave your old one pristine.
-              </p>
-            </div>
+          <p>
+            <i class="ph-duotone ph-envelope"></i>
+            <a href="mailto:stephanie.maidtoclean@gmail.com">
+              stephanie.maidtoclean@gmail.com
+            </a>
+          </p>
+
+          <div class="mt-6">
+            <a
+              href="/contact.html"
+              class="btn btn-secondary"
+              data-testid="contact-btn"
+            >
+              Get In Touch
+              <i class="ph-duotone ph-arrow-right"></i>
+            </a>
           </div>
         </div>
-        <div class="text-center mt-8">
-          <a
-            href="/services.html"
-            class="btn btn-secondary"
-            data-testid="view-all-services-btn"
-          >
-            View All Services
-            <i class="ph-duotone ph-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="why-us">
-      <div class="container">
-        <h2>Why Clients Choose Maid To Clean</h2>
-        <div class="why-us-grid">
-          <div class="why-us-item">
-            <div class="icon"><i class="ph-duotone ph-heart"></i></div>
-            <h4>People Over Profit</h4>
-            <p>
-              We measure success by the strength of our relationships and the
-              smiles on our clients' faces.
-            </p>
-          </div>
-          <div class="why-us-item">
-            <div class="icon"><i class="ph-duotone ph-shield-check"></i></div>
-            <h4>Uncompromising Integrity</h4>
-            <p>
-              Honesty and transparency are at the heart of every visit. Your
-              trust is our priority.
-            </p>
-          </div>
-          <div class="why-us-item">
-            <div class="icon"><i class="ph-duotone ph-users-three"></i></div>
-            <h4>Community-Centric</h4>
-            <p>
-              We don't just work here; we live here. Proudly serving Montgomery
-              and the River Region.
-            </p>
-          </div>
-          <div class="why-us-item">
-            <div class="icon"><i class="ph-duotone ph-star-four"></i></div>
-            <h4>The Stephanie Standard</h4>
-            <p>
-              Every task done with the same grit, detail, and dedication that
-              started it all.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Service Areas -->
-    <section style="background: var(--background)">
-      <div class="container text-center">
-        <h2>Proudly Serving the River Region</h2>
-        <p
-          style="
-            font-size: 1.125rem;
-            color: var(--secondary);
-            margin-bottom: 2rem;
-          "
-        >
-          Montgomery AL • Prattville AL • Wetumpka AL • Hope Hull AL • Tallassee
-          AL
-        </p>
-        <a href="/contact.html" class="btn btn-secondary">
-          <i class="ph-duotone ph-map-pin"></i>
-          Check Service Area
-        </a>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>Experience the Maid To Clean Difference</h2>
-        <p>
-          Join our family of satisfied clients and discover what happens when
-          integrity meets excellence. We're more than a service; we're your
-          neighbors, and we're here to help.
-        </p>
-        <a
-          href="/register.html"
-          class="btn btn-primary btn-lg"
-          data-testid="cta-register-btn"
-        >
-          <i class="ph-duotone ph-user-plus"></i>
-          Connect With Us Today
-        </a>
-      </div>
-    </section>
-
-    <!-- Contact Preview -->
-    <!-- Contact Preview / Ready to Schedule -->
-<section class="contact-cta">
-  <div class="container">
-    <h2>Ready to Schedule?</h2>
-
-    <p>
-      <i class="ph-duotone ph-phone"></i>
-      <a href="tel:+13344254566">(334) 425-4566</a>
-    </p>
-
-    <p>
-      <i class="ph-duotone ph-envelope"></i>
-      <a href="mailto:stephanie.maidtoclean@gmail.com">
-        stephanie.maidtoclean@gmail.com
-      </a>
-    </p>
-
-    <div class="mt-6">
-      <a href="/contact.html" class="btn btn-secondary" data-testid="contact-btn">
-        Get In Touch
-        <i class="ph-duotone ph-arrow-right"></i>
-      </a>
-    </div>
-  </div>
-</section>
+      </section>
     </main>
 
     <!-- Footer -->
