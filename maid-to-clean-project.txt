@@ -64,23 +64,23 @@ public/assets/css/load-navbar.css
 public/assets/css/main.css
 public/assets/css/navbar.css
 public/assets/css/responsive.css
-public/assets/images/bathroom.jpeg
-public/assets/images/commercial-office.jpeg
-public/assets/images/construction-site.jpeg
-public/assets/images/custom-list.png
-public/assets/images/deepc-lean.png
-public/assets/images/desk.jpeg
+public/assets/images/bathroom.webp
+public/assets/images/commercial-office.webp
+public/assets/images/construction-site.webp
+public/assets/images/custom-list.webp
+public/assets/images/deepc-lean.webp
+public/assets/images/desk.webp
 public/assets/images/hero-placeholder.jpg
-public/assets/images/kitchen.jpeg
-public/assets/images/livingroom.png
-public/assets/images/Look-like-you-need-cleaning.PNG
-public/assets/images/move-in-out.png
-public/assets/images/Need-cleaning-lady.PNG
-public/assets/images/new-construction.jpeg
-public/assets/images/new-logo.png
-public/assets/images/profilepic.jpeg
-public/assets/images/small-office.png
-public/assets/images/stairs.jpeg
+public/assets/images/kitchen.webp
+public/assets/images/livingroom.webp
+public/assets/images/Look-like-you-need-cleaning.webp
+public/assets/images/move-in-out.webp
+public/assets/images/Need-cleaning-lady.webp
+public/assets/images/new-construction.webp
+public/assets/images/new-logo.webp
+public/assets/images/profilepic.webp
+public/assets/images/small-office.webp
+public/assets/images/stairs.webp
 public/assets/js/api-config.js
 public/assets/js/auth.js
 public/assets/js/dashboard-protect.js
@@ -6362,7 +6362,7 @@ ON CONFLICT DO NOTHING;
     <div class="container">
       <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center;">
         <div>
-          <img src="/assets/images/profilepic.jpeg" alt="Stephanie Kirkley - Owner of Maid To Clean" style="border-radius: var(--radius-lg); width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+          <img src="/assets/images/profilepic.webp" alt="Stephanie Kirkley - Owner of Maid To Clean" style="border-radius: var(--radius-lg); width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
         </div>
         <div>
           <h2>Meet Stephanie Kirkley</h2>
@@ -6826,7 +6826,7 @@ if (typeof Stripe !== 'undefined') {
 <nav class="navbar" id="mainNav">
   <div class="nav-container">
     <a href="/index.html" class="logo" data-testid="logo-link">
-      <img src="/assets/images/new-logo.png" alt="Maid To Clean Logo" class="logo-img">
+      <img src="/assets/images/new-logo.webp" alt="Maid To Clean Logo" class="logo-img">
       <span class="logo-text">Maid To Clean</span>
     </a>
 
@@ -7473,7 +7473,7 @@ if (typeof Stripe !== 'undefined') {
   <!-- Hero Section -->
   <section class="hero">
     <img 
-      src="/assets/images/livingroom.png" 
+      src="/assets/images/livingroom.webp" 
       alt="Clean modern living room" 
       class="hero-bg"
     >
@@ -7500,7 +7500,7 @@ if (typeof Stripe !== 'undefined') {
       <div class="grid grid-3" id="servicesGrid">
         <!-- Service Card 1 -->
         <div class="service-card">
-          <img src="/assets/images/deep-clean.png" alt="Deep Cleaning Service" class="service-card-image">
+          <img src="/assets/images/deep-clean.webp" alt="Deep Cleaning Service" class="service-card-image">
           <div class="service-card-content">
             <h3>Deep Cleaning</h3>
             <p>Comprehensive cleaning that reaches every corner, leaving your space immaculately refreshed.</p>
@@ -7509,7 +7509,7 @@ if (typeof Stripe !== 'undefined') {
 
         <!-- Service Card 2 -->
         <div class="service-card">
-          <img src="/assets/images/livingroom.png" alt="Standard Cleaning" class="service-card-image">
+          <img src="/assets/images/livingroom.webp" alt="Standard Cleaning" class="service-card-image">
           <div class="service-card-content">
             <h3>Standard Cleaning</h3>
             <p>Regular maintenance cleaning to keep your home fresh and welcoming every day.</p>
@@ -7518,7 +7518,7 @@ if (typeof Stripe !== 'undefined') {
 
         <!-- Service Card 3 -->
         <div class="service-card">
-          <img src="/assets/images/move-in-out.png" alt="Move In/Out Cleaning" class="service-card-image">
+          <img src="/assets/images/move-in-out.webp" alt="Move In/Out Cleaning" class="service-card-image">
           <div class="service-card-content">
             <h3>Move-In/Out</h3>
             <p>Perfect for transitions—ensure your new home is spotless or leave your old one pristine.</p>
@@ -7902,7 +7902,7 @@ if (typeof Stripe !== 'undefined') {
       <div class="grid grid-3">
         <!-- Deep Cleaning -->
         <div class="service-detail-card">
-          <img src="/assets/images/deep-clean.png" alt="Deep Cleaning">
+          <img src="/assets/images/deep-clean.webp" alt="Deep Cleaning">
           <div class="service-detail-card-body">
             <h3>Deep Cleaning</h3>
             <p>Our most thorough cleaning service. We reach every corner, scrub every surface, and leave your home immaculately refreshed from top to bottom.</p>
@@ -7911,7 +7911,7 @@ if (typeof Stripe !== 'undefined') {
 
         <!-- Standard Cleaning -->
         <div class="service-detail-card">
-          <img src="/assets/images/livingroom.png" alt="Standard Cleaning">
+          <img src="/assets/images/livingroom.webp" alt="Standard Cleaning">
           <div class="service-detail-card-body">
             <h3>Standard Cleaning</h3>
             <p>Regular maintenance cleaning to keep your home consistently fresh and welcoming. Perfect for weekly, bi-weekly, or monthly scheduling.</p>
@@ -7920,7 +7920,7 @@ if (typeof Stripe !== 'undefined') {
 
         <!-- Move In/Out -->
         <div class="service-detail-card">
-          <img src="/assets/images/move-in-out.png" alt="Move In/Out Cleaning">
+          <img src="/assets/images/move-in-out.webp" alt="Move In/Out Cleaning">
           <div class="service-detail-card-body">
             <h3>Move-In/Out Cleaning</h3>
             <p>Perfect for transitions. Whether moving into a new home or preparing to hand over keys, we ensure every space is spotless and ready.</p>
@@ -7929,7 +7929,7 @@ if (typeof Stripe !== 'undefined') {
 
         <!-- Office Cleaning -->
         <div class="service-detail-card">
-          <img src="/assets/images/small-office.png" alt="Office Cleaning">
+          <img src="/assets/images/small-office.webp" alt="Office Cleaning">
           <div class="service-detail-card-body">
             <h3>Office Cleaning</h3>
             <p>Professional workspace cleaning to keep your business environment productive, healthy, and impressive for clients and employees.</p>
@@ -7938,7 +7938,7 @@ if (typeof Stripe !== 'undefined') {
 
         <!-- Commercial -->
         <div class="service-detail-card">
-          <img src="/assets/images/commercial-office.jpeg" alt="Commercial Cleaning">
+          <img src="/assets/images/commercial-office.webp" alt="Commercial Cleaning">
           <div class="service-detail-card-body">
             <h3>Commercial Cleaning</h3>
             <p>Comprehensive cleaning solutions for businesses of all sizes. Maintain a pristine environment that reflects your professional standards.</p>
@@ -7947,7 +7947,7 @@ if (typeof Stripe !== 'undefined') {
 
         <!-- Post-Construction -->
         <div class="service-detail-card">
-          <img src="/assets/images/construction-site.jpeg" alt="Post-Construction Cleaning">
+          <img src="/assets/images/construction-site.webp" alt="Post-Construction Cleaning">
           <div class="service-detail-card-body">
             <h3>Post-Construction</h3>
             <p>Specialized cleaning after renovations or construction. We remove dust, debris, and residue to reveal your beautifully finished space.</p>
@@ -7956,7 +7956,7 @@ if (typeof Stripe !== 'undefined') {
 
         <!-- Custom Solutions -->
         <div class="service-detail-card">
-          <img src="/assets/images/custom-list.png" alt="Custom Cleaning Solutions">
+          <img src="/assets/images/custom-list.webp" alt="Custom Cleaning Solutions">
           <div class="service-detail-card-body">
             <h3>Custom Solutions</h3>
             <p>Create your own cleaning package. Select specific rooms, appliances, and tasks—we'll tailor our service to exactly what you need.</p>
