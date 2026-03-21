@@ -68,6 +68,7 @@ body {
   background: var(--background);
   line-height: 1.6;
   overflow-x: hidden;
+  padding-top: 80px;
 }
 
 img {
