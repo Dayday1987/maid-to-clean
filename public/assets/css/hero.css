@@ -7,7 +7,7 @@
 .about-hero,
 .contact-hero {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px); /* accounts for navbar */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,21 +82,10 @@
 /* Specific background images per page */
 .hero {
   background: url("/assets/images/livingroom.webp") center/cover no-repeat;
-  height: 100vh; /* full viewport height */
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3); /* optional overlay for text readability */
 }
 
 .hero-content {
@@ -132,5 +121,14 @@
   .about-hero p,
   .contact-hero p {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .services-hero,
+  .about-hero,
+  .contact-hero {
+    min-height: calc(100vh - 70px); /* smaller navbar */
   }
 }
