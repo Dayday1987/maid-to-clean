@@ -77,9 +77,9 @@ async function updateNavState() {
       const role = await getUserRole();
 
       document.querySelectorAll(".customer-only").forEach((el) => {
-        el.style.display =
-          role === "customer" || role === "admin" ? "block" : "none";
+        el.style.display = role === "customer" ? "block" : "none";
       });
+
       document.querySelectorAll(".admin-only").forEach((el) => {
         el.style.display = role === "admin" ? "block" : "none";
       });
