@@ -1,93 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | Maid To Clean | Montgomery AL</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Maid To Clean | Montgomery AL</title>
 
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/navbar.css">
-  <link rel="stylesheet" href="/assets/css/responsive.css">
-  
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="/assets/js/api-config.js"></script>
-  <script defer src="/assets/js/auth.js"></script>
-  <script defer src="/assets/js/load-navbar.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-  <div id="navbar"></div>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/load-navbar.js"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
 
-  <main class="auth-container">
-    <h1>Welcome Back</h1>
-    
-    <form id="loginForm">
-      <div class="form-group">
-        <label for="loginEmail">Email Address</label>
-        <input type="email" id="loginEmail" placeholder="you@example.com" required data-testid="login-email-input">
+    <main class="auth-container">
+      <h1>Welcome Back</h1>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="you@example.com"
+            required
+            data-testid="login-email-input"
+          />
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password"
+            required
+            data-testid="login-password-input"
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          data-testid="login-submit-btn"
+        >
+          <i class="ph-duotone ph-sign-in"></i>
+          Login
+        </button>
+      </form>
+
+      <div style="text-align: right; margin-top: 0.5rem">
+        <a href="/forgot-password.html" class="forgot-link">
+          Forgot password?
+        </a>
       </div>
-      <div class="form-group">
-        <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" placeholder="Enter your password" required data-testid="login-password-input">
+
+      <div class="auth-link">
+        Don't have an account? <a href="/register.html">Create one</a>
       </div>
-      <button type="submit" class="btn btn-primary" data-testid="login-submit-btn">
-        <i class="ph-duotone ph-sign-in"></i>
-        Login
-      </button>
-    </form>
-    
-    <div class="auth-link">
-      Don't have an account? <a href="/register.html">Create one</a>
-    </div>
-  </main>
+    </main>
 
-  <!-- Toast Container -->
-  <div id="toastContainer" class="toast-container"></div>
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
 
-  <script>
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `
-        <i class="ph-duotone ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+    <script>
+      function showToast(message, type = "info") {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+        <i class="ph-duotone ph-${type === "success" ? "check-circle" : type === "error" ? "x-circle" : "info"}"></i>
         <span>${message}</span>
       `;
-      container.appendChild(toast);
-      setTimeout(() => toast.remove(), 4000);
-    }
-
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const email = document.getElementById('loginEmail').value;
-      const password = document.getElementById('loginPassword').value;
-      const submitBtn = e.target.querySelector('button[type="submit"]');
-      
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="loading"></span> Logging in...';
-      
-      try {
-        await loginUser(email, password);
-        showToast('Login successful! Redirecting...', 'success');
-        
-        // Check role and redirect
-        const role = await getUserRole();
-        setTimeout(() => {
-          if (role === 'admin') {
-            window.location.href = '/admin/admin-dashboard.html';
-          } else {
-            window.location.href = '/dashboard/dashboard.html';
-          }
-        }, 1000);
-      } catch (error) {
-        showToast(error.message || 'Login failed. Please try again.', 'error');
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="ph-duotone ph-sign-in"></i> Login';
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 4000);
       }
-    });
-  </script>
 
-</body>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("loginEmail").value;
+          const password = document.getElementById("loginPassword").value;
+          const submitBtn = e.target.querySelector('button[type="submit"]');
+
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="loading"></span> Logging in...';
+
+          try {
+            await loginUser(email, password);
+            showToast("Login successful! Redirecting...", "success");
+
+            // Check role and redirect
+            const role = await getUserRole();
+            setTimeout(() => {
+              if (role === "admin") {
+                window.location.href = "/admin/admin-dashboard.html";
+              } else {
+                window.location.href = "/dashboard/dashboard.html";
+              }
+            }, 1000);
+          } catch (error) {
+            showToast(
+              error.message || "Login failed. Please try again.",
+              "error",
+            );
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="ph-duotone ph-sign-in"></i> Login';
+          }
+        });
+    </script>
+  </body>
 </html>
