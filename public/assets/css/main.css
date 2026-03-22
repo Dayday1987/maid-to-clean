@@ -546,6 +546,36 @@ textarea {
   resize: vertical;
 }
 
+.password-requirements {
+  margin-top: 0.5rem;
+  background: #1a1a1a20; /* subtle translucent background */
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.password-requirements ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.25rem 0 0 0;
+}
+
+.password-requirements li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: red;
+}
+
+.password-requirements li.valid {
+  color: green;
+}
+
+.password-requirements li i {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
 /* ================================
    AUTH PAGES
 ================================ */
