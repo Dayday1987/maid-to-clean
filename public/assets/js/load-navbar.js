@@ -64,15 +64,24 @@ async function updateNavState() {
     const session = await getSession();
 
     if (session && session.user) {
-      // User is logged in
+      // ✅ LOGGED IN
+
+      // Hide guest links
       document.querySelectorAll(".guest-only").forEach((el) => {
         el.style.display = "none";
       });
+
+      // Show auth links (logout, etc)
       document.querySelectorAll(".auth-only").forEach((el) => {
         el.style.display = "block";
       });
 
-      // Check role for customer/admin links
+      // 🔥 Hide public marketing links
+      document.querySelectorAll(".public-only").forEach((el) => {
+        el.style.display = "none";
+      });
+
+      // Role handling
       const role = await getUserRole();
 
       document.querySelectorAll(".customer-only").forEach((el) => {
@@ -83,24 +92,41 @@ async function updateNavState() {
         el.style.display = role === "admin" ? "block" : "none";
       });
     } else {
-      // User is not logged in
+      // ❌ LOGGED OUT
+
+      // Show guest links
       document.querySelectorAll(".guest-only").forEach((el) => {
         el.style.display = "block";
       });
+
+      // Hide auth links
       document.querySelectorAll(".auth-only").forEach((el) => {
         el.style.display = "none";
       });
+
+      // 🔥 Show public marketing links again
+      document.querySelectorAll(".public-only").forEach((el) => {
+        el.style.display = "block";
+      });
+
+      // Hide dashboard links
       document.querySelectorAll(".customer-only").forEach((el) => {
         el.style.display = "none";
       });
+
       document.querySelectorAll(".admin-only").forEach((el) => {
         el.style.display = "none";
       });
     }
   } catch (error) {
     console.error("Error updating nav state:", error);
-    // Default to guest state on error
+
+    // Safe fallback = logged out view
     document.querySelectorAll(".guest-only").forEach((el) => {
+      el.style.display = "block";
+    });
+
+    document.querySelectorAll(".public-only").forEach((el) => {
       el.style.display = "block";
     });
   }
