@@ -671,7 +671,7 @@ textarea {
    ABOUT PAGE
 ================================ */
 .about-hero {
-  padding: calc(var(--section-spacing) + 80px) 2rem var(--section-spacing);
+  padding: var(--section-spacing) 2rem;
   background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
   text-align: center;
 }
@@ -745,7 +745,7 @@ textarea {
    SERVICES PAGE
 ================================ */
 .services-hero {
-  padding: calc(var(--section-spacing) + 80px) 2rem var(--section-spacing);
+  padding: var(--section-spacing) 2rem;
   background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
   text-align: center;
 }
@@ -823,7 +823,7 @@ textarea {
    CONTACT PAGE
 ================================ */
 .contact-hero {
-  padding: calc(var(--section-spacing) + 80px) 2rem var(--section-spacing);
+  padding: var(--section-spacing) 2rem;
   background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
   text-align: center;
 }
