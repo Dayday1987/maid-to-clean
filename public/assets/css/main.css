@@ -1045,5 +1045,5 @@ textarea {
 body {
   margin: 0;
   padding: 0;
-  padding-top: 80px; /* ⬅️ space for fixed navbar */
+  padding-top: 60px; /* ⬅️ space for fixed navbar */
 }
