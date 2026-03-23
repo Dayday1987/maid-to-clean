@@ -2,11 +2,6 @@
    NAVBAR STYLES (CLEANED)
 ================================ */
 
-/* Reset page gap */
-body {
-  margin: 0;
-}
-
 /* Navbar container */
 .navbar {
   position: fixed;
