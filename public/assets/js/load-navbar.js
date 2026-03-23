@@ -44,7 +44,7 @@ fetch("/components/navbar.html")
     // Add scroll effect to navbar
     let lastScroll = 0;
     window.addEventListener("scroll", () => {
-      const nav = document.getElementById("mainNav");
+      const nav = document.getElementById("navbar");
       const currentScroll = window.pageYOffset;
 
       if (currentScroll > 50) {
