@@ -1,6 +1,9 @@
 /* ================================
    NAVBAR STYLES (CLEANED)
 ================================ */
+body {
+  margin: 0;
+}
 
 /* Navbar container */
 .navbar {
@@ -163,6 +166,7 @@
 
   .navbar {
     position: sticky;
+    top: 0;
     padding: 0 1.5rem;
   }
 
