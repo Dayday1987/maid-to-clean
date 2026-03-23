@@ -68,7 +68,6 @@ body {
   background: var(--background);
   line-height: 1.6;
   overflow-x: hidden;
-  padding-top: 80px;
 }
 
 img {
@@ -1045,5 +1044,5 @@ textarea {
 body {
   margin: 0;
   padding: 0;
-  padding-top: 60px; /* ⬅️ space for fixed navbar */
+  padding-top: 80px; /* match navbar height */
 }
