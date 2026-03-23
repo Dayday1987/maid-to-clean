@@ -1040,3 +1040,10 @@ textarea {
 .footer-col.quick-links a {
   line-height: 1.5;
 }
+
+/* Reset default spacing */
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 80px; /* ⬅️ space for fixed navbar */
+}

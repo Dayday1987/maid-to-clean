@@ -8,13 +8,12 @@ fetch("/components/navbar.html")
     document.getElementById("navbar").innerHTML = html;
 
     // Handle logout button
-    const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", (e) => {
+    document.querySelectorAll(".logoutBtn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
         e.preventDefault();
         logoutUser();
       });
-    }
+    });
 
     // Handle hamburger menu
     const hamburger = document.getElementById("hamburger");

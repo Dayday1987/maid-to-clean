@@ -1,9 +1,12 @@
 <ul id="nav-links" class="nav-links">
-  <!-- Public -->
-  <li><a href="/">Home</a></li>
-  <li><a href="/about.html">About Us</a></li>
+  <!-- LEFT -->
+  <li class="nav-left"><a href="/">Home</a></li>
+  <li><a href="/about.html">About</a></li>
   <li><a href="/services.html">Services</a></li>
   <li><a href="/contact.html">Contact</a></li>
+
+  <!-- RIGHT SIDE GROUP -->
+  <li class="nav-spacer"></li>
 
   <!-- Guest -->
   <li class="guest-only"><a href="/login.html">Login</a></li>
@@ -11,12 +14,13 @@
 
   <!-- Customer Dropdown -->
   <li class="customer-only dropdown" style="display: none">
-    <a href="#">My Account ▾</a>
+    <a href="#">Dashboard ▾</a>
     <ul class="dropdown-menu">
       <li><a href="/dashboard/dashboard.html">Dashboard</a></li>
       <li><a href="/dashboard/schedule.html">Schedule</a></li>
       <li><a href="/dashboard/payments.html">Payments</a></li>
       <li><a href="/dashboard/settings.html">Settings</a></li>
+      <li><a href="#" class="logoutBtn">Logout</a></li>
     </ul>
   </li>
 
@@ -28,11 +32,7 @@
       <li><a href="/admin/admin-customers.html">Customers</a></li>
       <li><a href="/admin/admin-billing.html">Billing</a></li>
       <li><a href="/admin/admin-messages.html">Messages</a></li>
+      <li><a href="#" class="logoutBtn">Logout</a></li>
     </ul>
-  </li>
-
-  <!-- Logout -->
-  <li class="auth-only" style="display: none">
-    <a href="#" id="logoutBtn">Logout</a>
   </li>
 </ul>
