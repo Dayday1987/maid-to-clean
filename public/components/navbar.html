@@ -1,38 +1,44 @@
-<ul id="nav-links" class="nav-links">
-  <!-- LEFT -->
-  <li class="public-only nav-left"><a href="/">Home</a></li>
-  <li class="public-only"><a href="/about.html">About</a></li>
-  <li class="public-only"><a href="/services.html">Services</a></li>
-  <li class="public-only"><a href="/contact.html">Contact</a></li>
+<nav class="navbar" id="mainNav">
+  <div class="nav-container">
+    <a href="/" class="logo">Maid to Clean</a>
 
-  <!-- RIGHT SIDE GROUP -->
-  <li class="nav-spacer"></li>
+    <ul id="nav-links" class="nav-links">
+      <!-- LEFT -->
+      <li class="public-only nav-left"><a href="/">Home</a></li>
+      <li class="public-only"><a href="/about.html">About</a></li>
+      <li class="public-only"><a href="/services.html">Services</a></li>
+      <li class="public-only"><a href="/contact.html">Contact</a></li>
 
-  <!-- Guest -->
-  <li class="guest-only"><a href="/login.html">Login</a></li>
-  <li class="guest-only"><a href="/register.html">Register</a></li>
+      <!-- RIGHT SIDE GROUP -->
+      <li class="nav-spacer"></li>
 
-  <!-- Customer Dropdown -->
-  <li class="customer-only dropdown" style="display: none">
-    <a href="#">Account ▾</a>
-    <ul class="dropdown-menu">
-      <li><a href="/dashboard/dashboard.html">Dashboard</a></li>
-      <li><a href="/dashboard/schedule.html">Schedule</a></li>
-      <li><a href="/dashboard/payments.html">Payments</a></li>
-      <li><a href="/dashboard/settings.html">Settings</a></li>
-      <li><a href="#" class="logoutBtn">Logout</a></li>
+      <!-- Guest -->
+      <li class="guest-only"><a href="/login.html">Login</a></li>
+      <li class="guest-only"><a href="/register.html">Register</a></li>
+
+      <!-- Customer Dropdown -->
+      <li class="customer-only dropdown" style="display: none">
+        <a href="#">Account ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="/dashboard/dashboard.html">Dashboard</a></li>
+          <li><a href="/dashboard/schedule.html">Schedule</a></li>
+          <li><a href="/dashboard/payments.html">Payments</a></li>
+          <li><a href="/dashboard/settings.html">Settings</a></li>
+          <li><a href="#" class="logoutBtn">Logout</a></li>
+        </ul>
+      </li>
+
+      <!-- Admin Dropdown -->
+      <li class="admin-only dropdown" style="display: none">
+        <a href="#">Account ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="/admin/admin-dashboard.html">Dashboard</a></li>
+          <li><a href="/admin/admin-customers.html">Customers</a></li>
+          <li><a href="/admin/admin-billing.html">Billing</a></li>
+          <li><a href="/admin/admin-messages.html">Messages</a></li>
+          <li><a href="#" class="logoutBtn">Logout</a></li>
+        </ul>
+      </li>
     </ul>
-  </li>
-
-  <!-- Admin Dropdown -->
-  <li class="admin-only dropdown" style="display: none">
-    <a href="#">Account ▾</a>
-    <ul class="dropdown-menu">
-      <li><a href="/admin/admin-dashboard.html">Dashboard</a></li>
-      <li><a href="/admin/admin-customers.html">Customers</a></li>
-      <li><a href="/admin/admin-billing.html">Billing</a></li>
-      <li><a href="/admin/admin-messages.html">Messages</a></li>
-      <li><a href="#" class="logoutBtn">Logout</a></li>
-    </ul>
-  </li>
-</ul>
+  </div>
+</nav>
