@@ -1,148 +1,291 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check Your Email | Maid To Clean</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Check Your Email | Maid To Clean</title>
 
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="stylesheet" href="/assets/css/navbar.css">
-  <link rel="stylesheet" href="/assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="/assets/js/api-config.js"></script>
-  <script defer src="/assets/js/auth.js"></script>
-  <script defer src="/assets/js/load-navbar.js"></script>
-</head>
-<body>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/load-navbar.js"></script>
+  </head>
+  <body>
+    <div id="navbar"></div>
 
-  <div id="navbar"></div>
+    <main
+      style="
+        min-height: calc(100vh - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        padding-top: calc(80px + 2rem);
+        background: var(--background);
+      "
+    >
+      <div style="text-align: center; max-width: 520px; width: 100%">
+        <!-- Icon -->
+        <div
+          style="
+            width: 88px;
+            height: 88px;
+            background: linear-gradient(
+              135deg,
+              rgba(6, 182, 212, 0.12) 0%,
+              rgba(59, 130, 246, 0.12) 100%
+            );
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+          "
+        >
+          <i
+            class="ph-duotone ph-envelope-simple-open"
+            style="font-size: 3rem; color: var(--accent)"
+          ></i>
+        </div>
 
-  <main style="min-height: calc(100vh - 80px); display: flex; align-items: center; justify-content: center; padding: 2rem; padding-top: calc(80px + 2rem); background: var(--background);">
-    <div style="text-align: center; max-width: 520px; width: 100%;">
+        <h1 style="margin-bottom: 1rem">Check Your Email</h1>
 
-      <!-- Icon -->
-      <div style="width: 88px; height: 88px; background: linear-gradient(135deg, rgba(6,182,212,0.12) 0%, rgba(59,130,246,0.12) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
-        <i class="ph-duotone ph-envelope-simple-open" style="font-size: 3rem; color: var(--accent);"></i>
-      </div>
+        <p style="font-size: 1.125rem; margin-bottom: 0.75rem">
+          We sent a confirmation link to<br />
+          <strong id="emailDisplay" style="color: var(--primary)"></strong>
+        </p>
 
-      <h1 style="margin-bottom: 1rem;">Check Your Email</h1>
+        <p style="color: var(--secondary); margin-bottom: 2.5rem">
+          Click the link in the email to verify your account, then come back
+          here to log in. If you don't see it, check your spam folder.
+        </p>
 
-      <p style="font-size: 1.125rem; margin-bottom: 0.75rem;">
-        We sent a confirmation link to<br>
-        <strong id="emailDisplay" style="color: var(--primary);"></strong>
-      </p>
-
-      <p style="color: var(--secondary); margin-bottom: 2.5rem;">
-        Click the link in the email to verify your account, then come back here to log in. If you don't see it, check your spam folder.
-      </p>
-
-      <!-- Steps -->
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; text-align: left; margin-bottom: 2rem;">
-        <p style="font-weight: 600; margin-bottom: 1.25rem; color: var(--primary);">What to do next:</p>
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gradient-primary); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 0.875rem; flex-shrink: 0;">1</div>
-            <p style="color: var(--secondary); margin: 0;">Open the email from <strong style="color: var(--primary);">Maid To Clean</strong></p>
-          </div>
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gradient-primary); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 0.875rem; flex-shrink: 0;">2</div>
-            <p style="color: var(--secondary); margin: 0;">Click the <strong style="color: var(--primary);">"Confirm your email"</strong> button</p>
-          </div>
-          <div style="display: flex; align-items: center; gap: 1rem;">
-            <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--gradient-primary); color: white; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 0.875rem; flex-shrink: 0;">3</div>
-            <p style="color: var(--secondary); margin: 0;">Return here and <strong style="color: var(--primary);">log in</strong> to your account</p>
+        <!-- Steps -->
+        <div
+          style="
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            text-align: left;
+            margin-bottom: 2rem;
+          "
+        >
+          <p
+            style="
+              font-weight: 600;
+              margin-bottom: 1.25rem;
+              color: var(--primary);
+            "
+          >
+            What to do next:
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 1rem">
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <div
+                style="
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+                  background: var(--gradient-primary);
+                  color: white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-family: var(--font-heading);
+                  font-weight: 700;
+                  font-size: 0.875rem;
+                  flex-shrink: 0;
+                "
+              >
+                1
+              </div>
+              <p style="color: var(--secondary); margin: 0">
+                Open the email from
+                <strong style="color: var(--primary)">Maid To Clean</strong>
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <div
+                style="
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+                  background: var(--gradient-primary);
+                  color: white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-family: var(--font-heading);
+                  font-weight: 700;
+                  font-size: 0.875rem;
+                  flex-shrink: 0;
+                "
+              >
+                2
+              </div>
+              <p style="color: var(--secondary); margin: 0">
+                Click the
+                <strong style="color: var(--primary)"
+                  >"Confirm your email"</strong
+                >
+                button
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <div
+                style="
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+                  background: var(--gradient-primary);
+                  color: white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-family: var(--font-heading);
+                  font-weight: 700;
+                  font-size: 0.875rem;
+                  flex-shrink: 0;
+                "
+              >
+                3
+              </div>
+              <p style="color: var(--secondary); margin: 0">
+                Return here and
+                <strong style="color: var(--primary)">log in</strong> to your
+                account
+              </p>
+            </div>
           </div>
         </div>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            align-items: center;
+          "
+        >
+          <a
+            href="/login.html"
+            class="btn btn-primary"
+            style="width: 100%; max-width: 320px"
+            data-testid="go-to-login-btn"
+          >
+            <i class="ph-duotone ph-sign-in"></i>
+            Go to Login
+          </a>
+
+          <button
+            id="resendBtn"
+            class="btn btn-secondary"
+            style="width: 100%; max-width: 320px"
+            data-testid="resend-email-btn"
+          >
+            <i class="ph-duotone ph-arrow-clockwise"></i>
+            Resend Confirmation Email
+          </button>
+        </div>
+
+        <p
+          style="margin-top: 2rem; color: var(--secondary); font-size: 0.875rem"
+        >
+          Wrong email?
+          <a
+            href="/register.html"
+            style="color: var(--accent); font-weight: 500"
+            >Register again</a
+          >
+        </p>
       </div>
+    </main>
 
-      <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: center;">
-        <a href="/login.html" class="btn btn-primary" style="width: 100%; max-width: 320px;" data-testid="go-to-login-btn">
-          <i class="ph-duotone ph-sign-in"></i>
-          Go to Login
-        </a>
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
 
-        <button id="resendBtn" class="btn btn-secondary" style="width: 100%; max-width: 320px;" data-testid="resend-email-btn">
-          <i class="ph-duotone ph-arrow-clockwise"></i>
-          Resend Confirmation Email
-        </button>
-      </div>
-
-      <p style="margin-top: 2rem; color: var(--secondary); font-size: 0.875rem;">
-        Wrong email? <a href="/register.html" style="color: var(--accent); font-weight: 500;">Register again</a>
-      </p>
-
-    </div>
-  </main>
-
-  <!-- Toast Container -->
-  <div id="toastContainer" class="toast-container"></div>
-
-  <script>
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerHTML = `
-        <i class="ph-duotone ph-${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}"></i>
+    <script>
+      function showToast(message, type = "info") {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+        <i class="ph-duotone ph-${type === "success" ? "check-circle" : type === "error" ? "x-circle" : "info"}"></i>
         <span>${message}</span>
       `;
-      container.appendChild(toast);
-      setTimeout(() => toast.remove(), 5000);
-    }
-
-    // Pull email from query string set by register.html
-    const params = new URLSearchParams(window.location.search);
-    const email = params.get('email');
-
-    if (email) {
-      document.getElementById('emailDisplay').textContent = email;
-    } else {
-      document.getElementById('emailDisplay').textContent = 'your inbox';
-    }
-
-    // Resend confirmation email
-    document.getElementById('resendBtn').addEventListener('click', async () => {
-      if (!email) {
-        showToast('No email address found. Please register again.', 'error');
-        return;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 5000);
       }
 
-      const btn = document.getElementById('resendBtn');
-      btn.disabled = true;
-      btn.innerHTML = '<span class="loading"></span> Sending...';
+      // Pull email from query string set by register.html
+      const params = new URLSearchParams(window.location.search);
+      const email = params.get("email");
 
-      try {
-        const { error } = await supabase.auth.resend({
-          type: 'signup',
-          email: email
-        });
+      if (email) {
+        document.getElementById("emailDisplay").textContent = email;
+      } else {
+        document.getElementById("emailDisplay").textContent = "your inbox";
+      }
 
-        if (error) throw error;
-
-        showToast('Confirmation email resent! Check your inbox.', 'success');
-
-        // Cooldown so they can't spam it
-        let seconds = 30;
-        const interval = setInterval(() => {
-          btn.innerHTML = `<i class="ph-duotone ph-arrow-clockwise"></i> Resend again in ${seconds}s`;
-          seconds--;
-          if (seconds < 0) {
-            clearInterval(interval);
-            btn.disabled = false;
-            btn.innerHTML = '<i class="ph-duotone ph-arrow-clockwise"></i> Resend Confirmation Email';
+      // Resend confirmation email
+      document
+        .getElementById("resendBtn")
+        .addEventListener("click", async () => {
+          if (!email) {
+            showToast(
+              "No email address found. Please register again.",
+              "error",
+            );
+            return;
           }
-        }, 1000);
 
-      } catch (err) {
-        console.error('Resend error:', err);
-        showToast(err.message || 'Failed to resend email. Please try again.', 'error');
-        btn.disabled = false;
-        btn.innerHTML = '<i class="ph-duotone ph-arrow-clockwise"></i> Resend Confirmation Email';
-      }
-    });
-  </script>
+          const btn = document.getElementById("resendBtn");
+          btn.disabled = true;
+          btn.innerHTML = '<span class="loading"></span> Sending...';
 
-</body>
+          try {
+            const { error } = await supabase.auth.resend({
+              type: "signup",
+              email: email,
+            });
+
+            if (error) throw error;
+
+            showToast(
+              "Confirmation email resent! Check your inbox.",
+              "success",
+            );
+
+            // Cooldown so they can't spam it
+            let seconds = 30;
+            const interval = setInterval(() => {
+              btn.innerHTML = `<i class="ph-duotone ph-arrow-clockwise"></i> Resend again in ${seconds}s`;
+              seconds--;
+              if (seconds < 0) {
+                clearInterval(interval);
+                btn.disabled = false;
+                btn.innerHTML =
+                  '<i class="ph-duotone ph-arrow-clockwise"></i> Resend Confirmation Email';
+              }
+            }, 1000);
+          } catch (err) {
+            console.error("Resend error:", err);
+            showToast(
+              err.message || "Failed to resend email. Please try again.",
+              "error",
+            );
+            btn.disabled = false;
+            btn.innerHTML =
+              '<i class="ph-duotone ph-arrow-clockwise"></i> Resend Confirmation Email';
+          }
+        });
+    </script>
+    <script src="/assets/js/load-navbar.js"></script>
+  </body>
 </html>

@@ -95,7 +95,7 @@
 }
 
 .about-hero {
-  background-image: url("/assets/images/profilepic.webp");
+  background-image: url("/assets/images/.webp");
 }
 
 .contact-hero {
@@ -124,6 +124,6 @@
   .services-hero,
   .about-hero,
   .contact-hero {
-    min-height: calc(100vh - 70px); /* smaller navbar */
+    min-height: calc(100vh - 70px); /* smaller */
   }
 }
