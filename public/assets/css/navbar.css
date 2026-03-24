@@ -46,10 +46,9 @@ body {
 }
 
 /* Logo */
-.logo {
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.8rem;
+.navbar .logo img {
+  height: 50px; /* adjust height as needed */
+  width: auto; /* maintain aspect ratio */
 }
 
 /* Nav links container */
