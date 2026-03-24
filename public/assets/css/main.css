@@ -1045,3 +1045,76 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* ABOUT PAGE */
+
+.about-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  line-height: 1.6;
+}
+
+.about-section {
+  margin-bottom: 60px;
+}
+
+.about-intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.lead {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.about-text h2 {
+  margin-bottom: 15px;
+}
+
+.about-story {
+  max-width: 700px;
+}
+
+.values-list {
+  list-style: none;
+  padding: 0;
+}
+
+.values-list li {
+  margin-bottom: 10px;
+}
+
+.about-promise {
+  text-align: center;
+}
+
+.about-promise .bold {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-intro h1 {
+    font-size: 2rem;
+  }
+}
