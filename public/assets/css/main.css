@@ -1263,6 +1263,5 @@ body {
 
 hero1 h1 {
   font-size: 2rem;
-  color: aqua;
-  text-align: center;
+  color: var(--primary);
 }
