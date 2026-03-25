@@ -1151,3 +1151,103 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
 }
+
+/* ================================
+   CONTACT PAGE ADDITIONS (SAFE)
+   Only new classes — no overrides
+================================ */
+
+/* Soft gradient card */
+.gradient-soft {
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.05),
+    rgba(59, 130, 246, 0.05)
+  );
+}
+
+/* Contact info blocks */
+.contact-block {
+  margin-bottom: 1.75rem;
+}
+
+.contact-block h3 {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.contact-block p {
+  margin-top: 0.4rem;
+}
+
+/* Icons */
+.icon-lg {
+  font-size: 2.2rem;
+  color: var(--accent);
+}
+
+/* Links */
+.link-lg {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.link-md {
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+/* Form layout */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.form input,
+.form select,
+.form textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+}
+
+/* Full width button */
+.full {
+  width: 100%;
+}
+
+/* Small text */
+.small {
+  font-size: 0.85rem;
+}
+
+/* Steps section */
+.step-num {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 0.5rem;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* CTA spacing */
+.cta-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
