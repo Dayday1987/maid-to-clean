@@ -1118,3 +1118,36 @@ body {
     font-size: 2rem;
   }
 }
+
+/* ================================
+   ABOUT IMAGE FRAME (STEPHANIE)
+================================ */
+
+.about-image {
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 420px;
+
+  /* Frame effect */
+  padding: 12px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+
+  /* Depth */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+
+  /* Smooth feel */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-image img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
