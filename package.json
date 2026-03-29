@@ -1,1 +1,9 @@
-{"name":"maid-to-clean","version":"1.0.0","type":"module"}
+{
+  "name": "maid-to-clean",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "stripe": "^17.7.0"
+  }
+}
