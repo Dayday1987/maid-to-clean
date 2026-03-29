@@ -4,20 +4,24 @@
       <img src="/assets/images/new-logo.webp" alt="Maid To Clean" />
     </a>
 
+    <!-- Hamburger button for mobile -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <ul id="nav-links" class="nav-links">
       <!-- LEFT -->
       <li class="public-only nav-left"><a href="/">Home</a></li>
       <li class="public-only"><a href="/about.html">About</a></li>
       <li class="public-only"><a href="/services.html">Services</a></li>
       <li class="public-only"><a href="/contact.html">Contact</a></li>
-
       <!-- RIGHT SIDE GROUP -->
       <li class="nav-spacer"></li>
-
       <!-- Guest -->
       <li class="guest-only"><a href="/login.html">Login</a></li>
       <li class="guest-only"><a href="/register.html">Register</a></li>
-
       <!-- Customer Dropdown -->
       <li class="customer-only dropdown" style="display: none">
         <a href="#">Account ▾</a>
@@ -29,7 +33,6 @@
           <li><a href="#" class="logoutBtn">Logout</a></li>
         </ul>
       </li>
-
       <!-- Admin Dropdown -->
       <li class="admin-only dropdown" style="display: none">
         <a href="#">Account ▾</a>
