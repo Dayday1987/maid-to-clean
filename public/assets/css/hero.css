@@ -88,6 +88,14 @@ background: linear-gradient(
   flex-wrap: wrap;
 }
 
+.hero-text-container {
+    max-width: 80%; /* Adjust this percentage to your liking */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
 /* Background images */
 .hero {
   background-image: url("/assets/images/bathroom.webp");
