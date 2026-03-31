@@ -176,18 +176,18 @@ section {
 .btn-secondary {
   background: transparent;
   border: 1px solid var(--border);
-  color: pink);
+  color: black);
 }
 
 .btn-secondary:hover {
   background: var(--surface);
-  border-color: pink;
+  border-color: hot pink;
 }
 
 .btn-outline {
   background: transparent;
   border: 2px solid black;
-  color: pink;
+  color: hot pink;
 }
 
 .btn-outline:hover {
