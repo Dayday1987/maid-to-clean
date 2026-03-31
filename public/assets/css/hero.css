@@ -69,7 +69,7 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  color: rgba(255, 255, 255, 0.95); /* brighter text */
+  color: black; /* brighter text */
   text-shadow: none; /* match heading */
 }
 
