@@ -13,12 +13,16 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  color: red;
+  color: white;
   text-align: center;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
+}
+
+h1 {
+   color: black;
 }
 
 .hero::after,
