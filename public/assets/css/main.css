@@ -165,7 +165,7 @@ section {
 .btn-primary {
   background: var(--gradient-primary);
   color: black;
-  text-decoration: colo;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
@@ -176,18 +176,18 @@ section {
 .btn-secondary {
   background: transparent;
   border: 1px solid var(--border);
-  color: var(--primary);
+  color: pink);
 }
 
 .btn-secondary:hover {
   background: var(--surface);
-  border-color: var(--accent);
+  border-color: pink;
 }
 
 .btn-outline {
   background: transparent;
-  border: 2px solid white;
-  color: black;
+  border: 2px solid black;
+  color: pink;
 }
 
 .btn-outline:hover {
