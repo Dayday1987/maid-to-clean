@@ -62,13 +62,14 @@ html {
 }
 
 body {
-  body {
   font-family: var(--font-body);
   font-weight: 400;
-  color: black;
+  color: var(--primary);
   background: var(--background);
   line-height: 1.6;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 img {
@@ -122,9 +123,6 @@ p {
   line-height: 1.7;
 }
 
-.text-accent {
-  color: black;
-}
 .text-center {
   text-align: center;
 }
