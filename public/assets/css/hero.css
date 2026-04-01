@@ -21,10 +21,6 @@
   z-index: 0;
 }
 
-h1 {
-   color: black;
-}
-
 .hero::after,
 .services-hero::after,
 .about-hero::after,
@@ -73,7 +69,6 @@ background: linear-gradient(
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  color: black; /* brighter text */
   text-shadow: none; /* match heading */
 }
 
