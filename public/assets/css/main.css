@@ -399,13 +399,12 @@ section {
   padding: var(--section-spacing) 2rem;
 }
 
-.cta-section h2 {
-  color: black;
-  margin-bottom: 1rem;
+.cta-section h2.{
+   color: white;
 }
 
 .cta-section p {
-  color: black;
+  color: white;
   font-size: 1.125rem;
   margin-bottom: 2rem;
   max-width: 600px;
