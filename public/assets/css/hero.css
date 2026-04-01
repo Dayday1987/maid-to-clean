@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  color: black;
+  color: white;
   text-align: center;
   background-size: cover;
   background-position: center;
@@ -30,8 +30,8 @@
   inset: 0;
 background: linear-gradient(
   to bottom,
-  rgba(255, 255, 255, 0.75),
-  rgba(255, 255, 255, 0.55)
+  rgba(0, 0, 0, 0.55),
+  rgba(0, 0, 0, 0.35)
 );
   z-index: 1;
   pointer-events: none;
@@ -56,6 +56,7 @@ background: linear-gradient(
   line-height: 1.1;
   font-weight: 700;
   margin-bottom: 1rem;
+   color: white;
   text-shadow: none;
 }
 
@@ -69,6 +70,7 @@ background: linear-gradient(
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+   color: white;
   text-shadow: none; /* match heading */
 }
 
