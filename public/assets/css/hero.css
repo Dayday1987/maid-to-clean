@@ -21,18 +21,18 @@
   z-index: 0;
 }
 
-.hero::after,
-.services-hero::after,
-.about-hero::after,
-.contact-hero::after {
+.hero::before,
+.services-hero::before,
+.about-hero::before,
+.contact-hero::before {
   content: "";
   position: absolute;
   inset: 0;
-background: linear-gradient(
-  to bottom,
-  rgba(0, 0, 0, 0.55),
-  rgba(0, 0, 0, 0.35)
-);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0.2)
+  );
   z-index: 1;
   pointer-events: none;
 }
@@ -56,7 +56,8 @@ background: linear-gradient(
   line-height: 1.1;
   font-weight: 700;
   margin-bottom: 1rem;
-   color: white;
+   position: relative;
+   z-index: 2;
   text-shadow: none;
 }
 
@@ -70,8 +71,8 @@ background: linear-gradient(
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-   color: white;
-  text-shadow: none; /* match heading */
+   color: #0f172a;
+  text-shadow: 0 2px 8px rgba(255,255,255,0.7);
 }
 
 /* Buttons (if any inside hero) */
