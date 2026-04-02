@@ -1,83 +1,82 @@
-/* ================================ 
-   HERO SECTIONS - Brighter & Improved UX
-================================ */
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule Cleaning | Maid To Clean</title>
 
-.hero,
-.services-hero,
-.about-hero,
-.contact-hero {
-  position: relative;
-  min-height: 100vh;
-  padding-top: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #111827;
-  text-align: center;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-}
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/dashboard.css" />
+    <link rel="stylesheet" href="/assets/css/responsive.css" />
 
-.hero::before,
-.services-hero::before,
-.about-hero::before,
-.contact-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.65),
-    rgba(255, 255, 255, 0.35)
-  );
-  z-index: 1;
-}
+    <!-- FullCalendar CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js"></script>
 
-/* Hero content */
-.hero-content,
-.services-hero .hero-content,
-.about-hero .hero-content,
-.contact-hero .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
-  padding: 0 1rem;
-}
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="/assets/js/api-config.js"></script>
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="/assets/js/dashboard-protect.js"></script>
+    <script defer src="/assets/js/load-navbar.js"></script>
+  </head>
+  <body class="light-bg">
+    <div id="navbar"></div>
 
-.hero-content h1,
-.services-hero h1,
-.about-hero h1,
-.contact-hero h1 {
-  font-size: clamp(2.8rem, 6vw, 4.5rem);
-  line-height: 1.1;
-  font-weight: 800;
-  margin-bottom: 1.25rem;
-  color: #111827;
-}
+    <main class="dashboard-container">
+      <div class="dashboard-header">
+        <h1>Schedule Cleaning</h1>
+        <p>Book your next cleaning service</p>
+      </div>
 
-.hero-content p,
-.services-hero p,
-.about-hero p,
-.contact-hero p {
-  font-size: 1.25rem;
-  line-height: 1.6;
-  max-width: 620px;
-  margin: 0 auto 2rem;
-  color: #334155;
-  font-weight: 400;
-}
+      <div class="schedule-grid">
+        <!-- Booking Form -->
+        <div class="schedule-form">
+          <form id="scheduleForm">
+            <div class="form-group">
+              <label for="serviceSelect">Select Service</label>
+              <select id="serviceSelect" required data-testid="service-select">
+                <option value="">Loading services...</option>
+              </select>
+            </div>
 
-/* Buttons stay the same */
-.hero-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
+            <!-- FullCalendar -->
+            <div class="form-group">
+              <label>Choose a Date</label>
+              <div id="calendar" style="max-width: 100%; margin-bottom: 1rem;"></div>
+              <input type="hidden" id="selectedDate" required />
+              <p id="selectedDateDisplay" style="font-weight: 600; color: var(--accent); margin-top: 0.25rem;"></p>
+            </div>
 
-/* Background images stay the same (you can swap them later for even brighter photos) */
-.hero { background-image: url("/assets/images/bathroom.webp"); }
-.services-hero { background-image: url("/assets/images/services.webp"); }
-.about-hero { background-image: url("/assets/images/about-.webp"); }
-.contact-hero { background-image: url("/assets/images/contact-bg.webp"); }
+            <div class="form-group">
+              <label for="timeSlots">Available Time Slots</label>
+              <select id="timeSlots" required data-testid="time-select">
+                <option value="">Select a date first...</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="roomsSelect">Number of Rooms</label>
+              <select id="roomsSelect" required data-testid="rooms-select">
+                <option value="1">1-2 Rooms</option>
+                <option value="2">3-4 Rooms</option>
+                <option value="3">5-6 Rooms</option>
+                <option value="4">7-8 Rooms</option>
+                <option value="5">9+ Rooms</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="squareFootage">Square Footage (optional)</label>
+              <input type="number" id="squareFootage" min="0" placeholder="e.g., 1500" data-testid="sqft-input" />
+            </div>
+
+            <div class="form-group">
+              <label for="addonSelect">Add-Ons (hold Ctrl/Cmd to select multiple)</label>
+              <select id="addonSelect" multiple data-testid="addon-select"></select>
+            </div>
+
+            <!-- Custom Options -->
+            <div id="customOptions" style="display: none">
+              <h4 class="mb-4">Custom Cleaning Options</h4>
+              <!-- Your original
