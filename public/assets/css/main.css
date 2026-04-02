@@ -1038,3 +1038,15 @@ body {
     font-size: 2rem;
   }
 }
+
+/* Mobile section separation fix */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .cta-section {
+    padding: 3rem 1rem;
+  }
+}
