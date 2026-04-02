@@ -1,5 +1,5 @@
 /* ================================ 
-   HERO SECTIONS - Reusable styles
+   HERO SECTIONS - Brighter & Improved UX
 ================================ */
 
 .hero,
@@ -12,13 +12,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  color: white;
+  color: #111827;
   text-align: center;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
+  overflow: hidden;
 }
 
 .hero::before,
@@ -30,109 +28,56 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.45),
-    rgba(255, 255, 255, 0.2)
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0.35)
   );
   z-index: 1;
-  pointer-events: none;
 }
 
-/* Hero content container */
+/* Hero content */
 .hero-content,
-.services-hero .container,
-.about-hero .container,
-.contact-hero .container {
+.services-hero .hero-content,
+.about-hero .hero-content,
+.contact-hero .hero-content {
   position: relative;
   z-index: 2;
   max-width: 900px;
+  padding: 0 1rem;
 }
 
-/* Headings */
 .hero-content h1,
 .services-hero h1,
 .about-hero h1,
 .contact-hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
   line-height: 1.1;
-  font-weight: 700;
-  margin-bottom: 1rem;
-   position: relative;
-   z-index: 2;
-  text-shadow: none;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+  color: #111827;
 }
 
-/* Paragraphs */
 .hero-content p,
 .services-hero p,
 .about-hero p,
 .contact-hero p {
-  font-size: 1.125rem;
-  margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-   color: #0f172a;
-  text-shadow: 0 2px 8px rgba(255,255,255,0.7);
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto 2rem;
+  color: #334155;
+  font-weight: 400;
 }
 
-/* Buttons (if any inside hero) */
-.hero-buttons,
-.services-hero .hero-buttons,
-.about-hero .hero-buttons,
-.contact-hero .hero-buttons {
+/* Buttons stay the same */
+.hero-buttons {
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
-.hero-text-container {
-    max-width: 80%; /* Adjust this percentage to your liking */
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-
-/* Background images */
-.hero {
-  background-image: url("/assets/images/bathroom.webp");
-}
-
-.services-hero {
-  background-image: url("/assets/images/services.webp");
-}
-
-.about-hero {
-  background-image: url("/assets/images/about-.webp");
-}
-
-.contact-hero {
-  background-image: url("/assets/images/contact-bg.webp");
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .hero-content h1,
-  .services-hero h1,
-  .about-hero h1,
-  .contact-hero h1 {
-    font-size: clamp(1.5rem, 6vw, 2.5rem);
-  }
-
-  .hero-content p,
-  .services-hero p,
-  .about-hero p,
-  .contact-hero p {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 900px) {
-  .hero,
-  .services-hero,
-  .about-hero,
-  .contact-hero {
-    min-height: calc(100vh - 70px); /* smaller */
-  }
-}
+/* Background images stay the same (you can swap them later for even brighter photos) */
+.hero { background-image: url("/assets/images/bathroom.webp"); }
+.services-hero { background-image: url("/assets/images/services.webp"); }
+.about-hero { background-image: url("/assets/images/about-.webp"); }
+.contact-hero { background-image: url("/assets/images/contact-bg.webp"); }
