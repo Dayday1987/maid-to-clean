@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/assets/css/dashboard.css" />
     <link rel="stylesheet" href="/assets/css/responsive.css" />
 
+    <!-- FullCalendar CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js"></script>
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script defer src="/assets/js/api-config.js"></script>
@@ -26,7 +29,7 @@
         <p>Book your next cleaning service</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem">
+      <div class="schedule-grid">
         <!-- Booking Form -->
         <div class="schedule-form">
           <form id="scheduleForm">
@@ -34,6 +37,21 @@
               <label for="serviceSelect">Select Service</label>
               <select id="serviceSelect" required data-testid="service-select">
                 <option value="">Loading services...</option>
+              </select>
+            </div>
+
+            <!-- FullCalendar -->
+            <div class="form-group">
+              <label>Choose a Date</label>
+              <div id="calendar" style="max-width: 100%; margin-bottom: 1rem;"></div>
+              <input type="hidden" id="selectedDate" required />
+              <p id="selectedDateDisplay" style="font-weight: 600; color: var(--accent); margin-top: 0.25rem;"></p>
+            </div>
+
+            <div class="form-group">
+              <label for="timeSlots">Available Time Slots</label>
+              <select id="timeSlots" required data-testid="time-select">
+                <option value="">Select a date first...</option>
               </select>
             </div>
 
@@ -50,506 +68,15 @@
 
             <div class="form-group">
               <label for="squareFootage">Square Footage (optional)</label>
-              <input
-                type="number"
-                id="squareFootage"
-                min="0"
-                placeholder="e.g., 1500"
-                data-testid="sqft-input"
-              />
+              <input type="number" id="squareFootage" min="0" placeholder="e.g., 1500" data-testid="sqft-input" />
             </div>
 
             <div class="form-group">
-              <label for="addonSelect"
-                >Add-Ons (hold Ctrl/Cmd to select multiple)</label
-              >
-              <select
-                id="addonSelect"
-                multiple
-                data-testid="addon-select"
-              ></select>
+              <label for="addonSelect">Add-Ons (hold Ctrl/Cmd to select multiple)</label>
+              <select id="addonSelect" multiple data-testid="addon-select"></select>
             </div>
 
-            <!-- Custom Options (shown for Custom Cleaning) -->
+            <!-- Custom Options -->
             <div id="customOptions" style="display: none">
               <h4 class="mb-4">Custom Cleaning Options</h4>
-
-              <fieldset>
-                <legend>Rooms to Clean</legend>
-                <label
-                  ><input type="checkbox" name="rooms" value="bedroom" />
-                  Bedroom</label
-                >
-                <label
-                  ><input type="checkbox" name="rooms" value="bathroom" />
-                  Bathroom</label
-                >
-                <label
-                  ><input type="checkbox" name="rooms" value="kitchen" />
-                  Kitchen</label
-                >
-                <label
-                  ><input type="checkbox" name="rooms" value="living_room" />
-                  Living Room</label
-                >
-                <label
-                  ><input type="checkbox" name="rooms" value="office" />
-                  Office</label
-                >
-                <label
-                  ><input type="checkbox" name="rooms" value="basement" />
-                  Basement</label
-                >
-              </fieldset>
-
-              <fieldset>
-                <legend>Appliances</legend>
-                <label
-                  ><input type="checkbox" id="allAppliances" value="all" /> All
-                  Appliances</label
-                >
-                <label
-                  ><input type="checkbox" name="appliances" value="fridge" />
-                  Refrigerator</label
-                >
-                <label
-                  ><input type="checkbox" name="appliances" value="oven" />
-                  Oven</label
-                >
-                <label
-                  ><input type="checkbox" name="appliances" value="microwave" />
-                  Microwave</label
-                >
-              </fieldset>
-
-              <fieldset>
-                <legend>Additional Options</legend>
-                <label
-                  ><input type="checkbox" name="windows" value="all" /> All
-                  Windows</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="baseboards"
-                    value="baseboards"
-                  />
-                  Baseboards</label
-                >
-                <label
-                  ><input type="checkbox" name="laundry" value="laundry" />
-                  Laundry Service</label
-                >
-              </fieldset>
-            </div>
-
-            <div class="form-group">
-              <label for="appointmentDate">Preferred Date</label>
-              <input
-                type="date"
-                id="appointmentDate"
-                required
-                data-testid="date-input"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="timeSlots">Available Time Slots</label>
-              <select id="timeSlots" required data-testid="time-select">
-                <option value="">Select a date first...</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="notes">Special Instructions</label>
-              <textarea
-                id="notes"
-                placeholder="Any specific requests or notes for our cleaners..."
-                data-testid="notes-input"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              class="btn btn-primary w-full"
-              data-testid="submit-booking-btn"
-            >
-              <i class="ph-duotone ph-paper-plane-tilt"></i>
-              Submit Booking Request
-            </button>
-          </form>
-        </div>
-
-        <!-- Past Appointments -->
-        <div>
-          <div class="dashboard-card">
-            <h3>
-              <i class="ph-duotone ph-clock-counter-clockwise"></i> Your
-              Appointments
-            </h3>
-            <div id="appointmentHistory">
-              <div class="empty-state">
-                <i class="ph-duotone ph-calendar-blank"></i>
-                <p>No appointments yet</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Toast Container -->
-    <div id="toastContainer" class="toast-container"></div>
-
-    <script>
-      const serviceSelect = document.getElementById("serviceSelect");
-      const customOptions = document.getElementById("customOptions");
-      const appointmentDate = document.getElementById("appointmentDate");
-      const timeSlots = document.getElementById("timeSlots");
-      const scheduleForm = document.getElementById("scheduleForm");
-
-      // Set minimum date to today
-      const today = new Date().toISOString().split("T")[0];
-      appointmentDate.min = today;
-
-      function showToast(message, type = "info") {
-        const container = document.getElementById("toastContainer");
-        const toast = document.createElement("div");
-        toast.className = `toast ${type}`;
-        toast.innerHTML = `
-        <i class="ph-duotone ph-${type === "success" ? "check-circle" : type === "error" ? "x-circle" : "info"}"></i>
-        <span>${message}</span>
-      `;
-        container.appendChild(toast);
-        setTimeout(() => toast.remove(), 6000);
-      }
-
-      // ── Load services ──────────────────────────────────────────────────
-      async function loadServices() {
-        const { data: services, error } = await supabase
-          .from("services")
-          .select("*")
-          .order("created_at", { ascending: true });
-
-        serviceSelect.innerHTML = "";
-
-        if (error) {
-          console.error("Error loading services:", error);
-          serviceSelect.innerHTML =
-            '<option value="">Error loading services</option>';
-          showToast(
-            "Could not load services. Please refresh the page.",
-            "error",
-          );
-          return;
-        }
-
-        if (!services || services.length === 0) {
-          serviceSelect.innerHTML =
-            '<option value="">No services available yet</option>';
-          showToast(
-            "No services are set up yet. Please contact us to book.",
-            "info",
-          );
-          return;
-        }
-
-        serviceSelect.innerHTML =
-          '<option value="">Choose a service...</option>';
-        services.forEach((s) => {
-          const option = document.createElement("option");
-          option.value = s.id;
-          option.textContent =
-            s.base_price > 0 ? `${s.name} — From $${s.base_price}` : s.name;
-          option.dataset.name = s.name;
-          serviceSelect.appendChild(option);
-        });
-      }
-
-      // ── Load add-ons ───────────────────────────────────────────────────
-      async function loadAddOns() {
-        const addonSelect = document.getElementById("addonSelect");
-        const { data: addOns, error } = await supabase
-          .from("add_ons")
-          .select("*");
-
-        if (error || !addOns || addOns.length === 0) return;
-
-        addOns.forEach((a) => {
-          const option = document.createElement("option");
-          option.value = a.id;
-          option.textContent = `${a.name} (+$${a.price})`;
-          addonSelect.appendChild(option);
-        });
-      }
-
-      // ── Show custom options for Custom Cleaning ────────────────────────
-      serviceSelect.addEventListener("change", () => {
-        const selectedOption =
-          serviceSelect.options[serviceSelect.selectedIndex];
-        const serviceName = selectedOption.dataset.name || "";
-        customOptions.style.display =
-          serviceName === "Custom Cleaning" ? "block" : "none";
-      });
-
-      // ── Load available time slots ──────────────────────────────────────
-      async function loadTimeSlots(date) {
-        timeSlots.innerHTML = '<option value="">Loading...</option>';
-
-        if (!date) {
-          timeSlots.innerHTML =
-            '<option value="">Select a date first...</option>';
-          return;
-        }
-
-        const slots = [
-          "08:00",
-          "09:00",
-          "10:00",
-          "11:00",
-          "12:00",
-          "13:00",
-          "14:00",
-          "15:00",
-          "16:00",
-          "17:00",
-        ];
-
-        const { data: booked, error } = await supabase
-          .from("appointments")
-          .select("appointment_time")
-          .eq("appointment_date", date)
-          .not("status", "eq", "cancelled");
-
-        if (error) {
-          console.error("Error loading slots:", error);
-          timeSlots.innerHTML = '<option value="">Error loading slots</option>';
-          return;
-        }
-
-        const bookedTimes = booked
-          ? booked.map((b) => b.appointment_time.substring(0, 5))
-          : [];
-        const availableSlots = slots.filter((s) => !bookedTimes.includes(s));
-
-        timeSlots.innerHTML = '<option value="">Choose a time...</option>';
-
-        if (availableSlots.length === 0) {
-          timeSlots.innerHTML =
-            '<option value="">No slots available — pick another date</option>';
-          return;
-        }
-
-        availableSlots.forEach((s) => {
-          const option = document.createElement("option");
-          option.value = s;
-          const hour = parseInt(s.split(":")[0]);
-          const period = hour >= 12 ? "PM" : "AM";
-          const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-          option.textContent = `${displayHour}:00 ${period}`;
-          timeSlots.appendChild(option);
-        });
-      }
-
-      appointmentDate.addEventListener("change", (e) => {
-        loadTimeSlots(e.target.value);
-      });
-
-      // ── Load past appointments ─────────────────────────────────────────
-      async function loadAppointmentHistory() {
-        const user = await getCurrentUser();
-        if (!user) return;
-
-        const { data: appointments, error } = await supabase
-          .from("appointments")
-          .select("*, services (name)")
-          .eq("user_id", user.id)
-          .order("appointment_date", { ascending: false })
-          .limit(10);
-
-        const container = document.getElementById("appointmentHistory");
-
-        if (error || !appointments || appointments.length === 0) return;
-
-        container.innerHTML = appointments
-          .map(
-            (apt) => `
-        <div style="padding: 1rem; background: var(--background); border-radius: var(--radius-md); margin-bottom: 0.75rem; border-left: 3px solid ${apt.status === "paid" || apt.status === "completed" ? "var(--success)" : apt.status === "approved" ? "var(--accent)" : "var(--border)"};">
-          <div style="display: flex; justify-content: space-between; align-items: start;">
-            <div>
-              <p style="font-weight: 600;">${apt.services?.name || "Cleaning Service"}</p>
-              <p style="font-size: 0.875rem; color: var(--secondary);">
-                ${new Date(apt.appointment_date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} at ${apt.appointment_time}
-              </p>
-            </div>
-            <span class="status-badge ${apt.status}">${apt.status}</span>
-          </div>
-        </div>
-      `,
-          )
-          .join("");
-      }
-
-      // ── Submit booking ─────────────────────────────────────────────────
-      scheduleForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const user = await getCurrentUser();
-        if (!user) {
-          showToast("Please log in to book a service.", "error");
-          return;
-        }
-
-        // ── Pre-submit validation ──────────────────────────────────────
-        const serviceId = serviceSelect.value;
-        if (!serviceId) {
-          showToast("Please select a service.", "error");
-          return;
-        }
-
-        const date = appointmentDate.value;
-        if (!date) {
-          showToast("Please select a date.", "error");
-          return;
-        }
-
-        const time = timeSlots.value;
-        if (!time) {
-          showToast("Please select an available time slot.", "error");
-          return;
-        }
-
-        const submitBtn = scheduleForm.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="loading"></span> Submitting...';
-
-        try {
-          const rooms = parseInt(document.getElementById("roomsSelect").value);
-          const squareFootage =
-            parseInt(document.getElementById("squareFootage").value) || null;
-          const notes = document.getElementById("notes").value;
-
-          // Collect add-ons
-          const addonSelect = document.getElementById("addonSelect");
-          const selectedAddOns = Array.from(addonSelect.selectedOptions).map(
-            (opt) => opt.value,
-          );
-
-          // Collect custom details if applicable
-          let customDetails = null;
-          if (customOptions.style.display === "block") {
-            customDetails = {
-              rooms: Array.from(
-                document.querySelectorAll('input[name="rooms"]:checked'),
-              ).map((cb) => cb.value),
-              appliances: document.getElementById("allAppliances").checked
-                ? "all"
-                : Array.from(
-                    document.querySelectorAll(
-                      'input[name="appliances"]:checked',
-                    ),
-                  ).map((cb) => cb.value),
-              windows: document.querySelector('input[name="windows"]')?.checked
-                ? "all"
-                : null,
-              baseboards:
-                document.querySelector('input[name="baseboards"]')?.checked ||
-                false,
-              laundry:
-                document.querySelector('input[name="laundry"]')?.checked ||
-                false,
-            };
-          }
-
-          const selectedOption =
-            serviceSelect.options[serviceSelect.selectedIndex];
-          const serviceName = selectedOption.dataset.name || "Cleaning Service";
-
-          const { error } = await supabase.from("appointments").insert([
-            {
-              user_id: user.id,
-              service_id: serviceId,
-              rooms,
-              square_footage: squareFootage,
-              appointment_date: date,
-              appointment_time: time,
-              notes,
-              status: "pending",
-            },
-          ]);
-
-          // Surface the real Supabase error message if something goes wrong
-          if (error) throw error;
-
-          // Send email notifications (non-blocking — don't fail booking if email fails)
-          try {
-            const profile = await getUserProfile();
-            await fetch("/api/notify-booking", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                customerEmail: user.email,
-                customerName:
-                  `${profile?.first_name || ""} ${profile?.last_name || ""}`.trim(),
-                serviceName,
-
-                appointmentDate: new Date(date).toLocaleDateString("en-US", {
-                  weekday: "long",
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                }),
-                appointmentTime: time,
-                notes,
-                type: "new_booking",
-              }),
-            });
-          } catch (emailErr) {
-            console.error(
-              "Email notification failed (booking still saved):",
-              emailErr,
-            );
-          }
-
-          showToast(
-            "Booking request submitted! We will review and confirm shortly.",
-            "success",
-          );
-          scheduleForm.reset();
-          customOptions.style.display = "none";
-          timeSlots.innerHTML =
-            '<option value="">Select a date first...</option>';
-          await loadAppointmentHistory();
-        } catch (error) {
-          // Show the actual error so it's debuggable
-          console.error("Booking error:", error);
-          showToast(
-            `Booking failed: ${error.message || JSON.stringify(error)}`,
-            "error",
-          );
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML =
-            '<i class="ph-duotone ph-paper-plane-tilt"></i> Submit Booking Request';
-        }
-      });
-
-      // ── Init ───────────────────────────────────────────────────────────
-      document.addEventListener("DOMContentLoaded", () => {
-        loadServices();
-        loadAddOns();
-        loadAppointmentHistory();
-      });
-    </script>
-
-    <style>
-      @media (max-width: 900px) {
-        .dashboard-container > div[style*="grid-template-columns: 1fr 1fr"] {
-          grid-template-columns: 1fr !important;
-        }
-      }
-    </style>
-    <div id="navbar"></div>
-    <script src="/js/load-navbar.js"></script>
-  </body>
-</html>
+              <!-- Your original
