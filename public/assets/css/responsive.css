@@ -1,79 +1,75 @@
 /* ================================
-   RESPONSIVE UTILITIES
+   RESPONSIVE - Strong Mobile Separation (Fixed)
 ================================ */
 
-/* Hide/Show on breakpoints */
+/* Base mobile improvements */
 @media (max-width: 768px) {
-  .hide-mobile {
-    display: none !important;
+  section,
+  .about-section,
+  .services-grid-section,
+  .why-us,
+  .cta-section {
+    padding: 3rem 1rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Make every about section look like a clean card */
+  .about-section {
+    background: var(--surface) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    padding: 2.25rem 1.75rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Alternate subtle background for better visual rhythm */
+  .about-section:nth-child(even) {
+    background: #f8fafc !important;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  /* Hero on mobile */
+  .hero,
+  .services-hero,
+  .about-hero,
+  .contact-hero {
+    min-height: 70vh !important;
+    padding-top: 70px !important;
+  }
+
+  /* Footer - clear separation */
+  .footer {
+    background: var(--primary) !important;
+    color: white !important;
+    padding-top: 3.5rem !important;
+    margin-top: 3rem !important;
+    border-top: 8px solid var(--accent) !important;
+  }
+
+  .footer-grid {
+    gap: 2.5rem !important;
+  }
+
+  .footer-bottom {
+    padding-top: 2rem !important;
+    border-top: 1px solid rgba(255,255,255,0.2) !important;
+  }
+
+  /* Extra spacing for dashboard pages too */
+  .dashboard-container,
+  .schedule-grid {
+    padding: 1.5rem 1rem !important;
+    gap: 1.5rem !important;
   }
 }
 
-@media (min-width: 769px) {
-  .hide-desktop {
-    display: none !important;
+/* Extra safety for very small phones */
+@media (max-width: 480px) {
+  .about-section {
+    padding: 2rem 1.25rem !important;
   }
-}
-
-/* Flex utilities */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.gap-1 { gap: 0.25rem; }
-.gap-2 { gap: 0.5rem; }
-.gap-3 { gap: 0.75rem; }
-.gap-4 { gap: 1rem; }
-.gap-6 { gap: 1.5rem; }
-.gap-8 { gap: 2rem; }
-
-/* Spacing utilities */
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 0.75rem; }
-.mt-4 { margin-top: 1rem; }
-.mt-6 { margin-top: 1.5rem; }
-.mt-8 { margin-top: 2rem; }
-
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-3 { margin-bottom: 0.75rem; }
-.mb-4 { margin-bottom: 1rem; }
-.mb-6 { margin-bottom: 1.5rem; }
-.mb-8 { margin-bottom: 2rem; }
-
-.p-4 { padding: 1rem; }
-.p-6 { padding: 1.5rem; }
-.p-8 { padding: 2rem; }
-
-.px-4 { padding-left: 1rem; padding-right: 1rem; }
-.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-
-/* Text utilities */
-.text-sm { font-size: 0.875rem; }
-.text-lg { font-size: 1.125rem; }
-.text-xl { font-size: 1.25rem; }
-.font-medium { font-weight: 500; }
-.font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-
-/* Width utilities */
-.w-full { width: 100%; }
-.max-w-sm { max-width: 24rem; }
-.max-w-md { max-width: 28rem; }
-.max-w-lg { max-width: 32rem; }
-.max-w-xl { max-width: 36rem; }
-
-/* Visibility */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
 }
