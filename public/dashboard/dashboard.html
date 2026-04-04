@@ -62,7 +62,25 @@
         document.getElementById("welcomeName").textContent = `Hi ${profile.first_name || ''} 👋`;
       }
 
-      // Load upcoming bookings (you can expand this later)
+      // Load upcoming bookings
+      const { data: upcoming } = await supabase
+        .from("appointments")
+        .select("*, services(name)")
+        .eq("user_id", user.id)
+        .gte("appointment_date", new Date().toISOString().split("T")[0])
+        .order("appointment_date", { ascending: true });
+
+      const container = document.getElementById("upcomingBookings");
+      if (!upcoming || upcoming.length === 0) return;
+
+      container.innerHTML = upcoming.map(apt => `
+        <div style="padding:1rem;background:var(--background);border-radius:var(--radius-md);margin-bottom:0.75rem;">
+          <p style="font-weight:600;">${apt.services?.name || "Cleaning"}</p>
+          <p style="font-size:0.875rem;color:var(--secondary);">
+            ${new Date(apt.appointment_date).toLocaleDateString("en-US", {month:"short", day:"numeric"})} at ${apt.appointment_time}
+          </p>
+        </div>
+      `).join("");
     }
 
     document.addEventListener("DOMContentLoaded", loadDashboard);
