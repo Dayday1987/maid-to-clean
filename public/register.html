@@ -42,4 +42,48 @@
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="
+        <input type="password" id="password" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%">Create Account</button>
+    </form>
+
+    <div class="auth-link">
+      Already have an account? <a href="/login.html">Log in</a>
+    </div>
+  </main>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script>
+    function showToast(message, type = "info") {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = `toast ${type}`;
+      toast.innerHTML = `<i class="ph-duotone ph-${type === "success" ? "check-circle" : type === "error" ? "x-circle" : "info"}"></i><span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 5000);
+    }
+
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const firstName = document.getElementById("firstName").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value;
+
+      try {
+        await registerUser(email, password, firstName, lastName, phone);
+        showToast("Account created! Check your email to confirm.", "success");
+        setTimeout(() => window.location.href = `/confirm-email.html?email=${encodeURIComponent(email)}`, 1500);
+      } catch (error) {
+        showToast(error.message || "Registration failed", "error");
+      }
+    });
+  </script>
+
+  <script src="/assets/js/load-navbar.js"></script>
+</body>
+</html>
