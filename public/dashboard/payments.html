@@ -1,86 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="View and manage your payments and payment history with Maid To Clean." />
-    <meta name="keywords" content="payments maid to clean, payment history, cleaning service billing" />
-    <meta property="og:title" content="Payments | Maid To Clean" />
-    <title>Payments | Maid To Clean</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View and manage your payments and payment history with Maid To Clean." />
+  <meta name="keywords" content="payments maid to clean, payment history, cleaning service billing" />
+  <meta property="og:title" content="Payments | Maid To Clean" />
+  <title>Payments | Maid To Clean</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../../css/base.css" />
-    <link rel="stylesheet" href="../../css/dashboard.css" />
-    <link rel="stylesheet" href="../../css/components.css" />
-    <link rel="stylesheet" href="../../css/layout.css" />
-    <link rel="stylesheet" href="../../css/utilities.css" />
-  </head>
-  <body>
-    <header class="navbar">
-      <div class="container inner">
-        <h1 class="logo">Maid To Clean</h1>
-        <button class="menu-toggle" aria-label="Menu">☰</button>
-        <nav class="nav-links">
-          <a href="dashboard.html">Dashboard</a>
-          <a href="schedule.html">Schedule</a>
-          <a href="payment.html" class="active">Payments</a>
-          <a href="settings.html">Settings</a>
-          <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
-        </nav>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/layout.css" />
+  <link rel="stylesheet" href="../../css/utilities.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="container inner">
+      <h1 class="logo">Maid To Clean</h1>
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+      <nav class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="payment.html" class="active">Payments</a>
+        <a href="settings.html">Settings</a>
+        <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    <section class="dashboard-header">
+      <h2 id="welcomeMessage"></h2>
+    </section>
+
+    <section class="dashboard-content">
+      <h3 class="section-title">Make a Payment</h3>
+
+      <div class="payment-actions">
+        <button class="btn btn-primary" id="payCardBtn">Pay with Card</button>
+        <button class="btn btn-secondary" id="payPaypalBtn">Pay with PayPal</button>
+        <button class="btn btn-apple" id="payAppleBtn">Pay with Apple Pay</button>
       </div>
-    </header>
 
-    <main class="dashboard-container">
-      <section class="dashboard-header">
-        <h2 id="welcomeMessage"></h2>
-      </section>
-
-      <section class="dashboard-content">
-        <h3 class="section-title">Make a Payment</h3>
-
-        <div class="payment-actions">
-          <button class="btn btn-primary" id="payCardBtn">Pay with Card</button>
-          <button class="btn btn-secondary" id="payPaypalBtn">Pay with PayPal</button>
-          <button class="btn btn-apple" id="payAppleBtn">Pay with Apple Pay</button>
-        </div>
-
-        <h3 class="section-title">Payment History</h3>
-        <div id="paymentContainer" class="messages-container">
-          <p>Loading payment history...</p>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container inner">
-        <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+      <h3 class="section-title">Payment History</h3>
+      <div id="paymentContainer" class="messages-container">
+        <p>Loading payment history...</p>
       </div>
-    </footer>
+    </section>
+  </main>
 
-    <!-- JS -->
-    <script src="../../js/dashboard/payment.js"></script>
-    <script>
-      // Footer year
-      document.getElementById("year").textContent = new Date().getFullYear();
+  <footer class="footer">
+    <div class="container inner">
+      <p>&copy; <span id="year"></span> Maid To Clean. All rights reserved.</p>
+    </div>
+  </footer>
 
-      // Logout
-      document.getElementById("logoutBtn").addEventListener("click", () => {
-        localStorage.removeItem("mtc_token");
-        localStorage.removeItem("mtc_user");
-        window.location.href="../../html/login.html";
-      });
+  <!-- JS -->
+  <script src="../../js/dashboard/payment.js"></script>
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Mobile menu toggle
-      document.addEventListener('DOMContentLoaded', function() {
-        const btn = document.querySelector('.menu-toggle');
-        const nav = document.querySelector('.nav-links');
-        if (btn && nav) {
-          btn.addEventListener('click', function() {
-            nav.classList.toggle('show');
-            console.log('Menu toggled:', nav.classList.contains('show'));
-          });
-        }
-      });
-    </script>
-  </body>
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("mtc_token");
+      localStorage.removeItem("mtc_user");
+      window.location.href="../../html/login.html";
+    });
+
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('.nav-links');
+      if (btn && nav) {
+        btn.addEventListener('click', function() {
+          nav.classList.toggle('show');
+        });
+      }
+    });
+  </script>
+</body>
 </html>
