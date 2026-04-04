@@ -1,162 +1,565 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Maid To Clean - Professional cleaning services in Montgomery AL and the River Region. Built on integrity, driven by excellence." />
-  <meta name="keywords" content="cleaning service Montgomery AL, house cleaning Prattville, deep cleaning, maid service, office cleaning, Maid To Clean" />
-  <meta property="og:title" content="Maid To Clean | Professional Cleaning Services | Montgomery AL" />
-  <meta property="og:description" content="Reliable, professional cleaning services you can count on in Montgomery and the River Region." />
-  <title>Maid To Clean | Professional Cleaning Services | Montgomery AL</title>
-
-  <link rel="stylesheet" href="/assets/css/main.css" />
-  <link rel="stylesheet" href="/assets/css/hero.css" />
-  <link rel="stylesheet" href="/assets/css/navbar.css" />
-  <link rel="stylesheet" href="/assets/css/responsive.css" />
-
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="/assets/js/api-config.js"></script>
-  <script defer src="/assets/js/auth.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maid To Clean | Montgomery's Premier Cleaning Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&amp;display=swap');
+        :root {
+            --tw-color-primary: #00c4b4;
+        }
+        .tail-container * {
+            font-family: 'Poppins', system_ui, sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(0, 196, 180, 0.85), rgba(0, 196, 180, 0.85)), url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .modal {
+            animation: modalPop 0.3s ease forwards;
+        }
+        @keyframes modalPop {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
 </head>
-<body>
-  <div id="navbar"></div>
-
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>Professional Cleaning You Can Count On</h1>
-        <p>
-          Serving Montgomery and the River Region with integrity, attention to
-          detail, and a spotless result every time.
-        </p>
-        <div class="hero-buttons">
-          <a href="/register.html" class="btn btn-primary btn-lg" data-testid="hero-book-btn">
-            <i class="ph-duotone ph-calendar-check"></i> Book Today
-          </a>
-          <a href="/services.html" class="btn btn-outline btn-lg" data-testid="hero-services-btn">
-            <i class="ph-duotone ph-sparkle"></i> View Services
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Preview -->
-    <section class="services-preview">
-      <div class="container">
-        <h2>Our Services</h2>
-        <div class="grid grid-3" id="servicesGrid">
-          <div class="service-card">
-            <img src="/assets/images/deepc-lean.webp" alt="Deep Cleaning Service" class="service-card-image" />
-            <div class="service-card-content">
-              <h3>Deep Cleaning</h3>
-              <p>Comprehensive cleaning that reaches every corner, leaving your space immaculately refreshed.</p>
+<body class="tail-container">
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-x-3">
+                <div class="w-10 h-10 bg-teal-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold">🧼</div>
+                <h1 class="text-3xl font-semibold text-gray-900">Maid To Clean</h1>
             </div>
-          </div>
-          <div class="service-card">
-            <img src="/assets/images/livingroom.webp" alt="Standard Cleaning" class="service-card-image" />
-            <div class="service-card-content">
-              <h3>Standard Cleaning</h3>
-              <p>Regular maintenance cleaning to keep your home fresh and welcoming every day.</p>
+            
+            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                <a href="index.html" class="hover:text-teal-500 transition-colors">Home</a>
+                <a href="book-now.html" class="hover:text-teal-500 transition-colors">Book Now</a>
+                <a href="services.html" class="hover:text-teal-500 transition-colors">Services</a>
+                <a href="dashboard.html" onclick="checkAuth()" class="hover:text-teal-500 transition-colors">Dashboard</a>
+                <a href="messages.html" onclick="checkAuth()" class="hover:text-teal-500 transition-colors">Messages</a>
+                <button onclick="showAdminPanel()" 
+                        class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl text-sm font-semibold flex items-center gap-x-2">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Admin Panel
+                </button>
             </div>
-          </div>
-          <div class="service-card">
-            <img src="/assets/images/move-in-out.webp" alt="Move In/Out Cleaning" class="service-card-image" />
-            <div class="service-card-content">
-              <h3>Move-In/Out</h3>
-              <p>Perfect for transitions—ensure your new home is spotless or leave your old one pristine.</p>
+
+            <div class="flex items-center gap-x-4">
+                <!-- Demo Login -->
+                <div class="flex items-center gap-x-2 text-xs">
+                    <button onclick="loginAs('customer')" 
+                            class="px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded-2xl flex items-center gap-x-2 text-sm">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Customer Login</span>
+                    </button>
+                    <button onclick="loginAs('admin')" 
+                            class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-2xl flex items-center gap-x-2 text-sm">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Admin Login</span>
+                    </button>
+                </div>
+                
+                <div id="user-info" class="hidden items-center gap-x-2">
+                    <div class="text-sm font-medium" id="current-user"></div>
+                    <button onclick="logout()" class="text-xs px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-2xl">Logout</button>
+                </div>
+                
+                <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
-          </div>
         </div>
-        <div class="text-center mt-8">
-          <a href="/services.html" class="btn btn-secondary" data-testid="view-all-services-btn">
-            View All Services <i class="ph-duotone ph-arrow-right"></i>
-          </a>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-6 py-4">
+            <a href="index.html" class="block py-3 text-sm font-medium">Home</a>
+            <a href="book-now.html" class="block py-3 text-sm font-medium">Book Now</a>
+            <a href="services.html" class="block py-3 text-sm font-medium">Services</a>
+            <a href="dashboard.html" onclick="checkAuth()" class="block py-3 text-sm font-medium">Dashboard</a>
+            <a href="messages.html" onclick="checkAuth()" class="block py-3 text-sm font-medium">Messages</a>
+            <button onclick="showAdminPanel()" class="w-full text-left py-3 text-sm font-medium flex items-center gap-x-2">
+                <i class="fa-solid fa-shield-halved"></i> Admin Panel
+            </button>
         </div>
-      </div>
-    </section>
+    </nav>
 
-    <!-- Why Choose Us -->
-    <section class="why-us">
-      <div class="container">
-        <h2>Why Clients Choose Maid To Clean</h2>
-        <div class="why-us-grid">
-          <div class="why-us-item">
-            <div class="icon"><i class="ph-duotone ph-heart"></i></div>
-            <h4>People Over Profit</h4>
-            <p>We measure success by the strength of our relationships and the smiles on our clients' faces.</p>
-          </div>
-          <div class="why-us-item">
-            <div class="icon"><i class="ph-duotone ph-shield-check"></i></div>
-            <h4>Uncompromising Integrity</h4>
-            <p>Honesty and transparency are at the heart of every visit. Your trust is our priority.</p>
-          </div>
-          <div class="why-us-item">
-            <div class="icon"><i class="ph-duotone ph-users-three"></i></div>
-            <h4>Community-Centric</h4>
-            <p>We don't just work here; we live here. Proudly serving Montgomery and the River Region.</p>
-          </div>
-          <div class="why-us-item">
-            <div class="icon"><i class="ph-duotone ph-star-four"></i></div>
-            <h4>The Stephanie Standard</h4>
-            <p>Every task done with the same grit, detail, and dedication that started it all.</p>
-          </div>
+    <!-- HERO -->
+    <header class="hero-bg text-white py-24">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-x-2 bg-white/20 backdrop-blur-md text-white text-sm px-6 py-3 rounded-3xl mb-6">
+                    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    Now serving Montgomery &amp; surrounding areas
+                </div>
+                <h2 class="text-6xl md:text-7xl font-semibold leading-none mb-6">Your home deserves<br>the Maid To Clean touch</h2>
+                <p class="text-xl md:text-2xl mb-10 max-w-lg">Professional, reliable, and sparkling clean. Book in minutes. Pay securely with Stripe.</p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="book-now.html" 
+                       class="inline-flex items-center gap-x-3 bg-white text-teal-600 hover:bg-teal-50 px-10 py-5 rounded-3xl text-xl font-semibold shadow-lg">
+                        Book Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="tel:3344254566" 
+                       class="inline-flex items-center gap-x-3 border border-white/70 hover:border-white px-8 py-5 rounded-3xl text-xl font-semibold">
+                        <i class="fa-solid fa-phone"></i>
+                        (334) 425-4566
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-x-8 mt-12 text-sm">
+                    <div class="flex -space-x-4">
+                        <div class="w-8 h-8 bg-white rounded-2xl flex items-center justify-center text-teal-500 text-xs font-bold ring-2 ring-teal-500">4.98</div>
+                    </div>
+                    <div>
+                        <p class="font-medium">4.98 average rating • 1,284 happy homes cleaned</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden md:block">
+                <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <p class="text-sm opacity-75">Next available</p>
+                            <p class="text-4xl font-semibold">Tomorrow 9:00 AM</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm opacity-75">Starting at</p>
+                            <p class="text-5xl font-semibold">$129</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 text-center text-sm">
+                        <div class="bg-white/20 rounded-2xl py-4">Montgomery</div>
+                        <div class="bg-white/20 rounded-2xl py-4">Prattville</div>
+                        <div class="bg-white/20 rounded-2xl py-4">Wetumpka</div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
+    </header>
 
-    <!-- Service Areas -->
-    <section style="background: var(--background)">
-      <div class="container text-center">
-        <h2>Proudly Serving the River Region</h2>
-        <p style="font-size: 1.125rem; color: var(--secondary); margin-bottom: 2rem;">
-          Montgomery AL • Prattville AL • Wetumpka AL • Hope Hull AL • Tallassee AL
-        </p>
-        <a href="/contact.html" class="btn btn-secondary">
-          <i class="ph-duotone ph-map-pin"></i> Check Service Area
-        </a>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>Experience the Maid To Clean Difference</h2>
-        <p>
-          Join our family of satisfied clients and discover what happens when
-          integrity meets excellence. We're more than a service; we're your
-          neighbors, and we're here to help.
-        </p>
-        <a href="/register.html" class="btn btn-primary btn-lg" data-testid="cta-register-btn">
-          <i class="ph-duotone ph-user-plus"></i> Connect With Us Today
-        </a>
-      </div>
-    </section>
-
-    <!-- Contact Preview -->
-    <section class="contact-cta">
-      <div class="container">
-        <h2>Ready to Schedule?</h2>
-        <p>
-          <i class="ph-duotone ph-phone"></i>
-          <a href="tel:+13344254566">(334) 425-4566</a>
-        </p>
-        <p>
-          <i class="ph-duotone ph-envelope"></i>
-          <a href="mailto:stephanie.maidtoclean@gmail.com">stephanie.maidtoclean@gmail.com</a>
-        </p>
-        <div class="mt-6">
-          <a href="/contact.html" class="btn btn-secondary" data-testid="contact-btn">
-            Get In Touch <i class="ph-duotone ph-arrow-right"></i>
-          </a>
+    <!-- TRUST BAR -->
+    <div class="bg-white py-6 border-b">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-x-12 gap-y-6 text-sm font-medium text-gray-500">
+            <div class="flex items-center gap-x-2"><i class="fa-solid fa-shield-halved text-teal-500"></i> Insured &amp; Bonded</div>
+            <div class="flex items-center gap-x-2"><i class="fa-solid fa-clock text-teal-500"></i> Same-day service available</div>
+            <div class="flex items-center gap-x-2"><i class="fa-solid fa-star text-teal-500"></i> 100% Satisfaction Guarantee</div>
+            <div class="flex items-center gap-x-2"><i class="fa-solid fa-leaf text-teal-500"></i> Eco-friendly products</div>
         </div>
-      </div>
-    </section>
-  </main>
+    </div>
 
-  <div id="footer"></div>
-  <script defer src="/assets/js/load-footer.js"></script>
-  <script src="/assets/js/load-navbar.js"></script>
+    <!-- SERVICES TEASER -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="px-4 py-2 bg-teal-100 text-teal-700 rounded-3xl text-sm font-semibold">OUR SERVICES</span>
+                <h2 class="text-5xl font-semibold mt-4">Spotless cleaning, every time</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service cards -->
+                <div class="bg-white rounded-3xl p-8 card-hover">
+                    <div class="h-12 w-12 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-3xl mb-6">🏠</div>
+                    <h4 class="text-2xl font-semibold mb-2">Residential Cleaning</h4>
+                    <p class="text-gray-600 mb-6">Weekly, bi-weekly, or one-time home cleaning. Kitchens, bathrooms, living areas — we handle it all.</p>
+                    <div class="text-teal-500 font-medium flex items-center justify-between">
+                        Starts at $129 
+                        <a href="book-now.html" class="text-xs px-5 py-2 border border-teal-500 rounded-3xl hover:bg-teal-500 hover:text-white">Book →</a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 card-hover">
+                    <div class="h-12 w-12 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-3xl mb-6">🏢</div>
+                    <h4 class="text-2xl font-semibold mb-2">Office &amp; Commercial</h4>
+                    <p class="text-gray-600 mb-6">Keep your workspace pristine. Daily, weekly, or post-construction cleaning for businesses in the Montgomery area.</p>
+                    <div class="text-teal-500 font-medium flex items-center justify-between">
+                        Starts at $199 
+                        <a href="book-now.html" class="text-xs px-5 py-2 border border-teal-500 rounded-3xl hover:bg-teal-500 hover:text-white">Book →</a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 card-hover">
+                    <div class="h-12 w-12 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-3xl mb-6">🧼</div>
+                    <h4 class="text-2xl font-semibold mb-2">Deep Cleaning</h4>
+                    <p class="text-gray-600 mb-6">Move-in/move-out, spring cleaning, or post-renovation. We go beyond the surface.</p>
+                    <div class="text-teal-500 font-medium flex items-center justify-between">
+                        Starts at $249 
+                        <a href="book-now.html" class="text-xs px-5 py-2 border border-teal-500 rounded-3xl hover:bg-teal-500 hover:text-white">Book →</a>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 card-hover">
+                    <div class="h-12 w-12 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-3xl mb-6">🪟</div>
+                    <h4 class="text-2xl font-semibold mb-2">Specialty Services</h4>
+                    <p class="text-gray-600 mb-6">Window cleaning, carpet shampooing, fridge cleaning, and more. Just ask!</p>
+                    <div class="text-teal-500 font-medium flex items-center justify-between">
+                        Custom pricing 
+                        <a href="book-now.html" class="text-xs px-5 py-2 border border-teal-500 rounded-3xl hover:bg-teal-500 hover:text-white">Request →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-center text-4xl font-semibold mb-12">What our Montgomery neighbors say</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl shadow">
+                    <p class="italic">"Stephanie and her team transformed my house in just 3 hours. Spotless and professional. I’ve used them every 2 weeks since!"</p>
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <div class="w-10 h-10 bg-gray-200 rounded-2xl"></div>
+                        <div>
+                            <div class="font-semibold">Sarah T. – Prattville, AL</div>
+                            <div class="text-teal-500 text-sm">March 28, 2026</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow">
+                    <p class="italic">"Best decision I made moving to Wetumpka. They handled my move-in cleaning perfectly. Highly recommend!"</p>
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <div class="w-10 h-10 bg-gray-200 rounded-2xl"></div>
+                        <div>
+                            <div class="font-semibold">Michael R. – Wetumpka, AL</div>
+                            <div class="text-teal-500 text-sm">March 15, 2026</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow">
+                    <p class="italic">"The team is always on time and friendly. My office has never looked better. 10/10 service!"</p>
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <div class="w-10 h-10 bg-gray-200 rounded-2xl"></div>
+                        <div>
+                            <div class="font-semibold">Dr. Emily Chen – Montgomery, AL</div>
+                            <div class="text-teal-500 text-sm">March 2, 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-12">
+            <!-- Col 1 -->
+            <div class="md:col-span-4">
+                <div class="flex items-center gap-x-3 text-white mb-6">
+                    <div class="w-10 h-10 bg-teal-500 rounded-2xl flex items-center justify-center text-3xl">🧼</div>
+                    <h1 class="text-4xl font-semibold">Maid To Clean</h1>
+                </div>
+                <p class="text-gray-400">Professional cleaning services you can trust. Serving the River Region since 2022.</p>
+                <div class="mt-8 flex gap-x-4 text-3xl">
+                    <i class="fa-brands fa-facebook hover:text-teal-400 cursor-pointer"></i>
+                    <i class="fa-brands fa-instagram hover:text-teal-400 cursor-pointer"></i>
+                </div>
+                <div class="mt-8 text-sm text-gray-400">
+                    <a href="mailto:stephanie.maidtoclean@gmail.com" class="block hover:text-white">📧 stephanie.maidtoclean@gmail.com</a>
+                    <a href="tel:3344254566" class="block hover:text-white">📞 (334) 425-4566</a>
+                </div>
+            </div>
+            
+            <!-- Service Areas (exactly as requested) -->
+            <div class="md:col-span-2">
+                <div class="footer-col">
+                    <h4 class="text-xl font-semibold mb-6">Service Areas</h4>
+                    <p class="mb-2 text-gray-300">Montgomery AL</p>
+                    <p class="mb-2 text-gray-300">Prattville AL</p>
+                    <p class="mb-2 text-gray-300">Wetumpka AL</p>
+                    <p class="mb-2 text-gray-300">Hope Hull AL</p>
+                    <p class="mb-2 text-gray-300">Tallassee AL</p>
+                </div>
+            </div>
+            
+            <div class="md:col-span-2">
+                <h4 class="text-xl font-semibold mb-6">Quick Links</h4>
+                <a href="book-now.html" class="block mb-3 text-gray-300 hover:text-white">Book a Cleaning</a>
+                <a href="services.html" class="block mb-3 text-gray-300 hover:text-white">Our Services</a>
+                <a href="dashboard.html" onclick="checkAuth()" class="block mb-3 text-gray-300 hover:text-white">Customer Dashboard</a>
+                <a href="messages.html" onclick="checkAuth()" class="block mb-3 text-gray-300 hover:text-white">Your Inbox</a>
+            </div>
+            
+            <div class="md:col-span-4">
+                <h4 class="text-xl font-semibold mb-6">Ready for a sparkling home?</h4>
+                <p class="text-gray-400 mb-6">Secure online booking powered by Stripe. Apple Pay, PayPal, or card — your choice.</p>
+                <a href="book-now.html" class="inline-flex bg-teal-500 text-white px-8 py-4 rounded-3xl font-semibold items-center gap-x-3">
+                    Get a free quote in 60 seconds
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="text-center text-gray-500 text-xs mt-16">
+            © 2026 Maid To Clean • All Rights Reserved • Stephanie • Montgomery, Alabama
+        </div>
+    </footer>
+
+    <!-- Global Announcement Banner (shown on all pages when posted) -->
+    <div id="global-announcement" onclick="this.classList.add('hidden')" 
+         class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-amber-500 text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center gap-x-3 cursor-pointer max-w-md">
+        <i class="fa-solid fa-bullhorn"></i>
+        <div id="announcement-text" class="flex-1 text-sm font-medium"></div>
+        <i class="fa-solid fa-xmark"></i>
+    </div>
+
+    <script>
+        // Tailwind script already loaded
+        function initializeTailwind() {
+            // Already using CDN
+        }
+        
+        // Mock Stripe instance
+        let stripe;
+        function initStripe() {
+            // Demo publishable key (replace with your real test key in production)
+            stripe = Stripe('pk_test_51demo1234567890abcdef');
+        }
+        
+        // Mock authentication & data
+        let currentUser = null;
+        let currentRole = null;
+        
+        function loginAs(role) {
+            currentRole = role;
+            if (role === 'customer') {
+                currentUser = { id: 1, name: "David Johnson", email: "david@example.com", type: "customer" };
+            } else {
+                currentUser = { id: 999, name: "Stephanie (Admin)", email: "stephanie.maidtoclean@gmail.com", type: "admin" };
+            }
+            localStorage.setItem('maidtoclean_user', JSON.stringify(currentUser));
+            localStorage.setItem('maidtoclean_role', role);
+            document.getElementById('user-info').classList.remove('hidden');
+            document.getElementById('current-user').innerHTML = `
+                👋 ${currentUser.name} 
+                <span class="text-xs ml-1 px-2 py-px bg-teal-100 text-teal-700 rounded">${role}</span>
+            `;
+            alert(`✅ Logged in as ${currentUser.name} (${role})`);
+            // Refresh any dynamic content
+            if (typeof updateDashboard === 'function') updateDashboard();
+        }
+        
+        function logout() {
+            currentUser = null;
+            currentRole = null;
+            localStorage.removeItem('maidtoclean_user');
+            localStorage.removeItem('maidtoclean_role');
+            document.getElementById('user-info').classList.add('hidden');
+            alert('👋 Logged out');
+            window.location.href = 'index.html';
+        }
+        
+        function checkAuth() {
+            const savedUser = localStorage.getItem('maidtoclean_user');
+            if (!savedUser) {
+                alert('🔑 Please log in first (use the Customer or Admin buttons in the navbar)');
+                return false;
+            }
+            return true;
+        }
+        
+        // Messages & Announcements storage
+        function getMessages() {
+            return JSON.parse(localStorage.getItem('maidtoclean_messages') || '[]');
+        }
+        
+        function saveMessages(messages) {
+            localStorage.setItem('maidtoclean_messages', JSON.stringify(messages));
+        }
+        
+        function getAnnouncements() {
+            return JSON.parse(localStorage.getItem('maidtoclean_announcements') || '[]');
+        }
+        
+        function saveAnnouncements(announcements) {
+            localStorage.setItem('maidtoclean_announcements', JSON.stringify(announcements));
+        }
+        
+        // Show latest global announcement
+        function showAnnouncement() {
+            const announcements = getAnnouncements();
+            if (announcements.length > 0) {
+                const latest = announcements[announcements.length - 1];
+                const banner = document.getElementById('global-announcement');
+                document.getElementById('announcement-text').innerHTML = `
+                    📢 <strong>Company-wide:</strong> ${latest.text}
+                    <span class="text-xs ml-2 opacity-75">(${new Date(latest.date).toLocaleDateString()})</span>
+                `;
+                banner.classList.remove('hidden');
+                // Auto-hide after 15 seconds
+                setTimeout(() => banner.classList.add('hidden'), 15000);
+            }
+        }
+        
+        // ADMIN PANEL
+        function showAdminPanel() {
+            if (!checkAuth() || currentRole !== 'admin') {
+                alert('🔒 Admin access required. Log in as Admin first.');
+                return;
+            }
+            
+            const panelHTML = `
+            <div class="fixed inset-0 bg-black/70 flex items-center justify-center z-[9999]" onclick="if(event.target.id === 'admin-modal')hideAdminPanel()">
+                <div id="admin-modal" onclick="event.stopImmediatePropagation()" 
+                     class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden modal">
+                    <div class="px-8 pt-6 pb-4 border-b flex items-center justify-between">
+                        <h2 class="text-3xl font-semibold">👩‍💼 Admin Control Center</h2>
+                        <button onclick="hideAdminPanel()" class="text-4xl leading-none text-gray-300 hover:text-gray-600">×</button>
+                    </div>
+                    
+                    <div class="p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Broadcast Announcement -->
+                        <div>
+                            <h3 class="font-semibold text-lg mb-4 flex items-center gap-x-2"><i class="fa-solid fa-bullhorn"></i> Post Company Announcement</h3>
+                            <textarea id="announcement-input" rows="4" 
+                                      class="w-full border rounded-3xl px-5 py-4 focus:outline-none focus:border-teal-400" 
+                                      placeholder="Example: All customers — free 10% off your next cleaning this month!"></textarea>
+                            <button onclick="postAnnouncement()" 
+                                    class="mt-4 w-full py-4 bg-teal-500 hover:bg-teal-600 text-white font-semibold rounded-3xl flex justify-center items-center gap-x-3">
+                                <i class="fa-solid fa-paper-plane"></i> 
+                                SEND TO ALL CUSTOMERS
+                            </button>
+                            <p class="text-xs text-gray-500 mt-3">This will appear as a banner on every customer’s dashboard and messages page.</p>
+                        </div>
+                        
+                        <!-- Direct Message -->
+                        <div>
+                            <h3 class="font-semibold text-lg mb-4 flex items-center gap-x-2"><i class="fa-solid fa-envelope"></i> Send Direct Message</h3>
+                            <select id="customer-select" class="w-full border rounded-3xl px-5 py-4 mb-4 focus:outline-none focus:border-teal-400">
+                                <option value="">Select customer...</option>
+                                <option value="1">David Johnson (david@example.com)</option>
+                                <option value="2">Sarah Thompson (sarah@prattville.com)</option>
+                                <option value="3">Michael Rodriguez (michael@wetumpka.com)</option>
+                            </select>
+                            <textarea id="dm-input" rows="4" 
+                                      class="w-full border rounded-3xl px-5 py-4 focus:outline-none focus:border-teal-400" 
+                                      placeholder="Type your private message here..."></textarea>
+                            <button onclick="sendDirectMessage()" 
+                                    class="mt-4 w-full py-4 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-3xl flex justify-center items-center gap-x-3">
+                                <i class="fa-solid fa-paper-plane"></i> 
+                                SEND PRIVATE MESSAGE
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="px-8 py-6 bg-gray-50 border-t text-xs text-gray-500 flex justify-between">
+                        <div>📍 Currently serving ${currentUser.name}</div>
+                        <button onclick="hideAdminPanel()" class="underline">Close panel</button>
+                    </div>
+                </div>
+            </div>`;
+            
+            const div = document.createElement('div');
+            div.innerHTML = panelHTML;
+            document.body.appendChild(div.firstElementChild);
+        }
+        
+        function hideAdminPanel() {
+            const modal = document.querySelector('#admin-modal');
+            if (modal) modal.parentElement.remove();
+        }
+        
+        function postAnnouncement() {
+            const text = document.getElementById('announcement-input').value.trim();
+            if (!text) return alert('Please type an announcement');
+            
+            let announcements = getAnnouncements();
+            announcements.push({
+                id: Date.now(),
+                text: text,
+                date: new Date().toISOString(),
+                type: 'global'
+            });
+            saveAnnouncements(announcements);
+            hideAdminPanel();
+            showAnnouncement();
+            alert('✅ Announcement broadcast to ALL customers!');
+        }
+        
+        function sendDirectMessage() {
+            const customerId = document.getElementById('customer-select').value;
+            const messageText = document.getElementById('dm-input').value.trim();
+            
+            if (!customerId || !messageText) {
+                return alert('Please select a customer and type a message');
+            }
+            
+            let messages = getMessages();
+            messages.push({
+                id: Date.now(),
+                from: 'admin',
+                to: parseInt(customerId),
+                text: messageText,
+                date: new Date().toISOString(),
+                read: false
+            });
+            saveMessages(messages);
+            hideAdminPanel();
+            alert('✅ Direct message sent to customer!');
+        }
+        
+        // CUSTOMER MESSAGE BOX (used in dashboard.html)
+        function sendCustomerMessage() {
+            const input = document.getElementById('customer-message-input');
+            if (!input || !input.value.trim()) return;
+            
+            let messages = getMessages();
+            messages.push({
+                id: Date.now(),
+                from: 'customer',
+                to: 'admin',
+                text: input.value.trim(),
+                date: new Date().toISOString(),
+                read: false
+            });
+            saveMessages(messages);
+            input.value = '';
+            alert('✅ Message sent to admin. Check your inbox for replies!');
+            
+            // If we are on messages.html, refresh inbox
+            if (typeof renderInbox === 'function') renderInbox();
+        }
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        // Load everything
+        window.onload = function() {
+            initStripe();
+            showAnnouncement();
+            
+            // Check if user is already logged in
+            const saved = localStorage.getItem('maidtoclean_user');
+            if (saved) {
+                currentUser = JSON.parse(saved);
+                currentRole = localStorage.getItem('maidtoclean_role');
+                const info = document.getElementById('user-info');
+                if (info) {
+                    info.classList.remove('hidden');
+                    document.getElementById('current-user').innerHTML = `
+                        👋 ${currentUser.name} 
+                        <span class="text-xs ml-1 px-2 py-px bg-teal-100 text-teal-700 rounded">${currentRole}</span>
+                    `;
+                }
+            }
+            
+            console.log('%c✅ Maid To Clean website loaded successfully!', 'color:#00c4b4; font-size:16px; font-weight:600');
+        };
+    </script>
 </body>
 </html>
