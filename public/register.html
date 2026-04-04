@@ -77,7 +77,9 @@
       try {
         await registerUser(email, password, firstName, lastName, phone);
         showToast("Account created! Check your email to confirm.", "success");
-        setTimeout(() => window.location.href = `/confirm-email.html?email=${encodeURIComponent(email)}`, 1500);
+        setTimeout(() => {
+          window.location.href = `/confirm-email.html?email=${encodeURIComponent(email)}`;
+        }, 1500);
       } catch (error) {
         showToast(error.message || "Registration failed", "error");
       }
