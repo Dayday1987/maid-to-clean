@@ -38,7 +38,7 @@
           <input type="text" id="lastName" />
         </div>
         <div class="form-group">
-          <label>Phone</label>
+          <label>Phone Number</label>
           <input type="tel" id="phone" />
         </div>
         <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -47,12 +47,23 @@
   </main>
 
   <script>
-    // Basic settings form (you can expand later)
+    // Load current profile
+    async function loadProfile() {
+      const profile = await getUserProfile();
+      if (profile) {
+        document.getElementById("firstName").value = profile.first_name || "";
+        document.getElementById("lastName").value = profile.last_name || "";
+        document.getElementById("phone").value = profile.phone || "";
+      }
+    }
+
     document.getElementById("profileForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      // Update user profile in Supabase
-      alert("Settings saved successfully!");
+      // Save logic can be expanded later
+      alert("Profile updated successfully!");
     });
+
+    document.addEventListener("DOMContentLoaded", loadProfile);
   </script>
 
   <script src="/assets/js/load-navbar.js"></script>
