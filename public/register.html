@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Create your Maid To Clean account to book cleaning services." />
+  <meta name="description" content="Create your Maid To Clean account to book professional cleaning services in Montgomery AL." />
+  <meta name="keywords" content="register maid to clean, create account cleaning service Montgomery AL" />
+  <meta property="og:title" content="Register | Maid To Clean" />
   <title>Register | Maid To Clean</title>
 
   <link rel="stylesheet" href="/assets/css/main.css" />
@@ -20,13 +22,24 @@
 
   <main class="auth-container">
     <h1>Create Account</h1>
-    <form id="registerForm">
-      <!-- First Name, Last Name, Email, Phone, Password fields -->
-      <button type="submit" class="btn btn-primary">Create Account</button>
-    </form>
-    <div class="auth-link">Already have an account? <a href="/login.html">Log in</a></div>
-  </main>
 
-  <script src="/assets/js/load-navbar.js"></script>
-</body>
-</html>
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" required />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" required />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="
