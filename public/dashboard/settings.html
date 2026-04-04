@@ -47,7 +47,6 @@
   </main>
 
   <script>
-    // Load current profile
     async function loadProfile() {
       const profile = await getUserProfile();
       if (profile) {
@@ -59,7 +58,6 @@
 
     document.getElementById("profileForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      // Save logic can be expanded later
       alert("Profile updated successfully!");
     });
 
