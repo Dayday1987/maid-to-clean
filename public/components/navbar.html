@@ -4,26 +4,27 @@
       <img src="/assets/images/IMG_7591.webp" alt="Maid To Clean" />
     </a>
 
-    <!-- Hamburger button for mobile -->
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <!-- Hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
     <ul id="nav-links" class="nav-links">
-      <!-- LEFT -->
-      <li class="public-only nav-left"><a href="/">Home</a></li>
+      <li class="public-only"><a href="/">Home</a></li>
       <li class="public-only"><a href="/about.html">About</a></li>
       <li class="public-only"><a href="/services.html">Services</a></li>
       <li class="public-only"><a href="/contact.html">Contact</a></li>
-      <!-- RIGHT SIDE GROUP -->
+
       <li class="nav-spacer"></li>
+
       <!-- Guest -->
       <li class="guest-only"><a href="/login.html">Login</a></li>
       <li class="guest-only"><a href="/register.html">Register</a></li>
-      <!-- Customer Dropdown -->
-      <li class="customer-only dropdown" style="display: none">
+
+      <!-- Customer -->
+      <li class="customer-only dropdown" style="display:none">
         <a href="#">Account ▾</a>
         <ul class="dropdown-menu">
           <li><a href="/dashboard/dashboard.html">Dashboard</a></li>
@@ -33,17 +34,13 @@
           <li><a href="#" class="logoutBtn">Logout</a></li>
         </ul>
       </li>
-      <!-- Admin Dropdown -->
-      <li class="admin-only dropdown" style="display: none">
-        <a href="#">Account ▾</a>
+
+      <!-- Admin -->
+      <li class="admin-only dropdown" style="display:none">
+        <a href="#">Admin ▾</a>
         <ul class="dropdown-menu">
           <li><a href="/admin/admin-dashboard.html">Dashboard</a></li>
           <li><a href="/admin/admin-customers.html">Customers</a></li>
           <li><a href="/admin/admin-billing.html">Billing</a></li>
           <li><a href="/admin/admin-messages.html">Messages</a></li>
-          <li><a href="#" class="logoutBtn">Logout</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</nav>
+          <li><a href
