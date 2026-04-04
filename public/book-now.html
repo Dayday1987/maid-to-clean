@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now - Maid To Clean</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>/* Same style block as index.html - copy from above if needed */ </style>
+</head>
+<body class="tail-container">
+    <!-- Include the same navbar as index.html (copy the <nav> block) -->
+    <nav class="bg-white border-b shadow-sm sticky top-0 z-50">... [paste full navbar from index.html here] ...</nav>
+
+    <div class="max-w-2xl mx-auto px-6 py-16">
+        <h1 class="text-5xl font-semibold text-center mb-2">Secure Booking</h1>
+        <p class="text-center text-gray-500 mb-10">Powered by Stripe • Apple Pay • PayPal • Card</p>
+        
+        <div class="bg-white rounded-3xl shadow-xl p-10">
+            <div class="mb-8">
+                <label class="block text-sm font-medium mb-2">Service type</label>
+                <select class="w-full border rounded-3xl px-6 py-4 text-lg">
+                    <option>Standard Home Cleaning – $129</option>
+                    <option>Deep Cleaning – $249</option>
+                    <option>Office Cleaning – $199</option>
+                </select>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Date</label>
+                    <input type="date" class="w-full border rounded-3xl px-6 py-4">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Time</label>
+                    <select class="w-full border rounded-3xl px-6 py-4">
+                        <option>9:00 AM</option>
+                        <option>10:00 AM</option>
+                        <option>11:00 AM</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="mb-10">
+                <p class="text-sm font-medium mb-4">Choose payment method</p>
+                
+                <!-- Stripe Payment Buttons -->
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Apple Pay -->
+                    <button onclick="fakePayment('Apple Pay')" 
+                            class="flex items-center justify-center gap-x-4 border-2 border-black rounded-3xl py-6 text-xl font-semibold hover:bg-black hover:text-white transition-colors">
+                        <i class="fa-brands fa-apple-pay text-4xl"></i>
+                        Pay with Apple Pay
+                    </button>
+                    
+                    <!-- PayPal -->
+                    <button onclick="fakePayment('PayPal')" 
+                            class="flex items-center justify-center gap-x-4 border-2 border-[#003087] text-[#003087] rounded-3xl py-6 text-xl font-semibold hover:bg-[#003087] hover:text-white transition-colors">
+                        <i class="fa-brands fa-paypal text-4xl"></i>
+                        Pay with PayPal
+                    </button>
+                    
+                    <!-- Card (Stripe Elements) -->
+                    <button onclick="showStripeCard()" 
+                            class="flex items-center justify-center gap-x-4 border-2 border-teal-500 text-teal-500 rounded-3xl py-6 text-xl font-semibold hover:bg-teal-500 hover:text-white transition-colors">
+                        <i class="fa-solid fa-credit-card text-3xl"></i>
+                        Pay with Card (Stripe)
+                    </button>
+                </div>
+            </div>
+            
+            <div id="stripe-card-element" class="hidden">
+                <div id="card-element" class="border rounded-3xl p-6 bg-gray-50"></div>
+                <button onclick="processStripePayment()" 
+                        class="mt-6 w-full py-5 bg-teal-500 text-white text-xl font-semibold rounded-3xl">Pay Securely • $129</button>
+                <p class="text-xs text-center text-gray-400 mt-4">🔒 Your payment is protected by Stripe</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let stripe = Stripe('pk_test_51demo1234567890abcdef');
+        let elements;
+        
+        function fakePayment(method) {
+            alert(`🎉 ${method} selected! In a real site this would open the ${method} checkout. Payment demo complete.`);
+            setTimeout(() => {
+                alert('✅ Booking confirmed! Confirmation emailed to stephanie.maidtoclean@gmail.com');
+                window.location.href = 'dashboard.html';
+            }, 800);
+        }
+        
+        function showStripeCard() {
+            document.getElementById('stripe-card-element').classList.remove('hidden');
+            elements = stripe.elements();
+            const card = elements.create('card', {style: {base: {fontSize: '16px'}}});
+            card.mount('#card-element');
+        }
+        
+        function processStripePayment() {
+            alert('✅ Payment successful via Stripe! (Demo mode)');
+            window.location.href = 'dashboard.html';
+        }
+    </script>
+</body>
+</html>
