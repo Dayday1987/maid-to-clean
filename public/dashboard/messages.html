@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox - Maid To Clean</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="tail-container">
+    <!-- Paste navbar -->
+    <nav class="bg-white border-b shadow-sm sticky top-0 z-50">...[navbar]...</nav>
+    
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <h1 class="text-4xl font-semibold mb-8">📥 Your Inbox</h1>
+        <div id="inbox-list" class="space-y-4"></div>
+    </div>
+    
+    <script>
+        function renderInbox() {
+            const container = document.getElementById('inbox-list');
+            const messages = JSON.parse(localStorage.getItem('maidtoclean_messages') || '[]');
+            container.innerHTML = messages.length ? '' : '<p class="text-gray-400 text-center py-12">No messages yet. Your admin will reach out soon!</p>';
+            
+            messages.forEach(msg => {
+                const div = document.createElement('div');
+                div.className = `flex gap-4 p-6 rounded-3xl ${msg.from === 'admin' ? 'bg-amber-50' : 'bg-teal-50'}`;
+                div.innerHTML = `
+                    <div class="flex-1">
+                        <div class="font-medium">${msg.from === 'admin' ? 'Stephanie • Maid To Clean' : 'You'}</div>
+                        <p class="mt-1">${msg.text}</p>
+                        <p class="text-xs text-gray-400 mt-3">${new Date(msg.date).toLocaleString()}</p>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+        window.onload = renderInbox;
+    </script>
+</body>
+</html>
